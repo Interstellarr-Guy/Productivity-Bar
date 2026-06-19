@@ -1,14 +1,15 @@
-import {
-  generateMonthDates,
-  getFirstDay
-} from "../Utils/CalendarUtils";
+import CalendarGrid from "../components/CalendarGrid";
 
 export default function Calendar() {
-
-  console.log(generateMonthDates(2026, 0));
-  console.log(getFirstDay(2026, 0));
+  const year = 2026;
+  const month = 0; // January
 
   return (
-    <div>Calendar</div>
+    <div className="h-screen">
+      <CalendarGrid
+        year={year}
+        month={month}
+      />
+    </div>
   );
 }
