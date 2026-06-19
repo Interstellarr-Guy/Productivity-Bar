@@ -2,6 +2,7 @@ import {
   generateMonthDates,
   getFirstDay,
 } from "../Utils/CalendarUtils";
+import DayCell from "./DayCell";
 
 export default function CalendarGrid({ year, month }) {
 
@@ -24,8 +25,25 @@ const fullCalendar = [
   return (
     <div className="grid grid-cols-7 h-full bg-[#777]">
 
-      {fullCalendar.map((cell, index) => (
-        <div
+      {fullCalendar.map((cell, index) => {
+  return cell === null ? (
+    <div
+      key={index}
+      className="border border-gray-400 bg-[#444]"
+    />
+  ) : (
+    <DayCell
+      key={index}
+      day={cell}
+    />
+  );
+})}
+
+    </div>
+  );
+}
+
+/* <div
           key={index}
           className={`border border-gray-400 relative min-h-32
           ${cell === null ? "bg-[#444]" : "bg-[#666]"}
@@ -36,9 +54,4 @@ const fullCalendar = [
               {cell}
             </span>
           )}
-        </div>
-      ))}
-
-    </div>
-  );
-}
+        </div> */
