@@ -1,4 +1,8 @@
+
+
 export default function DayCell({ day, hours=0}) {
+
+const fillPercentage = (hours /12) * 100;
     return(
       <div className="border border-gray-400 relative min-h-30 bg-[#666]">
       <span className="absolute top-1 left-1">
@@ -9,7 +13,7 @@ export default function DayCell({ day, hours=0}) {
         <div
           className="w-full bg-[#095900]"
           style={{
-            height: "8%"
+            height: `${fillPercentage}%`
           }}
         />
       </div >

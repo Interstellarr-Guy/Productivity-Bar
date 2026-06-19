@@ -22,10 +22,24 @@ const fullCalendar = [
   ...cells,
   ...Array(remainingCells).fill(null),
 ];
+
+const productivityData = {
+    "2026-01-01" : 6,
+    "2026-01-02" : 9,
+    "2026-01-03" : 3,
+    "2026-01-04" : 8,
+    "2026-01-05" : 3,
+}
+
+
+
   return (
     <div className="grid grid-cols-7 h-full bg-[#777]">
 
       {fullCalendar.map((cell, index) => {
+
+        const dateKey =
+  `2026-01-${String(cell).padStart(2, "0")}`;
   return cell === null ? (
     <div
       key={index}
@@ -35,6 +49,7 @@ const fullCalendar = [
     <DayCell
       key={index}
       day={cell}
+      hours={productivityData[dateKey] || 1}
     />
   );
 })}
