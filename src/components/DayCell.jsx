@@ -11,13 +11,12 @@ const fillPercentage = (hours /12) * 100;
 
       <div className="absolute bottom-0 left-0 w-full h-full flex items-end"> 
         <div
-          className="w-full bg-[#095900]"
+          className="w-full bg-[#1d421d] rounded-t-xl shadow-xl drop-shadow-xl/50"
           style={{
             height: `${fillPercentage}%`
           }}
         />
-      </div >
+      </div>
     </div>
-
     );
 }

@@ -37,7 +37,7 @@ export default function Calendar() {
         productivityData={productivityData}
         onDayClick={setSelectedDate}
       />
-      // First Data Model
+    
 
       {selectedDate && (
   <div
@@ -47,7 +47,7 @@ export default function Calendar() {
       flex items-center justify-center
     "
   >
-    <div className="bg-white p-4 rounded">
+    <div className="bg-[#822715] p-4 rounded">
 
       <h2>{selectedDate}</h2>
     
@@ -57,6 +57,7 @@ export default function Calendar() {
       max="12"
       value={hoursInput}
       onChange={(e) => setHoursInput(e.target.value)}
+      autoFocus
       onKeyDown={(e) => {
     if (e.key === "Enter") {
       setProductivityData(prev => ({
@@ -68,7 +69,7 @@ export default function Calendar() {
       setSelectedDate(null);
     }
   }}
-  className="border p-2"
+  className="border p-2 bg-[#8a7676]"
 />
 
       <button
@@ -92,7 +93,7 @@ export default function Calendar() {
 )}
     </div>
 
-    // First Data Model
+    
     
   );
 }
