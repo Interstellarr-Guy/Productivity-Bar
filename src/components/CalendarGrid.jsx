@@ -4,7 +4,7 @@ import {
 } from "../Utils/CalendarUtils";
 import DayCell from "./DayCell";
 
-export default function CalendarGrid({ year, month }) {
+export default function CalendarGrid({ year, month, productivityData, onDayClick }) {
 
   const dates = generateMonthDates(year, month);
 
@@ -22,25 +22,27 @@ const fullCalendar = [
   ...cells,
   ...Array(remainingCells).fill(null),
 ];
-
+/*
 const productivityData = {
     "2026-01-01" : 6,
     "2026-01-02" : 9,
     "2026-01-03" : 3,
     "2026-01-04" : 8,
     "2026-01-05" : 3,
+    "2026-01-07" : 3,
+    "2026-01-20" : 3,
 }
-
-
-
+*/
   return (
     <div className="grid grid-cols-7 h-full bg-[#777]">
 
       {fullCalendar.map((cell, index) => {
 
-        const dateKey =
-  `2026-01-${String(cell).padStart(2, "0")}`;
-  return cell === null ? (
+      //  const dateKey = `2026-01-${String(cell).padStart(2, "0")}`;
+    const dateKey =
+`${year}-${String(month + 1).padStart(2, "0")}-${String(cell).padStart(2, "0")}`;
+
+      return cell === null ? (
     <div
       key={index}
       className="border border-gray-400 bg-[#444]"
@@ -49,7 +51,9 @@ const productivityData = {
     <DayCell
       key={index}
       day={cell}
-      hours={productivityData[dateKey] || 1}
+      hours={productivityData[dateKey] || 0 }
+      onClick={()=> onDayClick(dateKey)}
+               
     />
   );
 })}
