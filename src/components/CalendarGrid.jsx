@@ -34,7 +34,7 @@ const productivityData = {
 }
 */
   return (
-    <div className="grid grid-cols-7 h-full bg-[#777]">
+    <div className="grid grid-cols-7 h-full bg-[#777]  ">
 
       {fullCalendar.map((cell, index) => {
 
@@ -45,7 +45,7 @@ const productivityData = {
       return cell === null ? (
     <div
       key={index}
-      className="border border-gray-400 bg-[#444]"
+      className="border border-[#555] bg-[#333]"
     />
   ) : (
     <DayCell
