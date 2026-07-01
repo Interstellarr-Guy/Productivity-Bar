@@ -34,7 +34,7 @@ const productivityData = {
 }
 */
   return (
-    <div className="grid grid-cols-7 h-full bg-[#777]  ">
+    <div className="grid grid-cols-7 h-full bg-[#777]  text-[#e7dee5]">
 
       {fullCalendar.map((cell, index) => {
 
