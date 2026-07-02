@@ -7,16 +7,21 @@ export default function Calendar() {
 
   //Storing data for test in React state
   const [selectedDate, setSelectedDate] = useState(null);
-  const [productivityData, setProductivityData] = useState({});
+ // const [productivityData, setProductivityData] = useState({});
   const [hoursInput, setHoursInput] = useState("");
 
-  useEffect(() => {
+  const [productivityData, setProductivityData] = useState(() => {
   const savedData = localStorage.getItem("productivityData");
+        return savedData ? JSON.parse(savedData) : {};
+});
 
-  if (savedData) {
-    setProductivityData(JSON.parse(savedData));
-  }
-}, []);
+
+  useEffect(() => {
+     localStorage.setItem(
+     "productivityData",
+     JSON.stringify(productivityData)
+  );
+}, [productivityData]);
 
   const months =
   ["January", "February", "March", "April", "May", "June",
@@ -110,8 +115,25 @@ export default function Calendar() {
 
   }}
 >
-  Save
-</button>
+                        Save
+     </button>
+
+   <button
+   onClick={() => {
+
+    const updatedData = { ...productivityData };
+
+    delete updatedData[selectedDate];
+
+    setProductivityData(updatedData);
+
+    setHoursInput("");
+    setSelectedDate(null);
+
+  }}
+>
+                        Delete
+    </button>
       
     </div>
   </div>
