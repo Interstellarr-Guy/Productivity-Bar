@@ -1,5 +1,5 @@
 import CalendarGrid from "../components/CalendarGrid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Calendar() {
   const [year] = useState(2026);
@@ -9,6 +9,14 @@ export default function Calendar() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [productivityData, setProductivityData] = useState({});
   const [hoursInput, setHoursInput] = useState("");
+
+  useEffect(() => {
+  const savedData = localStorage.getItem("productivityData");
+
+  if (savedData) {
+    setProductivityData(JSON.parse(savedData));
+  }
+}, []);
 
   const months =
   ["January", "February", "March", "April", "May", "June",
@@ -35,10 +43,12 @@ export default function Calendar() {
         year={year}
         month={month}
         productivityData={productivityData}
-        onDayClick={setSelectedDate}
+         onDayClick={(dateKey) => {
+         setSelectedDate(dateKey);
+         setHoursInput(productivityData[dateKey] || "");
+  }}
       />
     
-
       {selectedDate && (
   <div
     className="
@@ -59,33 +69,48 @@ export default function Calendar() {
       onChange={(e) => setHoursInput(e.target.value)}
       autoFocus
       onKeyDown={(e) => {
-    if (e.key === "Enter") {
-      setProductivityData(prev => ({
-        ...prev,
-        [selectedDate]: Number(hoursInput)
-      }));
+      if (e.key === "Enter") {
 
-      setHoursInput("");
-      setSelectedDate(null);
-    }
-  }}
+      const updatedData = {
+      ...productivityData,
+      [selectedDate]: Number(hoursInput),
+      };
+
+      setProductivityData(updatedData);
+
+      localStorage.setItem(
+      "productivityData",
+      JSON.stringify(updatedData)
+      );
+
+    setHoursInput("");
+    setSelectedDate(null);
+  }
+}}
   className="border p-2 bg-[#8a7676]"
 />
 
       <button
-      onClick={() => {
+  onClick={() => {
 
-      setProductivityData(prev => ({
-      ...prev,
-      [selectedDate]: Number(hoursInput)
-      }));
+    const updatedData = {
+      ...productivityData,
+      [selectedDate]: Number(hoursInput),
+    };
 
-      setHoursInput("");
-      setSelectedDate(null);
+    setProductivityData(updatedData);
 
-      }}
+    localStorage.setItem(
+      "productivityData",
+      JSON.stringify(updatedData)
+    );
+
+    setHoursInput("");
+    setSelectedDate(null);
+
+  }}
 >
-      Save
+  Save
 </button>
       
     </div>

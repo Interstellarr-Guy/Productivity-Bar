@@ -1,7 +1,4 @@
-import {
-  generateMonthDates,
-  getFirstDay,
-} from "../Utils/CalendarUtils";
+import {generateMonthDates,getFirstDay,} from "../Utils/CalendarUtils";
 import DayCell from "./DayCell";
 
 export default function CalendarGrid({ year, month, productivityData, onDayClick }) {
@@ -18,10 +15,10 @@ export default function CalendarGrid({ year, month, productivityData, onDayClick
     // Update for 7 rows to all days in month
     const remainingCells = 42 - cells.length;
 
-const fullCalendar = [
+  const fullCalendar = [
   ...cells,
   ...Array(remainingCells).fill(null),
-];
+  ];
 /*
 const productivityData = {
     "2026-01-01" : 6,
@@ -38,7 +35,7 @@ const productivityData = {
 
       {fullCalendar.map((cell, index) => {
 
-      //  const dateKey = `2026-01-${String(cell).padStart(2, "0")}`;
+    
     const dateKey =
 `${year}-${String(month + 1).padStart(2, "0")}-${String(cell).padStart(2, "0")}`;
 
@@ -62,15 +59,3 @@ const productivityData = {
   );
 }
 
-/* <div
-          key={index}
-          className={`border border-gray-400 relative min-h-32
-          ${cell === null ? "bg-[#444]" : "bg-[#666]"}
-          `}
-        >
-          {cell !== null && (
-            <span className="absolute top-1 left-1">
-              {cell}
-            </span>
-          )}
-        </div> */
