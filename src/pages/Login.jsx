@@ -1,5 +1,6 @@
 import { useState } from "react";
 import authService from "../services/authService";
+import workspaceService from "../services/workspaceService";
 
 export default function Login() {
 
@@ -20,7 +21,29 @@ export default function Login() {
 
             console.log("Login Success", response);
 
-            alert("Login Successful!");
+        // Get all workspaces
+          let workspaces = await workspaceService.getWorkspaces();
+
+          let workspace;
+
+        // If user has no workspace, create one
+        if (workspaces.length === 0) {
+
+        workspace = await workspaceService.createWorkspace("My Workspace");
+
+       console.log("Workspace Created:", workspace);
+
+       } else {
+
+       workspace = workspaces[0];
+
+       console.log("Workspace Found:", workspace);
+    }
+
+    // Save workspace id
+       localStorage.setItem("workspaceId", workspace.id);
+
+       alert("Login Successful!");
 
         } catch (error) {
 
