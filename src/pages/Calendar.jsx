@@ -1,6 +1,6 @@
 import CalendarGrid from "../components/CalendarGrid";
 import { useState } from "react";
-import Modal from "../components/Modal";
+import Modal from "../components/ProductivityModal";
 import MonthSelector from "../components/MonthSelector";
 import useProductivity from "../hooks/useProductivity";
 
