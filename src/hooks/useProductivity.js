@@ -1,32 +1,90 @@
 import { useState, useEffect } from "react";
+import productivityWorkspaceService from "../Services/ProductivityWorkspaceService";
 
 export default function useProductivity() {
-  const [productivityData, setProductivityData] = useState(() => {
-    const saved = localStorage.getItem("productivityData");
-    return saved ? JSON.parse(saved) : {};
-  });
+  const [productivityData, setProductivityData] = useState({});
+
+  // useEffect(() => {
+  //   localStorage.setItem(
+  //     "productivityData",
+  //     JSON.stringify(productivityData)
+  //   );
+  // }, [productivityData]);
 
   useEffect(() => {
-    localStorage.setItem(
-      "productivityData",
-      JSON.stringify(productivityData)
-    );
-  }, [productivityData]);
 
-  const saveHours = (dateKey, hours) => {
-    setProductivityData(prev => ({
-      ...prev,
-      [dateKey]: hours,
-    }));
-  };
+    loadWorkspace();
+}, []);
 
-  const deleteHours = (dateKey) => {
-    setProductivityData(prev => {
-      const updated = { ...prev };
-      delete updated[dateKey];
-      return updated;
-    });
-  };
+const loadWorkspace = async () => {
+
+    
+    
+    try {
+
+        const workspace =
+            await productivityWorkspaceService.getWorkspace();
+
+            console.log("Workspace from backend:", workspace);
+
+        const data = workspace.productivityData
+            ? JSON.parse(workspace.productivityData)
+            : {};
+
+        setProductivityData(data);
+
+    } catch (error) {
+
+        console.error("Failed to load workspace", error);
+
+    }
+
+};
+
+  const saveHours = async (dateKey, hours) => {
+
+    const updatedData = {
+        ...productivityData,
+        [dateKey]: hours,
+    };
+
+    setProductivityData(updatedData);
+
+    try {
+
+        await productivityWorkspaceService.updateWorkspace(
+            JSON.stringify(updatedData)
+        );
+
+    } catch (error) {
+
+        console.error("Failed to save workspace", error);
+
+    }
+
+};
+
+  const deleteHours = async (dateKey) => {
+
+    const updatedData = { ...productivityData };
+
+    delete updatedData[dateKey];
+
+    setProductivityData(updatedData);
+
+    try {
+
+        await productivityWorkspaceService.updateWorkspace(
+            JSON.stringify(updatedData)
+        );
+
+    } catch (error) {
+
+        console.error("Failed to delete hours", error);
+
+    }
+
+};
 
   return {
     productivityData,
