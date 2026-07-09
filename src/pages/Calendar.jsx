@@ -3,6 +3,9 @@ import { useState } from "react";
 import Modal from "../components/ProductivityModal";
 import MonthSelector from "../components/MonthSelector";
 import useProductivity from "../hooks/useProductivity";
+import AppLayout from "../layout/AppLayout";
+import Sidebar from "../components/sidebar/Sidebar";
+import Navbar from "../components/Navbar";
 
 export default function Calendar() {
   const [year] = useState(2026);
@@ -56,12 +59,17 @@ export default function Calendar() {
   : "";
 
   return (
-    <div className="h-screen">
+  <AppLayout
+    sidebar={<Sidebar />}
+    navbar={<Navbar />}
+  >
+
+    <div className="h-full">
 
       <MonthSelector
-       months={months}
-       currentMonth={month}
-       setMonth={setMonth}
+        months={months}
+        currentMonth={month}
+        setMonth={setMonth}
       />
 
       <CalendarGrid
@@ -69,25 +77,26 @@ export default function Calendar() {
         month={month}
         productivityData={productivityData}
         onDayClick={(dateKey) => {
-        setSelectedDate(dateKey);
-        setHoursInput(productivityData[dateKey] || "");
-  }}
+          setSelectedDate(dateKey);
+          setHoursInput(productivityData[dateKey] || "");
+        }}
       />
-    
+
       {selectedDate && (
-      <Modal
-       selectedDate={selectedDate}
-       formattedDate={formattedDate}
-       hoursInput={hoursInput}
-       setHoursInput={setHoursInput}
-       handleSave={handleSave}
-       handleDelete={handleDelete}
-       setSelectedDate={setSelectedDate}
-      />
-)}
+        <Modal
+          selectedDate={selectedDate}
+          formattedDate={formattedDate}
+          hoursInput={hoursInput}
+          setHoursInput={setHoursInput}
+          handleSave={handleSave}
+          handleDelete={handleDelete}
+          setSelectedDate={setSelectedDate}
+        />
+      )}
+
     </div>
 
-    
-    
-  );
+  </AppLayout>
+);
+
 }
