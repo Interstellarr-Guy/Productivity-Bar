@@ -1,6 +1,7 @@
 import { useState } from "react";
 import authService from "../services/authService";
 import workspaceService from "../services/workspaceService";
+import productivityWorkspaceService from "../services/ProductivityWorkspaceService";
 
 export default function Login() {
 
@@ -9,53 +10,40 @@ export default function Login() {
 
     const handleLogin = async (e) => {
 
-        e.preventDefault();
-        console.log("Button clicked");
+    e.preventDefault();
+    console.log("Button clicked");
 
-        try {
-
+    try {
             const response = await authService.login({
-                email,
-                password,
-            });
+            email,
+            password,
+        });
 
-            console.log("Login Success", response);
+        console.log("Login Success", response);
 
-        // Get all workspaces
-          let workspaces = await workspaceService.getWorkspaces();
+        // Fetch the logged-in user's productivity workspace
+        const workspace =
+            await productivityWorkspaceService.getWorkspace();
 
-          let workspace;
+        console.log("Workspace:", workspace);
 
-        // If user has no workspace, create one
-        if (workspaces.length === 0) {
+        alert("Login Successful!");
 
-        workspace = await workspaceService.createWorkspace("My Workspace");
+    } catch (error) {
 
-       console.log("Workspace Created:", workspace);
+    console.error("FULL ERROR:", error);
 
-       } else {
+    console.log("name:", error.name);
+    console.log("message:", error.message);
+    console.log("stack:", error.stack);
 
-       workspace = workspaces[0];
+    console.log("status:", error.response?.status);
+    console.log("data:", error.response?.data);
 
-       console.log("Workspace Found:", workspace);
-    }
+    alert("Login Failed");
+}
 
-    // Save workspace id
-       localStorage.setItem("workspaceId", workspace.id);
-
-       alert("Login Successful!");
-
-        } catch (error) {
-
-            console.error("Login Error:", error);
-            console.log("Response:", error.response);
-            console.log("Data:", error.response?.data);
-
-            alert("Login Failed");
-
-        }
-
-    };
+};
 
     return (
 
