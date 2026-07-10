@@ -7,7 +7,7 @@ import AppLayout from "../layout/AppLayout";
 import Sidebar from "../components/sidebar/Sidebar";
 import Navbar from "../components/Navbar";
 
-export default function Calendar() {
+export default function Calendar({ tasks, setTasks}) {
   const [year] = useState(2026);
   const [month, setMonth] = useState(0); 
 
@@ -60,7 +60,7 @@ export default function Calendar() {
 
   return (
   <AppLayout
-    sidebar={<Sidebar />}
+    sidebar={<Sidebar tasks={tasks} setTasks={setTasks} />}
     navbar={<Navbar />}
   >
 
