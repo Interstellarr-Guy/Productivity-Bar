@@ -2,11 +2,57 @@ import { useEffect, useState } from "react";
 
 export default function PomodoroCard() {
 
-    const [seconds, setSeconds] = useState(25 * 60);
+const saved = JSON.parse(localStorage.getItem("pomodoro"));
 
-    const [running, setRunning] = useState(false);
-    const [mode, setMode] = useState("focus");
-    const [sessions, setSessions] = useState(0);
+const [seconds, setSeconds] = useState(
+    saved?.seconds ?? 25 * 60
+);
+
+const [running, setRunning] = useState(
+    saved?.running ?? false
+);
+
+const [mode, setMode] = useState(
+    saved?.mode ?? "focus"
+);
+
+const [sessions, setSessions] = useState(
+    saved?.sessions ?? 0
+);
+
+    useEffect(() => {
+
+    if ("Notification" in window) {
+
+        Notification.requestPermission();
+
+    }
+}, []);
+
+    useEffect(() => {
+
+    localStorage.setItem(
+        "pomodoro",
+
+        JSON.stringify({
+
+            seconds,
+            running,
+            mode,
+            sessions
+
+        })
+
+    );
+
+}, [
+
+    seconds,
+    running,
+    mode,
+    sessions
+
+]); 
 
     useEffect(() => {
 
@@ -18,17 +64,38 @@ export default function PomodoroCard() {
 
                 if (prev <= 1) {
 
-       if (mode === "focus") {
+        if (mode === "focus") {
 
-        setMode("break");
-        setSeconds(5 * 60);
-        setSessions(s => s + 1);
+    if (Notification.permission === "granted") {
 
-      } else {
+        new Notification("☕ Break Time", {
+            body: "Great job! Take a 5 minute break."
+        });
 
-        setMode("focus");
-        setSeconds(25 * 60);
     }
+
+    setMode("break");
+    //setSeconds(5 * 60);
+    setSessions(s => s + 1);
+
+    return 5*60;
+
+}
+       
+    else {
+
+    if (Notification.permission === "granted") {
+
+        new Notification("🎯 Focus Time", {
+            body: "Break finished. Let's work!"
+        });
+
+    }
+
+    setMode("focus");
+    //setSeconds(25 * 60);
+    return 25*60;
+}
 
     return 0;
 
@@ -42,7 +109,7 @@ export default function PomodoroCard() {
 
         return () => clearInterval(timer);
 
-    }, [running]);
+    }, [running, mode]);
 
     const minutes = String(Math.floor(seconds / 60)).padStart(2, "0");
 

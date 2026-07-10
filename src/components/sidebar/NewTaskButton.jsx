@@ -1,83 +1,91 @@
 import { useState } from "react";
 
-export default function NewTaskButton({
-    tasks,
-    setTasks,
-}) {
+export default function NewTaskButton({ addTask }) {
 
-    const [showInput, setShowInput] = useState(false);
-    const [taskName, setTaskName] = useState("");
+    const [show, setShow] = useState(false);
 
-    const addTask = () => {
+    const [title, setTitle] = useState("");
 
-        if (taskName.trim() === "") return;
+    const [priority, setPriority] = useState("Medium");
 
-        const newTask = {
+    const [dueDate, setDueDate] = useState("");
 
-            id: Date.now(),
-            title: taskName,
-            completed: false,
+    const handleAdd = () => {
 
-        };
+        if (!title.trim()) return;
 
-        setTasks([...tasks, newTask]);
+        addTask(
+            title,
+            priority,
+            dueDate
+        );
 
-        setTaskName("");
-        setShowInput(false);
+        setTitle("");
+        setPriority("Medium");
+        setDueDate("");
+
+        setShow(false);
 
     };
 
     return (
 
-        <div className="p-3">
+        <>
 
-            {!showInput ? (
+            <button
+                onClick={() => setShow(true)}
+                className="bg-[#16a34a] w-full py-2 rounded mb-4"
+            >
+                + New Task
+            </button>
 
-                <button
-                    onClick={() => setShowInput(true)}
-                    className="bg-[#16a34a] w-full py-2 rounded-lg text-white"
-                >
-                    + New Task
-                </button>
+            {show && (
 
-            ) : (
-
-                <div className="flex flex-col gap-2">
+                <div className="bg-[#222] p-3 rounded mb-4">
 
                     <input
-                        type="text"
-                        placeholder="Task name..."
-                        value={taskName}
+                        className="w-full mb-2 p-2 bg-[#333]"
+                        placeholder="Task title"
+                        value={title}
                         onChange={(e) =>
-                            setTaskName(e.target.value)
+                            setTitle(e.target.value)
                         }
-                        className="bg-[#222] text-white border border-gray-600 rounded p-2"
+                    />
+
+                    <select
+                        className="w-full mb-2 p-2 bg-[#333]"
+                        value={priority}
+                        onChange={(e) =>
+                            setPriority(e.target.value)
+                        }
+                    >
+                        <option>High</option>
+                        <option>Medium</option>
+                        <option>Low</option>
+                    </select>
+
+                    <input
+                        type="date"
+                        className="w-full mb-2 p-2 bg-[#333]"
+                        value={dueDate}
+                        onChange={(e) =>
+                            setDueDate(e.target.value)
+                        }
                     />
 
                     <button
-                        onClick={addTask}
-                        className="bg-green-600 rounded py-2"
+                        onClick={handleAdd}
+                        className="bg-green-600 w-full py-2 rounded"
                     >
-                        Add
-                    </button>
-
-                    <button
-                        onClick={() => {
-
-                            setTaskName("");
-                            setShowInput(false);
-
-                        }}
-                        className="bg-gray-700 rounded py-2"
-                    >
-                        Cancel
+                        Save Task
                     </button>
 
                 </div>
 
             )}
 
-        </div>
+        </>
 
     );
+
 }
