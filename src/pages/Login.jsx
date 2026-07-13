@@ -2,11 +2,13 @@ import { useState } from "react";
 import authService from "../services/authService";
 import workspaceService from "../services/workspaceService";
 import productivityWorkspaceService from "../services/ProductivityWorkspaceService";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
 
@@ -26,9 +28,11 @@ export default function Login() {
             await productivityWorkspaceService.getWorkspace();
 
         console.log("Workspace:", workspace);
+        localStorage.setItem("workspaceId", workspace.id);
 
-        alert("Login Successful!");
-
+        //alert("Login Successful!");
+        navigate("/");
+        
     } catch (error) {
 
     console.error("FULL ERROR:", error);

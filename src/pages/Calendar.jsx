@@ -7,7 +7,8 @@ import AppLayout from "../layout/AppLayout";
 import Sidebar from "../components/sidebar/Sidebar";
 import Navbar from "../components/Navbar";
 
-export default function Calendar({ tasks, setTasks, addTask}) {
+
+export default function Calendar({ tasks, setTasks, loadTasks,}) {
   const [year] = useState(2026);
   const [month, setMonth] = useState(0); 
 
@@ -21,6 +22,8 @@ export default function Calendar({ tasks, setTasks, addTask}) {
     saveHours,
     deleteHours,
 } = useProductivity();
+
+
 
 
   const months =
@@ -60,7 +63,7 @@ export default function Calendar({ tasks, setTasks, addTask}) {
 
   return (
   <AppLayout
-    sidebar={<Sidebar tasks={tasks} setTasks={setTasks} addTask={addTask} />}
+    sidebar={<Sidebar tasks={tasks} setTasks={setTasks} loadTasks={loadTasks} />}
     navbar={<Navbar />}
   >
 

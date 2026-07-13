@@ -1,7 +1,15 @@
+
+
+
 export default function TodayTasks({
     tasks,
     setTasks,
 }) {
+
+    //debug 
+    console.log("TodayTasks received:", tasks);
+    console.log("Is Array?", Array.isArray(tasks));
+
     const toggleTask = (id) => {
         setTasks(
             tasks.map(task =>
@@ -18,10 +26,14 @@ export default function TodayTasks({
     const sortedTasks = [...tasks].sort((a, b) => {
 
     const order = {
-        High: 0,
-        Medium: 1,
-        Low: 2,
-    };
+
+    HIGH: 0,
+
+    MEDIUM: 1,
+
+    LOW: 2,
+
+};
 
     return order[a.priority] - order[b.priority];
 
@@ -36,7 +48,7 @@ const overdueTasks =
     sortedTasks.filter(task =>
         task.dueDate &&
         task.dueDate < today &&
-        !task.completed
+        task.status !== "COMPLETED"
     );
 
 const upcomingTasks =
@@ -54,7 +66,7 @@ const upcomingTasks =
 
         <input
             type="checkbox"
-            checked={task.completed}
+            checked={task.status === "COMPLETED"}
             onChange={() => toggleTask(task.id)}
         />
 
@@ -64,7 +76,7 @@ const upcomingTasks =
 
                 <span
                     className={
-                        task.completed
+                        task.status === "COMPLETED"
                             ? "line-through text-gray-500"
                             : ""
                     }
@@ -74,9 +86,9 @@ const upcomingTasks =
 
                 <span
                     className={
-                        task.priority === "High"
+                        task.priority === "HIGH"
                             ? "text-red-400"
-                            : task.priority === "Medium"
+                            : task.priority === "MEDIUM"
                             ? "text-yellow-400"
                             : "text-green-400"
                     }

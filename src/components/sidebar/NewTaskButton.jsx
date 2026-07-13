@@ -1,6 +1,7 @@
 import { useState } from "react";
+import taskService from "../../services/taskService";
 
-export default function NewTaskButton({ addTask }) {
+export default function NewTaskButton({ loadTasks }) {
 
     const [show, setShow] = useState(false);
 
@@ -9,24 +10,50 @@ export default function NewTaskButton({ addTask }) {
     const [priority, setPriority] = useState("Medium");
 
     const [dueDate, setDueDate] = useState("");
+    
+    // Fn for backend call to create  a new task
+    const handleAdd = async () => {
 
-    const handleAdd = () => {
+    if (!title.trim()) return;
 
-        if (!title.trim()) return;
+    try {
 
-        addTask(
+        const workspaceId =
+            localStorage.getItem("workspaceId");
+
+        await taskService.createTask(workspaceId, {
+
             title,
-            priority,
-            dueDate
-        );
+
+            description: "",
+
+            priority: priority.toUpperCase(),
+
+            dueDate,
+
+            status: "PENDING",
+
+        });
+
+        await loadTasks();
 
         setTitle("");
+
         setPriority("Medium");
+
         setDueDate("");
 
         setShow(false);
 
-    };
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Failed to create task");
+
+    }
+
+};
 
     return (
 

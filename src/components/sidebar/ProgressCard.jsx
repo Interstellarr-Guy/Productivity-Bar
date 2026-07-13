@@ -1,7 +1,7 @@
 export default function ProgressCard({ tasks }) {
 
     const completedTasks = tasks.filter(
-        task => task.completed
+        task => task.status === "COMPLETED"
     ).length;
 
     const totalTasks = tasks.length;
