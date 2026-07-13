@@ -8,17 +8,17 @@ import NavigationMenu from "./NavigationMenu";
 
 export default function Sidebar({ tasks, setTasks, loadTasks}) {
   return (
-    <div className="h-full p-4 w-full bg-[#614d4d] flex flex-col">
+    <div className="h-full p-2.5 w-full bg-[#614d4d] flex flex-col">
     
         <UserCard />
         <NewTaskButton loadTasks={loadTasks}/>
     
     
-    <div className="mt-4 flex-1 overflow-y-auto px-1 scrollbar-none">
+    <div className="mt-0 flex-1 overflow-y-auto px-1 scrollbar-none">
         <TodayTasks tasks={tasks} setTasks={setTasks}/>
     </div>
     
-    <div className="mt-4 ">
+    <div className="mt-2">
        <ProgressCard tasks={tasks} />
        <PomodoroCard/>
        

@@ -31,7 +31,7 @@ export default function NewTaskButton({ loadTasks }) {
 
             dueDate,
 
-            status: "PENDING",
+            status: "TODO",
 
         });
 
