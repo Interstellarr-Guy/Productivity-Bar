@@ -1,27 +1,40 @@
-
+import taskService from "../../services/taskService";
 
 
 export default function TodayTasks({
     tasks,
     setTasks,
+    loadTasks,
 }) {
 
     //debug 
     console.log("TodayTasks received:", tasks);
     console.log("Is Array?", Array.isArray(tasks));
+    
+    // Fn to toggle task status b/w TODO and DONE
+    const toggleTask = async (task) => {
 
-    const toggleTask = (id) => {
-        setTasks(
-            tasks.map(task =>
-                task.id === id
-                    ? {
-                          ...task,
-                          completed: !task.completed,
-                      }
-                    : task
-            )
+    try {
+
+        const newStatus =
+            task.status === "DONE"
+                ? "TODO"
+                : "DONE";
+
+        await taskService.updateTaskStatus(
+            task.id,
+            newStatus
         );
-    };
+
+        await loadTasks();
+
+    } catch (error) {
+
+        console.error("Failed to update task", error);
+
+    }
+
+};
 
     const sortedTasks = [...tasks].sort((a, b) => {
 
@@ -48,7 +61,7 @@ const overdueTasks =
     sortedTasks.filter(task =>
         task.dueDate &&
         task.dueDate < today &&
-        task.status !== "COMPLETED"
+        task.status !== "DONE"
     );
 
 const upcomingTasks =
@@ -66,8 +79,8 @@ const upcomingTasks =
 
         <input
             type="checkbox"
-            checked={task.status === "COMPLETED"}
-            onChange={() => toggleTask(task.id)}
+            checked={task.status === "DONE"}
+            onChange={() => toggleTask(task)}
         />
 
         <div className="flex-1">
@@ -76,24 +89,24 @@ const upcomingTasks =
 
                 <span
                     className={
-                        task.status === "COMPLETED"
+                        task.status === "DONE"
                             ? "line-through text-gray-500"
                             : ""
                     }
                 >
-                    {task.title}
+                    {task.title} 
                 </span>
 
                 <span
                     className={
                         task.priority === "HIGH"
-                            ? "text-red-400"
+                            ? "text-red-400 "
                             : task.priority === "MEDIUM"
                             ? "text-yellow-400"
                             : "text-green-400"
                     }
                 >
-                    {task.priority}
+                     - {task.priority}
                 </span>
 
             </div>
@@ -111,7 +124,7 @@ const upcomingTasks =
 );
 
     return (
-        <div className="flex flex-col bg-[#335]">
+        <div className="p-1 flex flex-col bg-[#335]">
 
         <div>
 

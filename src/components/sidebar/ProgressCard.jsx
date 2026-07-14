@@ -12,7 +12,7 @@ export default function ProgressCard({ tasks }) {
             : Math.round((completedTasks / totalTasks) * 100);
 
     return (
-        <div className="bg-[#d14927] p-3 mb-3">
+        <div className="bg-[#d14927] p-3 mb-2">
 
             <p className="font-semibold">
                 Today's Progress

@@ -61,7 +61,7 @@ export default function NewTaskButton({ loadTasks }) {
 
             <button
                 onClick={() => setShow(true)}
-                className="bg-[#16a34a] w-full py-2 rounded mb-4"
+                className="bg-[#16a34a] w-full py-2 mt-1 rounded mb-3"
             >
                 + New Task
             </button>

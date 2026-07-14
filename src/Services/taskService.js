@@ -21,6 +21,16 @@ const taskService = {
         return response.data;
     },
 
+    async updateTaskStatus(taskId, status) {
+
+    const response = await api.put(
+        `/tasks/${taskId}/status`,
+        { status }
+    );
+
+    return response.data;
+},
+
     async updateTask(taskId, task) {
 
         const response =
@@ -33,6 +43,8 @@ const taskService = {
 
         await api.delete(`/tasks/${taskId}`);
     }
+
+    
 
 };
 

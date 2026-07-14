@@ -14,8 +14,8 @@ export default function Sidebar({ tasks, setTasks, loadTasks}) {
         <NewTaskButton loadTasks={loadTasks}/>
     
     
-    <div className="mt-0 flex-1 overflow-y-auto px-1 scrollbar-none">
-        <TodayTasks tasks={tasks} setTasks={setTasks}/>
+    <div className="mt-0 flex-1 overflow-y-auto px-0 scrollbar-none">
+        <TodayTasks tasks={tasks} setTasks={setTasks} loadTasks={loadTasks}/>
     </div>
     
     <div className="mt-2">
