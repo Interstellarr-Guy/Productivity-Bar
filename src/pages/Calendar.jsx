@@ -63,7 +63,7 @@ export default function Calendar({ tasks, setTasks, loadTasks,}) {
 
   return (
   <AppLayout
-    sidebar={<Sidebar tasks={tasks} setTasks={setTasks} loadTasks={loadTasks} />}
+    sidebar={<Sidebar tasks={tasks} setTasks={setTasks} loadTasks={loadTasks} saveHours={saveHours} />}
     navbar={<Navbar />}
   >
 

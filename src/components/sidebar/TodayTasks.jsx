@@ -1,11 +1,19 @@
 import taskService from "../../services/taskService";
+import {useState}  from "react";
+import HoursWorkedModal from "./HoursWorkedModal";
 
 
 export default function TodayTasks({
     tasks,
     setTasks,
     loadTasks,
+    saveHours,
+    handleSave,
 }) {
+     
+    const [showHoursModal, setShowHoursModal] = useState(false);
+    const [selectedTask, setSelectedTask] = useState(null);
+    const [hoursInput, setHoursInput] = useState("");
 
     //debug 
     console.log("TodayTasks received:", tasks);
@@ -27,6 +35,12 @@ export default function TodayTasks({
         );
 
         await loadTasks();
+
+        if (newStatus === "DONE") {
+          setSelectedTask(task);
+          setHoursInput("");
+          setShowHoursModal(true);
+}   
 
     } catch (error) {
 
@@ -68,6 +82,8 @@ const upcomingTasks =
     sortedTasks.filter(task =>
         task.dueDate > today
     );
+
+
 
     //Helper component 
     const renderTask = (task) => (
@@ -157,6 +173,20 @@ const upcomingTasks =
     {upcomingTasks.map(renderTask)}
 
 </div>
+  
+  {showHoursModal && (
+    <HoursWorkedModal
+        task={selectedTask}
+        hoursInput={hoursInput}
+        setHoursInput={setHoursInput}
+        onSave={handleSave}
+        onCancel={() => {
+          setShowHoursModal(false);
+          setHoursInput("");
+          setSelectedTask(null);
+}}
+    />
+)}
 
         </div>
     );

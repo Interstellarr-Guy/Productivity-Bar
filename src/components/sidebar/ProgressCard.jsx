@@ -1,17 +1,30 @@
 export default function ProgressCard({ tasks }) {
 
-    const completedTasks = tasks.filter(
-        task => task.status === "COMPLETED"
-    ).length;
+    const today =
+        new Date().toISOString().split("T")[0];
 
-    const totalTasks = tasks.length;
+    const todayTasks =
+        tasks.filter(
+            task => task.dueDate === today
+        );
+
+    const completedTasks =
+        todayTasks.filter(
+            task => task.status === "DONE"
+        ).length;
+
+    const totalTasks =
+        todayTasks.length;
 
     const percentage =
         totalTasks === 0
             ? 0
-            : Math.round((completedTasks / totalTasks) * 100);
+            : Math.round(
+                  (completedTasks / totalTasks) * 100
+              );
 
     return (
+
         <div className="bg-[#d14927] p-3 mb-2">
 
             <p className="font-semibold">
@@ -38,5 +51,6 @@ export default function ProgressCard({ tasks }) {
             </p>
 
         </div>
+
     );
 }
