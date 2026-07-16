@@ -2,7 +2,7 @@ import CalendarGrid from "../components/CalendarGrid";
 import { useState } from "react";
 import Modal from "../components/ProductivityModal";
 import MonthSelector from "../components/MonthSelector";
-import useProductivity from "../hooks/useProductivity";
+
 import AppLayout from "../layout/AppLayout";
 import Sidebar from "../components/sidebar/Sidebar";
 import Navbar from "../components/Navbar";
@@ -13,59 +13,72 @@ export default function Calendar({ tasks, setTasks, loadTasks,}) {
   const [month, setMonth] = useState(0); 
 
   //Storing data for test in React state
-  const [selectedDate, setSelectedDate] = useState(null);
- // const [productivityData, setProductivityData] = useState({});
-  const [hoursInput, setHoursInput] = useState("");
+  //const [selectedDate, setSelectedDate] = useState(null);
+  // const [productivityData, setProductivityData] = useState({});
+  // const [hoursInput, setHoursInput] = useState("");
 
-  const {
-    productivityData,
-    saveHours,
-    deleteHours,
-} = useProductivity();
-
-
-
+//   const {
+//     productivityData,
+//     saveHours,
+//     deleteHours,
+// } = useProductivity();
 
   const months =
   ["January", "February", "March", "April", "May", "June",
    "July", "August", "September", "October", "November", "December"];
 
     //Handle Function for Save Button
-  const handleSave = () => {
-    //Debug
-    console.log("SAVE BUTTON CLICKED");
-  const hours = Number(hoursInput);
 
-  if (isNaN(hours) || hours < 0 || hours > 12) {
-    alert("Hours must be between 0 and 12.");
-    return;
-  }
+//   const handleSave = () => {
+//   if (isNaN(hours) || hours < 0 || hours > 12) {
+//     alert("Hours must be between 0 and 12.");
+//     return;
+//   }
 
-  saveHours(selectedDate, hours);
+//   saveHours(selectedDate, hours);
 
-  setHoursInput("");
-  setSelectedDate(null);
-};
+//   setHoursInput("");
+//   setSelectedDate(null);
+// };
 
     //Handle Function for Delete Button
-  const handleDelete = () => {
-  deleteHours(selectedDate);
 
-  setHoursInput("");
-  setSelectedDate(null);
-};
+//   const handleDelete = () => {
+//   deleteHours(selectedDate);
 
-   const formattedDate = selectedDate
-  ? new Date(selectedDate).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })
-  : "";
+//   setHoursInput("");
+//   setSelectedDate(null);
+// };
+
+  //  const formattedDate = selectedDate
+  // ? new Date(selectedDate).toLocaleDateString("en-US", {
+  //     year: "numeric",
+  //     month: "long",
+  //     day: "numeric",
+  //   })
+  // : "";
+
+  //New prod data
+    const productivityData = {};
+
+    tasks.forEach(task => {
+
+    if (
+        task.status === "DONE" &&
+        task.completedDate &&
+        task.workedMinutes > 0
+    ) {
+
+        productivityData[task.completedDate] =
+            (productivityData[task.completedDate] || 0)
+            + task.workedMinutes / 60;
+    }
+
+}); 
 
   return (
   <AppLayout
-    sidebar={<Sidebar tasks={tasks} setTasks={setTasks} loadTasks={loadTasks} saveHours={saveHours} productivityData={productivityData}/>}
+    sidebar={<Sidebar tasks={tasks} setTasks={setTasks} loadTasks={loadTasks}  productivityData={productivityData}/>}
     navbar={<Navbar />}
   >
 
@@ -81,24 +94,7 @@ export default function Calendar({ tasks, setTasks, loadTasks,}) {
         year={year}
         month={month}
         productivityData={productivityData}
-        onDayClick={(dateKey) => {
-          setSelectedDate(dateKey);
-          setHoursInput(productivityData[dateKey] || "");
-        }}
       />
-
-      {selectedDate && (
-        <Modal
-          selectedDate={selectedDate}
-          formattedDate={formattedDate}
-          hoursInput={hoursInput}
-          setHoursInput={setHoursInput}
-          handleSave={handleSave}
-          handleDelete={handleDelete}
-          setSelectedDate={setSelectedDate}
-        />
-      )}
-
     </div>
 
   </AppLayout>

@@ -49,7 +49,7 @@ const productivityData = {
       key={index}
       day={cell}
       hours={productivityData[dateKey] || 0 }
-      onClick={()=> onDayClick(dateKey)}
+      
                
     />
   );

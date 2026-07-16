@@ -7,7 +7,6 @@ export default function TodayTasks({
     tasks,
     setTasks,
     loadTasks,
-    saveHours,
     productivityData, 
 }) {
      
@@ -24,19 +23,19 @@ export default function TodayTasks({
 
     const hours = Number(hoursInput);
 
-    if (hours < 0 || hours > 12) {
-        alert("Hours must be between 0 and 12");
-        return;
-    }
+    const minutes = hours * 60;
 
     await taskService.updateTask(selectedTask.id, {
-        title: selectedTask.title,
-        description: selectedTask.description,
-        status: selectedTask.status,
-        priority: selectedTask.priority,
-        dueDate: selectedTask.dueDate,
-        workedHours: hours,
-    });
+      title: selectedTask.title,
+      description: selectedTask.description,
+      status: "DONE",
+      priority: selectedTask.priority,
+      dueDate: selectedTask.dueDate,
+
+      workedMinutes: minutes,
+
+      completedDate: new Date().toISOString().split("T")[0],
+});
 
     await loadTasks();
 
@@ -49,38 +48,20 @@ export default function TodayTasks({
     const toggleTask = async (task) => {
 
     try {
-
-        const newStatus =
+            const newStatus =
             task.status === "DONE"
                 ? "TODO"
                 : "DONE";
-
         await taskService.updateTaskStatus(
             task.id,
             newStatus
         );
 
-        
-
         if (newStatus === "DONE") {
           setSelectedTask(task);
           setHoursInput("");
           setShowHoursModal(true);
-}       else {
-     
-       const today =
-       new Date().toISOString().split("T")[0]; 
-
-       const currentHours =
-       productivityData[today] || 0;
-
-       const updatedHours =
-       Math.max(
-        currentHours - task.workedHours,
-        0);
-
-       saveHours(today, updatedHours);
-}
+}       
 
        await loadTasks();   
 
