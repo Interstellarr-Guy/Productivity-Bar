@@ -44,6 +44,7 @@ const loadWorkspace = async () => {
   const saveHours = async (dateKey, hours) => {
 
     const updatedData = {
+        
         ...productivityData,
         [dateKey]: hours,
     };

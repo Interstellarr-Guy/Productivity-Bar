@@ -32,6 +32,8 @@ export default function Calendar({ tasks, setTasks, loadTasks,}) {
 
     //Handle Function for Save Button
   const handleSave = () => {
+    //Debug
+    console.log("SAVE BUTTON CLICKED");
   const hours = Number(hoursInput);
 
   if (isNaN(hours) || hours < 0 || hours > 12) {
@@ -63,7 +65,7 @@ export default function Calendar({ tasks, setTasks, loadTasks,}) {
 
   return (
   <AppLayout
-    sidebar={<Sidebar tasks={tasks} setTasks={setTasks} loadTasks={loadTasks} saveHours={saveHours} />}
+    sidebar={<Sidebar tasks={tasks} setTasks={setTasks} loadTasks={loadTasks} saveHours={saveHours} productivityData={productivityData}/>}
     navbar={<Navbar />}
   >
 

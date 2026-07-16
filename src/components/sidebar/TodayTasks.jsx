@@ -8,7 +8,7 @@ export default function TodayTasks({
     setTasks,
     loadTasks,
     saveHours,
-    handleSave,
+    productivityData, 
 }) {
      
     const [showHoursModal, setShowHoursModal] = useState(false);
@@ -16,8 +16,34 @@ export default function TodayTasks({
     const [hoursInput, setHoursInput] = useState("");
 
     //debug 
-    console.log("TodayTasks received:", tasks);
-    console.log("Is Array?", Array.isArray(tasks));
+  //  console.log("TodayTasks received:", tasks);
+  //  console.log("Is Array?", Array.isArray(tasks));
+
+     //handleSaveHours
+     const handleSaveHours = async () => {
+
+    const hours = Number(hoursInput);
+
+    if (hours < 0 || hours > 12) {
+        alert("Hours must be between 0 and 12");
+        return;
+    }
+
+    await taskService.updateTask(selectedTask.id, {
+        title: selectedTask.title,
+        description: selectedTask.description,
+        status: selectedTask.status,
+        priority: selectedTask.priority,
+        dueDate: selectedTask.dueDate,
+        workedHours: hours,
+    });
+
+    await loadTasks();
+
+    setShowHoursModal(false);
+    setHoursInput("");
+    setSelectedTask(null);
+};
     
     // Fn to toggle task status b/w TODO and DONE
     const toggleTask = async (task) => {
@@ -34,13 +60,29 @@ export default function TodayTasks({
             newStatus
         );
 
-        await loadTasks();
+        
 
         if (newStatus === "DONE") {
           setSelectedTask(task);
           setHoursInput("");
           setShowHoursModal(true);
-}   
+}       else {
+     
+       const today =
+       new Date().toISOString().split("T")[0]; 
+
+       const currentHours =
+       productivityData[today] || 0;
+
+       const updatedHours =
+       Math.max(
+        currentHours - task.workedHours,
+        0);
+
+       saveHours(today, updatedHours);
+}
+
+       await loadTasks();   
 
     } catch (error) {
 
@@ -179,7 +221,7 @@ const upcomingTasks =
         task={selectedTask}
         hoursInput={hoursInput}
         setHoursInput={setHoursInput}
-        onSave={handleSave}
+        onSave={handleSaveHours}
         onCancel={() => {
           setShowHoursModal(false);
           setHoursInput("");
