@@ -1,6 +1,7 @@
 import { useState } from "react";
 import authService from "../services/authService";
 import workspaceService from "../services/workspaceService";
+import productivityWorkspaceService from "../services/ProductivityWorkspaceService";
 
 import { useNavigate } from "react-router-dom";
 
@@ -24,12 +25,14 @@ export default function Login() {
         console.log("Login Success", response);
 
         // Fetch the logged-in user's productivity workspace
-        const workspace =
-            await productivityWorkspaceService.getWorkspace();
-
-        console.log("Workspace:", workspace);
-        localStorage.setItem("workspaceId", workspace.id);
-
+        //Login issue check 
+        // const workspace =await workspace.getWorkspace();
+         const workspace =
+             await productivityWorkspaceService.getWorkspace();
+        
+         console.log("Workspace:", workspace);
+         localStorage.setItem("workspaceId", workspace.id);
+           
         //alert("Login Successful!");
         navigate("/");
         

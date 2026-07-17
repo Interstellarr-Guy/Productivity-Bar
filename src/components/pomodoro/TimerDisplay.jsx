@@ -17,6 +17,8 @@ export default function TimerDisplay({ mode, seconds }) {
     : mode === "break"
     ? 5 * 60
     : 15 * 60;
+    
+    
 
     // const progress = seconds / totalSeconds;
 

@@ -30,6 +30,10 @@ const [sessions, setSessions] = useState(
 const [showTaskModal, setShowTaskModal] =
     useState(false);
 
+const [endTime, setEndTime] = useState(
+    saved?.endTime ?? null
+);    
+
     useEffect(() => {
 
     if ("Notification" in window) {
@@ -49,7 +53,8 @@ const [showTaskModal, setShowTaskModal] =
             seconds,
             running,
             mode,
-            sessions
+            sessions,
+            endTime,
 
         })
 
@@ -60,50 +65,60 @@ const [showTaskModal, setShowTaskModal] =
     seconds,
     running,
     mode,
-    sessions
+    sessions,
+    endTime,
 
 ]); 
-
+ 
     useEffect(() => {
 
-        if (!running) return;
+    if (!running || !endTime) return;
 
-        const timer = setInterval(() => {
+    const timer = setInterval(() => {
 
-            setSeconds(prev => {
+        const remaining = Math.max(
+            0,
+            Math.ceil((endTime - Date.now()) / 1000)
+        );
 
-                if (prev <= 1) {
+        setSeconds(remaining);
 
-        if (mode === "focus") {
+        if (remaining === 0) {
 
-        setRunning(false);
+            clearInterval(timer);
 
-        setShowTaskModal(true);
+            if (mode === "focus") {
 
-        return 0;
+                setRunning(false);
+                setShowTaskModal(true);
 
-}
+            } else {
 
-else {
+                const nextMode =
+                    mode === "break"
+                        ? "focus"
+                        : "focus";
 
-    setMode("focus");
-    return 25 * 60;
+                const nextSeconds =
+                    nextMode === "focus"
+                        ? 25 * 60
+                        : 5 * 60;
 
-}
+                setMode(nextMode);
+                setSeconds(nextSeconds);
+                setEndTime(null);
+                setRunning(true);
 
-    return 0;
+            }
 
-}
+        }
 
-                return prev - 1;
+    }, 250);
 
-            });
+    return () => clearInterval(timer);
 
-        }, 1000);
-
-        return () => clearInterval(timer);
-
-    }, [running, mode]);
+}, [running, endTime, mode]);
+    
 
    // const minutes = String(Math.floor(seconds / 60)).padStart(2, "0");
 
@@ -151,7 +166,10 @@ else {
             running={running}
             setRunning={setRunning}
             setMode={setMode}
+            seconds={seconds}
             setSeconds={setSeconds}
+            endTime={endTime}
+            setEndTime={setEndTime}
         />
          <SessionInfo
            sessions={sessions}

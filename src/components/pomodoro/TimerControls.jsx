@@ -3,14 +3,36 @@ export default function TimerControls({
     setRunning,
     mode,
     setMode,
+    seconds,
     setSeconds,
+    endTime,
+    setEndTime,
 }) {
 
     return (
         <>
 
-            <button
-                onClick={() => setRunning(!running)}
+        <button
+          onClick={() => {
+            if (!running) {
+
+            if (!endTime) {
+
+            setEndTime(
+                Date.now() + seconds * 1000
+            );
+
+              }
+
+             setRunning(true);
+
+            } else {
+
+            setRunning(false);
+
+            }
+
+    }}
                 className="mt-3 w-full bg-[#16a34a] hover:bg-green-700 py-2 rounded"
             >
                 {running ? "Pause" : "Start Focus"}
@@ -22,6 +44,7 @@ export default function TimerControls({
                     setRunning(false);
                     setMode("focus");
                     setSeconds(25 * 60);
+                    setEndTime(null);
 
                 }}
                 className="w-full mt-2 py-2 rounded bg-gray-700 hover:bg-gray-600"
