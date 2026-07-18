@@ -86,9 +86,31 @@ const [endTime, setEndTime] = useState(
         if (remaining === 0) {
 
             clearInterval(timer);
+        
+        if (Notification.permission === "granted") {
+
+        new Notification(
+
+            mode === "focus"
+                ? "🎯 Focus session completed!"
+                : "☕ Break finished!",
+
+            {
+                body:
+                    mode === "focus"
+                        ? "Select the task you worked on."
+                        : "Time to get back to work!"
+            }
+
+        );
+
+    }
 
             if (mode === "focus") {
-
+                document.title =
+                  mode === "focus"
+                  ? "✅ Focus Complete!"
+                  : "☕ Break Finished!";
                 setRunning(false);
                 setShowTaskModal(true);
 
@@ -119,7 +141,30 @@ const [endTime, setEndTime] = useState(
 
 }, [running, endTime, mode]);
     
+    useEffect(() => {
 
+    if (running) {
+
+        document.title =
+            `${Math.floor(seconds / 60)
+                .toString()
+                .padStart(2, "0")}:${(seconds % 60)
+                .toString()
+                .padStart(2, "0")} - Productivity Tracker`;
+
+    } else {
+
+        document.title = "Productivity Tracker";
+
+    }
+
+    return () => {
+
+        document.title = "Productivity Tracker";
+
+    };
+
+}, [seconds, running]);
    // const minutes = String(Math.floor(seconds / 60)).padStart(2, "0");
 
    // const secs = String(seconds % 60).padStart(2, "0");
@@ -144,13 +189,32 @@ const [endTime, setEndTime] = useState(
 
     await loadTasks();
 
+    // setShowTaskModal(false);
+    // setMode("break");
+    // setSeconds(5 * 60);
+    // setRunning(true);
     setShowTaskModal(false);
 
-    setMode("break");
+   const nextSessions = sessions + 1;
 
+   setSessions(nextSessions);
+
+   if (nextSessions % 4 === 0) {
+
+    setMode("longBreak");
+    setSeconds(15 * 60);
+
+   } else {
+
+    setMode("break");
     setSeconds(5 * 60);
 
-    setRunning(true);
+}
+
+   setEndTime(Date.now() +
+    (nextSessions % 4 === 0 ? 15 : 5) * 60 * 1000);
+
+  setRunning(true);
 
 };
 
@@ -161,7 +225,7 @@ const [endTime, setEndTime] = useState(
             mode={mode}
             seconds={seconds}
         />
-
+        
         <TimerControls
             running={running}
             setRunning={setRunning}
@@ -171,6 +235,7 @@ const [endTime, setEndTime] = useState(
             endTime={endTime}
             setEndTime={setEndTime}
         />
+      
          <SessionInfo
            sessions={sessions}
            mode={mode}

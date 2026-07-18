@@ -7,7 +7,7 @@ export default function CircularTimer({
     ringColor,
 }) {
 
-    const radius = 70;
+    const radius = 65;
 
     const stroke = 8;
 
@@ -25,8 +25,8 @@ export default function CircularTimer({
     return (
 
         <svg
-     width="160"
-     height="160"
+     width="110"
+     height="110"
      viewBox="0 0 160 160"
      className="-rotate-90"
 >

@@ -41,7 +41,8 @@ export default function TimerDisplay({ mode, seconds }) {
         <>
             <div className="flex justify-center items-center mb-3">
 
-    <CircularTimer
+    <div className="relative flex justify-center items-center">
+         <CircularTimer
 
         seconds={seconds}
 
@@ -54,6 +55,15 @@ export default function TimerDisplay({ mode, seconds }) {
         }
         ringColor={ringColor}
     />
+    <div className="absolute text-center">
+
+    <p className="text-xl font-bold">
+        {minutes}:{secs}
+    </p>
+
+    </div> 
+    </div>
+    
 
 </div>
             <p className="text-center text-green-400 font-semibold">
@@ -66,11 +76,7 @@ export default function TimerDisplay({ mode, seconds }) {
 
             </p>
 
-            <p className="text-center text-2xl font-bold">
-
-                {minutes}:{secs}
-
-            </p>
+           
 
         </>
     );

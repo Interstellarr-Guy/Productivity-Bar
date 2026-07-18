@@ -11,7 +11,9 @@ export default function TimerControls({
 
     return (
         <>
+        <div className="flex gap-2">
 
+        
         <button
           onClick={() => {
             if (!running) {
@@ -33,7 +35,7 @@ export default function TimerControls({
             }
 
     }}
-                className="mt-3 w-full bg-[#16a34a] hover:bg-green-700 py-2 rounded"
+                className="mt-1 w-full bg-[#16a34a] hover:bg-green-700 py-1.2 text-sm rounded"
             >
                 {running ? "Pause" : "Start Focus"}
             </button>
@@ -47,10 +49,11 @@ export default function TimerControls({
                     setEndTime(null);
 
                 }}
-                className="w-full mt-2 py-2 rounded bg-gray-700 hover:bg-gray-600"
+                className="w-full mt-1 py-1.2 rounded bg-gray-700 hover:bg-gray-600"
             >
                 Reset
             </button>
+            </div>
             <button
     onClick={() => {
 
@@ -65,7 +68,7 @@ export default function TimerControls({
         setRunning(false);
 
        }}
-    className="w-full mt-2 py-2 rounded bg-yellow-600 hover:bg-yellow-700"
+    className="w-full mt-1 py-1.2 rounded bg-yellow-600 hover:bg-yellow-700"
 >
        Skip Session
     </button>

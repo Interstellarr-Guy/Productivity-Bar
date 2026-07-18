@@ -7,23 +7,11 @@ export default function SessionInfo({
 
     return (
 
-        <div className="mt-4 space-y-2 text-sm">
+        <div className="mt-3 space-y-2 text-xs">
 
-            <div className="flex justify-between">
+            
 
-                <span>🎯 Focus Time</span>
-
-                <span>25 min</span>
-
-            </div>
-
-            <div className="flex justify-between">
-
-                <span>☕ Break Time</span>
-
-                <span>5 min</span>
-
-            </div>
+            
 
             <div className="flex justify-between">
 
