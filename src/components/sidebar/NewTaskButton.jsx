@@ -58,13 +58,16 @@ export default function NewTaskButton({ loadTasks }) {
     return (
 
         <>
+             <div className="flex justify-center">
 
+             
             <button
                 onClick={() => setShow(true)}
-                className="bg-[#16a34a] w-full py-2 mt-1 rounded mb-3"
+                className="bg-[#16a34a] w-full py-1 mt-1 rounded mb-3"
             >
                 + New Task
             </button>
+            </div>
 
             {show && (
 

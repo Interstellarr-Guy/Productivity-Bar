@@ -5,7 +5,7 @@ export default function UserCard() {
        Productivity Bar
       </p>
       
-      <p className="text-center">🙂 Welcome Back Ramesh</p>
+      <p className="text-center">🙂 Welcome Ramesh</p>
       
     </div>
   );

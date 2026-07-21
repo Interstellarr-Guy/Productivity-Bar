@@ -21,7 +21,7 @@ export default function TimerControls({
                     setEndTime(null);
 
                 }}
-                className="w-full mt-1 py-1.2 rounded bg-red-600 hover:bg-gray-600"
+                className="w-full mt-1 py-1 rounded bg-[#564] hover:bg-gray-600"
             >
                 Reset
             </button>
@@ -49,7 +49,7 @@ export default function TimerControls({
     }}
                 className="mt-1 w-full bg-[#16a34a] hover:bg-green-700 py-1.2 text-sm rounded"
             >
-                {running ? "Pause" : "Start Focus"}
+                {running ? "Pause" : "Start"}
             </button>
 
             <button
@@ -68,7 +68,7 @@ export default function TimerControls({
        }}
     className="w-full mt-1 py-1.2 rounded bg-yellow-600 hover:bg-yellow-700"
 >
-       Skip Session
+       Skip 
     </button>
             </div>
             

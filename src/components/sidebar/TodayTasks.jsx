@@ -163,35 +163,35 @@ const upcomingTasks =
 );
 
     return (
-        <div className="p-1 flex flex-col bg-[#335]">
+        <div className="p-1 flex flex-col bg-[#334]">
 
         <div>
 
-    <h3 className="font-semibold mb-2">
+    <h5 className="font-semibold mb-1 justify-center flex">
 
         Today's Tasks
 
-    </h3>
+    </h5>
 
     {todaysTasks.map(renderTask)}
 
-    <hr className="my-3 border-gray-700" />
+    <hr className="my-1 border-gray-700" />
 
-    <h3 className="font-semibold mb-2 text-red-400">
+    <h5 className="font-semibold mb-1 text-red-400 justify-center flex">
 
         ⚠ Overdue
 
-    </h3>
+    </h5>
 
     {overdueTasks.map(renderTask)}
 
-    <hr className="my-3 border-gray-700" />
+    <hr className="my-1 border-gray-700" />
 
-    <h3 className="font-semibold mb-2">
+    <h5 className="font-semibold mb-1 justify-center flex">
 
         Upcoming
 
-    </h3>
+    </h5>
 
     {upcomingTasks.map(renderTask)}
 
