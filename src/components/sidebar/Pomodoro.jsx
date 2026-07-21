@@ -219,7 +219,7 @@ const [endTime, setEndTime] = useState(
 };
 
     return (
-    <div className="bg-[#342] border border-[#1f2937] p-3 mb-4 rounded">
+    <div className="bg-[#342] border border-[#1f2937] p-3 mb-1 rounded">
 
         <TimerDisplay
             mode={mode}
