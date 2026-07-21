@@ -25,13 +25,13 @@ export default function ProgressCard({ tasks }) {
 
     return (
 
-        <div className="bg-[#d14927] p-3 mb-2">
+        <div className="bg-[#d14927] pt-1 pl-2 pr-2 mb-1">
 
             <p className="font-semibold">
                 Today's Progress
             </p>
 
-            <div className="mt-2 w-full h-2 bg-gray-700 rounded">
+            <div className="mt-0 w-full h-2 bg-gray-700 rounded">
 
                 <div
                     className="h-full bg-green-500 rounded"
@@ -41,14 +41,17 @@ export default function ProgressCard({ tasks }) {
                 />
 
             </div>
-
-            <p className="mt-2">
+             
+             <div className="flex justify-between">
+               <p className="">
                 {completedTasks} / {totalTasks} Tasks
             </p>
 
-            <p>
+            <p className="">
                 {percentage}%
             </p>
+             </div>
+            
 
         </div>
 

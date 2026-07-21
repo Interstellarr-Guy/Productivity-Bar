@@ -39,7 +39,7 @@ export default function TimerDisplay({ mode, seconds }) {
 
     return (
         <>
-            <div className="flex justify-center items-center mb-3">
+            <div className="flex justify-center items-center ">
 
     <div className="relative flex justify-center items-center">
          <CircularTimer
@@ -66,7 +66,7 @@ export default function TimerDisplay({ mode, seconds }) {
     
 
 </div>
-            <p className="text-center text-green-400 font-semibold">
+            <p className="text-center mr-3 text-green-400 font-semibold">
 
                 {mode === "focus"
                       ? "🎯 Focus Time"

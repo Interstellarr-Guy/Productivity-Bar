@@ -12,9 +12,21 @@ export default function TimerControls({
     return (
         <>
         <div className="flex gap-2">
+            <button
+                onClick={() => {
 
-        
-        <button
+                    setRunning(false);
+                    setMode("focus");
+                    setSeconds(25 * 60);
+                    setEndTime(null);
+
+                }}
+                className="w-full mt-1 py-1.2 rounded bg-red-600 hover:bg-gray-600"
+            >
+                Reset
+            </button>
+
+            <button
           onClick={() => {
             if (!running) {
 
@@ -41,20 +53,6 @@ export default function TimerControls({
             </button>
 
             <button
-                onClick={() => {
-
-                    setRunning(false);
-                    setMode("focus");
-                    setSeconds(25 * 60);
-                    setEndTime(null);
-
-                }}
-                className="w-full mt-1 py-1.2 rounded bg-gray-700 hover:bg-gray-600"
-            >
-                Reset
-            </button>
-            </div>
-            <button
     onClick={() => {
 
         if (mode === "focus") {
@@ -72,6 +70,8 @@ export default function TimerControls({
 >
        Skip Session
     </button>
+            </div>
+            
 
         </>
     );
