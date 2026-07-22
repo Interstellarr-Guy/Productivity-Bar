@@ -46,11 +46,11 @@ export default function Calendar({ tasks, setTasks, loadTasks,}) {
 
     <div className="h-full">
 
-      <MonthSelector
-        months={months}
-        currentMonth={month}
-        setMonth={setMonth}
-      />
+     <MonthSelector
+               months={months}
+               currentMonth={month}
+               setMonth={setMonth}
+             />
 
       <CalendarGrid
         year={year}
