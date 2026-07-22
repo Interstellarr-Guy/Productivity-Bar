@@ -19,17 +19,7 @@ export default function CalendarGrid({ year, month, productivityData, onDayClick
   ...cells,
   ...Array(remainingCells).fill(null),
   ];
-/*
-const productivityData = {
-    "2026-01-01" : 6,
-    "2026-01-02" : 9,
-    "2026-01-03" : 3,
-    "2026-01-04" : 8,
-    "2026-01-05" : 3,
-    "2026-01-07" : 3,
-    "2026-01-20" : 3,
-}
-*/
+
   return (
     <div className="grid grid-cols-7 h-full bg-[#777]  text-[#e7dee5]">
 
