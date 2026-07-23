@@ -43,6 +43,7 @@ console.log("Is Array?", Array.isArray(tasks));
             tasks={tasks}
             setTasks={setTasks}
             loadTasks={loadTasks}
+            
         />
 
     );

@@ -9,16 +9,23 @@ import Days from "../components/Days";
 
 
 export default function Calendar({ tasks, setTasks, loadTasks,}) {
-  const [year] = useState(2026);
-  const [month, setMonth] = useState(0); 
+  
+  const today = new Date();
+  const [year] = useState(today.getFullYear());
+  const [month, setMonth] =
+    useState(today.getMonth());
 
  
 
-  const months =
-  ["January", "February", "March", "April", "May", "June",
-   "July", "August", "September", "October", "November", "December"];
+  // const months =
+  // ["January", "February", "March", "April", "May", "June",
+  //  "July", "August", "September", "October", "November", "December"];
 
-   
+    // <MonthSelector
+    //            months={months}
+    //            currentMonth={month}
+    //            setMonth={setMonth}
+    //          />  
 
   //New prod data
     const productivityData = {};
@@ -42,16 +49,14 @@ export default function Calendar({ tasks, setTasks, loadTasks,}) {
   return (
   <AppLayout
     sidebar={<Sidebar tasks={tasks} setTasks={setTasks} loadTasks={loadTasks}  productivityData={productivityData}/>}
-    navbar={<Navbar />}
+    navbar={<Navbar 
+     month={month}
+     setMonth={setMonth}/>}
   >
 
     <div className="h-full">
 
-     <MonthSelector
-               months={months}
-               currentMonth={month}
-               setMonth={setMonth}
-             />  
+    
       
       <Days />
 
