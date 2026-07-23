@@ -20,6 +20,8 @@ export default function CalendarGrid({ year, month, productivityData, onDayClick
   ...Array(remainingCells).fill(null),
   ];
 
+    
+
   return (
     <div className="grid grid-cols-7 h-full bg-[#777]  text-[#e7dee5]">
 

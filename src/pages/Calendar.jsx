@@ -2,10 +2,10 @@ import CalendarGrid from "../components/CalendarGrid";
 import { useState } from "react";
 import Modal from "../components/ProductivityModal";
 import MonthSelector from "../components/MonthSelector";
-
 import AppLayout from "../layout/AppLayout";
 import Sidebar from "../components/sidebar/Sidebar";
 import Navbar from "../components/Navbar";
+import Days from "../components/Days";
 
 
 export default function Calendar({ tasks, setTasks, loadTasks,}) {
@@ -38,6 +38,7 @@ export default function Calendar({ tasks, setTasks, loadTasks,}) {
 
 }); 
 
+
   return (
   <AppLayout
     sidebar={<Sidebar tasks={tasks} setTasks={setTasks} loadTasks={loadTasks}  productivityData={productivityData}/>}
@@ -50,7 +51,9 @@ export default function Calendar({ tasks, setTasks, loadTasks,}) {
                months={months}
                currentMonth={month}
                setMonth={setMonth}
-             />
+             />  
+      
+      <Days />
 
       <CalendarGrid
         year={year}
