@@ -15,18 +15,6 @@ export default function Calendar({ tasks, setTasks, loadTasks,}) {
   const [month, setMonth] =
     useState(today.getMonth());
 
- 
-
-  // const months =
-  // ["January", "February", "March", "April", "May", "June",
-  //  "July", "August", "September", "October", "November", "December"];
-
-    // <MonthSelector
-    //            months={months}
-    //            currentMonth={month}
-    //            setMonth={setMonth}
-    //          />  
-
   //New prod data
     const productivityData = {};
 
@@ -54,7 +42,7 @@ export default function Calendar({ tasks, setTasks, loadTasks,}) {
      setMonth={setMonth}/>}
   >
 
-    <div className="h-full">
+    <div className="h-full overflow-y-auto scrollbar-none">
 
     
       

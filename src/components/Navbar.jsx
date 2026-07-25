@@ -1,4 +1,4 @@
-
+import Days from "../components/Days";
 
 export default function Navbar({
   month,setMonth,
@@ -20,8 +20,9 @@ export default function Navbar({
 ];
 
   return (
-    <div className="navbar h-full flex text-[#c3bbb9] items-center justify-evenly px-6 ">
-     
+
+    <div className="navbar h-full ">
+
     <div className="flex">
          <div className="logoNav">
          <img className="logo" src="/images/logopro1.png" alt="" />
@@ -30,31 +31,21 @@ export default function Navbar({
          <div>
          <h2 className=" titleName drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)] rounded ml-4 pr-2 pl-2 ">Productivity Tracker</h2>
          </div> 
-
-         
-    </div>
-
-    
-
-      
-
-     <div className="relative bottom-5">
+   </div>
+    <div className="relative bottom-5">
         <select
     value={month}
     onChange={(e) => setMonth(Number(e.target.value))}
     className="
     months
-        bg-[#1f2937]
-        border
-        border-gray-700
+        bg-[#1e2229]
         rounded
         px-3
         py-2
         text-white
     "
 >
-
-    {months.map((m, index) => (
+      {months.map((m, index) => (
 
         <option
             key={index}
@@ -69,7 +60,10 @@ export default function Navbar({
 
 </select>
      </div>
-
+     
+     
     </div>
+    
+    
   );
 }

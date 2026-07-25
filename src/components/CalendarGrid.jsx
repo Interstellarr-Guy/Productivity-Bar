@@ -23,7 +23,7 @@ export default function CalendarGrid({ year, month, productivityData, onDayClick
     
 
   return (
-    <div className="grid grid-cols-7 h-full bg-[#777]  text-[#e7dee5] cg">
+    <div className="cg grid grid-cols-7 h-full bg-[#777]  text-[#e7dee5] ">
 
       {fullCalendar.map((cell, index) => {
 

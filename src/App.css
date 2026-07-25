@@ -77,17 +77,17 @@ background-position: center;
   border-radius: 20px;
 }
 
-.days{
+/* .days{
    background-image:
 linear-gradient(
 rgba(0,0,0,.65),
 rgba(0,0,0,.65)
 ),
-url("/images/Un3.png");
+url("/images/Un4.png");
 
 background-size: cover;
 background-position: center;
-}
+} */
 
 .cg{
      background-image:
