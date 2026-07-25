@@ -13,7 +13,7 @@ export default function HoursWorkedModal({
     //console.log("Modal onSave:", onSave);
 
     return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 bg-white/5 backdrop-blur-xl">
 
         <div className="w-80 rounded-xl bg-[#2f3542] p-5 shadow-xl">
 

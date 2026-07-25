@@ -8,7 +8,7 @@ import NavigationMenu from "./NavigationMenu";
 
 export default function Sidebar({ tasks, setTasks, loadTasks, productivityData}) {
   return (
-    <div className="h-full p-2.5 w-full bg-[#614d4d] flex flex-col">
+    <div className="sidebar h-full p-2.5 w-full bg-[#614d4d] flex flex-col">
     
         <UserCard />
         <NewTaskButton loadTasks={loadTasks}/>

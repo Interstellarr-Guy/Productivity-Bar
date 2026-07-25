@@ -25,7 +25,7 @@ export default function ProgressCard({ tasks }) {
 
     return (
 
-        <div className="bg-[#a54c35] pt-1 pl-2 pr-2 mb-1">
+        <div className="bg-white/7 backdrop-blur-xl rounded pt-1 pl-2 pr-2 mb-1">
 
             <p className="font-semibold">
                 Today's Progress

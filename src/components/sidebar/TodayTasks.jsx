@@ -163,7 +163,7 @@ const upcomingTasks =
 );
 
     return (
-        <div className="p-1 flex flex-col bg-[#334]">
+        <div className="p-1 flex flex-col  bg-white/5 backdrop-blur-xl rounded">
 
         <div>
 
