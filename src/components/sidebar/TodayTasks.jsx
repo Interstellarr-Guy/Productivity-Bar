@@ -14,10 +14,6 @@ export default function TodayTasks({
     const [selectedTask, setSelectedTask] = useState(null);
     const [hoursInput, setHoursInput] = useState("");
 
-    //debug 
-  //  console.log("TodayTasks received:", tasks);
-  //  console.log("Is Array?", Array.isArray(tasks));
-
      //handleSaveHours
      const handleSaveHours = async () => {
 
