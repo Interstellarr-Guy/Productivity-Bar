@@ -52,7 +52,7 @@ linear-gradient(
 rgba(0,0,0,.65),
 rgba(0,0,0,.65)
 ),
-url("/images/Un2.png");
+url("/images/Un7.png");
 
 background-size: cover;
 background-position: center;
@@ -76,7 +76,18 @@ background-position: center;
 .logo{
   border-radius: 20px;
 }
+  /* My code */
+.days{
+     background-image:
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.65)
+),
+url("/images/Un1.png");
 
+background-size: cover;
+background-position: center;
+}
 
 .cg{
      background-image:
@@ -84,24 +95,12 @@ linear-gradient(
 rgba(0,0,0,.65),
 rgba(0,0,0,.65)
 ),
-url("/images/Un7.png");
-
-background-size: cover;
-background-position: center;
-
-}
-
-.day{
-     background-image:
-linear-gradient(
-rgba(0,0,0,.65),
-rgba(0,0,0,.65)
-),
-url("/images/Un8.png");
+url("/images/Un1.png");
 
 background-size: cover;
 background-position: center;
 }
+
 .sidebar{
    background-image:
 linear-gradient(
