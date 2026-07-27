@@ -128,7 +128,9 @@ const [endTime, setEndTime] = useState(
 
                 setMode(nextMode);
                 setSeconds(nextSeconds);
-                setEndTime(null);
+                setEndTime(
+                           Date.now() + nextSeconds * 1000
+);
                 setRunning(true);
 
             }
@@ -165,9 +167,6 @@ const [endTime, setEndTime] = useState(
     };
 
 }, [seconds, running]);
-   // const minutes = String(Math.floor(seconds / 60)).padStart(2, "0");
-
-   // const secs = String(seconds % 60).padStart(2, "0");
 
    const handleTaskSelected = async (task) => {
 
@@ -189,10 +188,6 @@ const [endTime, setEndTime] = useState(
 
     await loadTasks();
 
-    // setShowTaskModal(false);
-    // setMode("break");
-    // setSeconds(5 * 60);
-    // setRunning(true);
     setShowTaskModal(false);
 
    const nextSessions = sessions + 1;
