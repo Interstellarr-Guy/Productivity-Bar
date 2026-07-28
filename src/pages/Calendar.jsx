@@ -6,9 +6,10 @@ import AppLayout from "../layout/AppLayout";
 import Sidebar from "../components/sidebar/Sidebar";
 import Navbar from "../components/Navbar";
 import Days from "../components/Days";
+import StatisticsContainer from "../components/statistics/StatisticsContainer";
+import StatisticCard from "../components/statistics/StatisticCard";
 
-
-export default function Calendar({ tasks, setTasks, loadTasks,}) {
+export default function Calendar({ tasks, setTasks, loadTasks, statistics}) {
   
   const today = new Date();
   const [year] = useState(today.getFullYear());
@@ -32,7 +33,22 @@ export default function Calendar({ tasks, setTasks, loadTasks,}) {
     }
 
 }); 
+       //Helper for format Minutes
+       const formatMinutes = (minutes) => {
 
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+
+    if (hours > 0 && mins > 0) {
+        return `${hours}h ${mins}m`;
+    }
+
+    if (hours > 0) {
+        return `${hours}h`;
+    }
+
+    return `${mins}m`;
+};
 
   return (
   <AppLayout
@@ -41,10 +57,50 @@ export default function Calendar({ tasks, setTasks, loadTasks,}) {
      month={month}
      setMonth={setMonth}/>}
   >
-
-    <div className="h-full overflow-y-auto scrollbar-none">
-
     
+    <div className="flex flex-col h-full ">
+      
+    <StatisticsContainer>
+
+    <StatisticCard
+        title="Today"
+        value={formatMinutes(statistics.todayMinutes)}
+        icon="📅"
+        color="border-t-green-500"
+    />
+
+    <StatisticCard
+        title="This Week"
+        value={formatMinutes(statistics.weekMinutes)}
+        icon="📈"
+        color="border-t-blue-500"
+    />
+
+    <StatisticCard
+        title="This Month"
+        value={formatMinutes(statistics.monthMinutes)}
+        icon="🗓️"
+        color="border-t-yellow-500"
+    />
+
+    <StatisticCard
+        title="Tasks"
+        value={statistics.completedTasks}
+        icon="✅"
+        color="border-t-purple-500"
+    />
+
+    <StatisticCard
+        title="Streak"
+        value={`${statistics.currentStreak} Days`}
+        icon="🏆"
+        color="border-t-orange-500"
+    />
+
+    </StatisticsContainer>
+        
+      <div className="flex-1 flex flex-col overflow-hidden  scrollbar-none mt-0">
+
       
       <Days />
 
@@ -53,6 +109,8 @@ export default function Calendar({ tasks, setTasks, loadTasks,}) {
         month={month}
         productivityData={productivityData}
       />
+      </div>
+      
     </div>
 
   </AppLayout>
