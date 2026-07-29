@@ -42,6 +42,7 @@ export default function CalendarGrid({ year, month, productivityData, onDayClick
       key={index}
       day={cell}
       hours={productivityData[dateKey] || 0 }
+  
       
                
     />

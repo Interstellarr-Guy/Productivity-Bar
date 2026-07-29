@@ -4,8 +4,8 @@ export default function DayCell({ day, hours=0, onClick}) {
 
 const fillPercentage = (hours /12) * 100;
     return(
-      <div onClick={onClick} className="day bg-yellow/2 backdrop-blur-sm border  border-[#0b3f72]  relative min-h-30   cursor-pointer rounded ">
-      <span className="absolute top-1 left-1 ">
+      <div onClick={onClick} className="day bg-yellow/2 backdrop-blur-sm border-1 border-[#777]   relative min-h-30   cursor-pointer rounded ">
+      <span className="absolute top-1 left-1 text-[#b9b3ac]">
       {day}
       </span>
 
