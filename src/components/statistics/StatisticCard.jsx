@@ -11,12 +11,12 @@ export default function StatisticCard({
 
         <div
             className={`
-              
+                  stats-box
                  bg-white/5
                  backdrop-blur-xl
-
+                 
         rounded-lg
-        border-0
+        border-t-0
         mt-1 mb-1
         ${color}
         shadow-md
@@ -39,7 +39,7 @@ export default function StatisticCard({
             </div>
 
             <p
-                className="text-xl uppercase text-[#67a67d] mb-0 "
+                className="text-xl uppercase mb-0"
             >
                 {title}
             </p>
