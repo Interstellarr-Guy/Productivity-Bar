@@ -9,7 +9,9 @@ import Days from "../components/Days";
 import StatisticsContainer from "../components/statistics/StatisticsContainer";
 import StatisticCard from "../components/statistics/StatisticCard";
 
-export default function Calendar({ tasks, setTasks, loadTasks, statistics}) {
+export default function Calendar({ tasks, setTasks, 
+                                   loadTasks, statistics,
+                                   page, setPage }) {
   
   const today = new Date();
   const [year] = useState(today.getFullYear());
@@ -52,10 +54,13 @@ export default function Calendar({ tasks, setTasks, loadTasks, statistics}) {
 
   return (
   <AppLayout
-    sidebar={<Sidebar tasks={tasks} setTasks={setTasks} loadTasks={loadTasks}  productivityData={productivityData}/>}
-    navbar={<Navbar 
+    sidebar={<Sidebar tasks={tasks} setTasks={setTasks} 
+     loadTasks={loadTasks}  productivityData={productivityData} 
+     page={page} setPage={setPage}/>}
+
+     navbar={<Navbar 
      month={month}
-     setMonth={setMonth}/>}
+     setMonth={setMonth} />}
   >
     
     <div className="flex flex-col h-full ">

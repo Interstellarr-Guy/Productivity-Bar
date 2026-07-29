@@ -8,6 +8,14 @@ const statisticsService = {
 
         return response.data;
 
+    },
+
+     getWeeklyProductivity: async () => {
+
+        const response = await api.get("/statistics/weekly");
+
+        return response.data;
+
     }
 
 };

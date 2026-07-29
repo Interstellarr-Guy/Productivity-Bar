@@ -6,7 +6,8 @@ import ProgressCard from "./ProgressCard";
 import PomodoroCard from "./Pomodoro";
 import NavigationMenu from "./NavigationMenu";
 
-export default function Sidebar({ tasks, setTasks, loadTasks, productivityData}) {
+export default function Sidebar({ tasks, setTasks, loadTasks, 
+                                productivityData, page, setPage}) {
   return (
     <div className="sidebar h-full p-2.5 w-full bg-[#614d4d] flex flex-col">
     
@@ -26,7 +27,10 @@ export default function Sidebar({ tasks, setTasks, loadTasks, productivityData})
 />
        
     </div>
-       <NavigationMenu />
+       <NavigationMenu
+          page={page}
+          setPage={setPage}
+       />
     
     </div>
   );
