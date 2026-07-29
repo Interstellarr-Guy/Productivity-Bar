@@ -16,6 +16,15 @@ const statisticsService = {
 
         return response.data;
 
+    },
+
+     getHeatmap: async () => {
+
+        const response =
+            await api.get("/statistics/heatmap");
+
+        return response.data;
+
     }
 
 };
