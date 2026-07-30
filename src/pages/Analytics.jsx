@@ -2,6 +2,7 @@ import WeeklyProductivityChart from "../components/statistics/WeeklyProductivity
 import { useEffect, useState } from "react";
 import statisticsService from "../services/statisticsService";
 import Heatmap from "../components/statistics/Heatmap";
+import HeatmapCard from "../components/statistics/HeatmapCard";
 
 export default function Analytics() {
    
@@ -60,9 +61,13 @@ const loadWeeklyData = async () => {
         <WeeklyProductivityChart
            weeklyData={weeklyData}
          />
-         <Heatmap
-         heatmapData={heatmapData}
-         />
+         <HeatmapCard>
+
+        <Heatmap
+        heatmapData={heatmapData}
+        />
+
+        </HeatmapCard>
 
     </div>
 

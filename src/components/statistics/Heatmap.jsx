@@ -5,15 +5,35 @@ export default function Heatmap({ heatmapData }) {
      
     const allDays = [];
 
-    const today = new Date();
+const today = new Date();
 
-    for (let i = 364; i >= 0; i--) {
+const startDate = new Date(today);
 
-    const date = new Date(today);
+startDate.setDate(today.getDate() - 364);
 
-    date.setDate(today.getDate() - i);
+// Find Monday of that week
+const dayOfWeek = startDate.getDay();
 
-    allDays.push(date.toISOString().split("T")[0]);
+// JS:
+// Sunday = 0
+// Monday = 1
+// ...
+
+const diff = dayOfWeek === 0
+    ? -6
+    : 1 - dayOfWeek;
+
+startDate.setDate(startDate.getDate() + diff);
+
+// Build every day until today
+const current = new Date(startDate);
+
+while (current <= today) {
+
+    allDays.push(current.toISOString().split("T")[0]);
+
+    current.setDate(current.getDate() + 1);
+
 }
 
     //prod map
@@ -41,6 +61,16 @@ export default function Heatmap({ heatmapData }) {
     "Jul"
 ];
 
+   const weekDays = [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Sun"
+];
+
     //refernce code
 //     {heatmapData.map((day) => (
 
@@ -62,13 +92,33 @@ export default function Heatmap({ heatmapData }) {
 
 //             ))}
 
-    return (
-  <div>
-    <h3 className="text-lg font-semibold text-white mb-3 text-center">
-    GitHub Heatmap
-    </h3>
+    return ( 
+        
+<div className="flex">
+        {/* day labels */}
+    <div
+    className="
+        grid grid-rows-7 gap-1 mr-2 text-xs text-gray-400
+    "
+>
 
-   <div className="flex text-xs text-gray-400 mb-2">
+    {weekDays.map(day => (
+
+        <div key={day}
+        className="h-3 flex items-center"
+        >
+            {day}
+        </div>
+
+    ))}
+
+</div>
+
+        {/* Month Labels + Grid */}
+<div>
+   
+
+   <div className="flex text-xs text-gray-400 ">
 
     {months.map(month => (
 
@@ -82,8 +132,9 @@ export default function Heatmap({ heatmapData }) {
     ))}
 
     </div>
-
-  <div className="grid grid-flow-col grid-rows-7 gap-1 w-max ml-2">
+  
+  
+  <div className="grid grid-flow-col grid-rows-7 gap-1 w-max ">
     
             {allDays.map( date => {
             
@@ -110,6 +161,9 @@ export default function Heatmap({ heatmapData }) {
 })}
 
         </div>
+        </div>
+
+
         </div>
 
     );
