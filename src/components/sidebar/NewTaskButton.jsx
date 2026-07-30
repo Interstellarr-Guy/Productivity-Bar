@@ -63,7 +63,17 @@ export default function NewTaskButton({ loadTasks }) {
              
             <button
                 onClick={() => setShow(true)}
-                className="bg-[#16a34a] w-full py-1 mt-1 rounded mb-3"
+                className="
+                 w-full
+                 mt-1
+                 py-1
+                 rounded
+               bg-[#16a34a]
+               hover:bg-[#15803d]
+                 transition-colors
+                 font-medium
+                 text-sm
+                "
             >
                 + New Task
             </button>
@@ -71,10 +81,26 @@ export default function NewTaskButton({ loadTasks }) {
 
             {show && (
 
-                <div className="bg-[#222] p-3 rounded mb-4">
+                <div className="
+                   bg-white/5
+                     rounded
+                     p-3
+                     mb-2
+                     space-y-2
+">
 
                     <input
-                        className="w-full mb-2 p-2 bg-[#333]"
+                        className="
+                    w-full
+                    p-2
+                    rounded
+                    bg-[#333]
+                    text-sm
+                    focus:outline-none
+                    focus:ring-1
+                    focus:ring-green-500
+                    mb-2
+"
                         placeholder="Task title"
                         value={title}
                         onChange={(e) =>
@@ -83,7 +109,17 @@ export default function NewTaskButton({ loadTasks }) {
                     />
 
                     <select
-                        className="w-full mb-2 p-2 bg-[#333]"
+                        className="
+                    w-full
+                    p-2
+                    rounded
+                    bg-[#333]
+                    text-sm
+                    focus:outline-none
+                    focus:ring-1
+                    focus:ring-green-500
+                    mb-2
+"
                         value={priority}
                         onChange={(e) =>
                             setPriority(e.target.value)
@@ -96,7 +132,17 @@ export default function NewTaskButton({ loadTasks }) {
 
                     <input
                         type="date"
-                        className="w-full mb-2 p-2 bg-[#333]"
+                        className="
+                    w-full
+                    p-2
+                    rounded
+                    bg-[#333]
+                    text-sm
+                    focus:outline-none
+                    focus:ring-1
+                    focus:ring-green-500
+                    mb-2
+"
                         value={dueDate}
                         onChange={(e) =>
                             setDueDate(e.target.value)

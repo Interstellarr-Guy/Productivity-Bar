@@ -4,10 +4,19 @@ export default function AppLayout({
   children,
 }) {
   return (
-    <div className="flex h-screen bg-[#0d1117] text-white overflow-hidden">
+    <div className="flex 
+                    h-screen 
+                    bg-[#0d1117] 
+                    text-white 
+                    overflow-hidden">
 
       {/* Sidebar */}
-      <aside className="w-64 border-r border-[#2a2a2a] flex-shrink-0">
+      <aside className="w-64
+                        xl:w-64
+                        lg:w-60
+                        border-r
+                      border-[#2a2a2a]
+                        flex-shrink-0">
         {sidebar}
       </aside>
 
@@ -15,12 +24,17 @@ export default function AppLayout({
       <main className="flex-1 flex flex-col overflow-hidden">
 
         {/* Top Navbar */}
-        <header className="h-16 border-b border-[#2a2a2a]">
+        <header className="h-16 
+                           border-b 
+                           border-[#2a2a2a]
+                           flex-shrink-0">
           {navbar}
         </header>
 
         {/* Page Content */}
-        <section className="flex-1 overflow-auto">
+        <section className="flex-1
+                            overflow-y-auto
+                            overflow-x-hidden">
           {children}
         </section>
 

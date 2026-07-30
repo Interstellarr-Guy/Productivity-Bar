@@ -12,15 +12,17 @@ export default function CalendarContent({ productivityData }) {
 
     return (
 
-        <>
+        <div className="flex flex-col h-full">
           <Days />
+
+        <div className="flex-1 overflow-hidden">
             <CalendarGrid
                 year={year}
                 month={month}
                 productivityData={productivityData}
             />
-
-        </>
+        </div>  
+        </div>
 
     );
 

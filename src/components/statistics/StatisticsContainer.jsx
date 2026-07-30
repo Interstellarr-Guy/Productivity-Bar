@@ -4,7 +4,7 @@ export default function StatisticsContainer({ children }) {
 
         <div
             className="
-                stats w-full h-20 mb-0 grid grid-cols-5 gap-3">
+                stats w-full min-h-22 mb-0 grid grid-cols-5 gap-3">
 
             {children}
 

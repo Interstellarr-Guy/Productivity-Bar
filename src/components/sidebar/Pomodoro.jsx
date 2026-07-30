@@ -214,7 +214,9 @@ const [endTime, setEndTime] = useState(
 };
 
     return (
-    <div className=" p-3 mb-1 bg-white/5 backdrop-blur-xl rounded
+    <div className="  bg-white/5 backdrop-blur-xl 
+                        rounded 
+                        p-3 mb-1
     ">
 
         <TimerDisplay

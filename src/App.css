@@ -59,31 +59,23 @@ background-position: center;
 /* box-shadow: 10px 10px 30px  rgb(243, 35, 8); */
  }
 
-.titleName{
+/* .titleName{
  backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
-  background-color: rgba(0, 0, 0, 0.3);
-  
- 
-}
-.logoNav{
+} */
+
+/* .logoNav{
   position: relative;
   top: -17px;
   transform: scale(0.7);
   border-radius: 30px;
-}
+} */
 
-.logo{
-  border-radius: 20px;
-}
+
   
    /*Stats box*/
 .stats-box{
   color: rgb(202, 134, 9);
-  
-
-
-
 box-shadow:0 4px 11px -4px   rgb(36, 110, 33);
 }
 

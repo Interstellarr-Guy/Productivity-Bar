@@ -29,24 +29,18 @@ export default function StatisticCard({
         items-center
             `}
         >
-            <div className="flex flex-row">
+            <div className="flex items-center justify-center gap-2 h-8">
+               <span className="text-xl">
+                    {icon}
+               </span>
 
-            
-            <div
-                className="text-xl mb-0"
-            >
-                {icon}
-            </div>
-
-            <p
-                className="text-xl uppercase mb-0"
-            >
-                {title}
-            </p>
+                <span className="text-lg uppercase font-medium">
+                   {title}
+                </span>
             </div>
             
             <h4
-                className={`text-xl font-bold text-white mb-0`}
+                className="text-xl font-bold text-white leading-none"
             >
                 {value}
             </h4>

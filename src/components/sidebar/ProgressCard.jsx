@@ -25,13 +25,16 @@ export default function ProgressCard({ tasks }) {
 
     return (
 
-        <div className="bg-white/7 backdrop-blur-xl rounded pt-1 pl-2 pr-2 mb-1">
+        <div className="bg-white/7 
+                          backdrop-blur-xl 
+                          rounded 
+                          p-2 mb-1">
 
-            <p className="font-semibold">
+            <p className="font-semibold text-sm lg:text-base">
                 Today's Progress
             </p>
 
-            <div className="mt-0 w-full h-2 bg-gray-700 rounded">
+            <div className="mt-2 w-full h-2 bg-gray-700 rounded">
 
                 <div
                     className="h-full bg-green-500 rounded"
@@ -42,7 +45,12 @@ export default function ProgressCard({ tasks }) {
 
             </div>
              
-             <div className="flex justify-between">
+             <div className="flex justify-between
+                               items-center
+                               mt-2
+                               text-xs
+                               lg:text-sm
+                               text-gray-300">
                <p className="">
                 {completedTasks} / {totalTasks} Tasks
             </p>
