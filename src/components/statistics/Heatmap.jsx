@@ -44,8 +44,7 @@ for (let i = 0; i < allDays.length; i += 7) {
     weeks.push(allDays.slice(i, i + 7));
 } 
    
-   //debug
-   console.log(weeks);
+   
 
     //prod map
     const productivityMap = {};
@@ -56,21 +55,6 @@ for (let i = 0; i < allDays.length; i += 7) {
 
 });  
 
-//    const months = [
-//     "Jul",
-//     "Aug",
-//     "Sep",
-//     "Oct",
-//     "Nov",
-//     "Dec",
-//     "Jan",
-//     "Feb",
-//     "Mar",
-//     "Apr",
-//     "May",
-//     "Jun",
-//     "Jul"
-// ];
 
    const weekDays = [
     "Mon",
@@ -81,33 +65,40 @@ for (let i = 0; i < allDays.length; i += 7) {
     "Sat",
     "Sun"
 ];   
+    //Month labels
+   const monthLabels = [];
 
-  const monthLabels = [];
+weeks.forEach((week) => {
 
-  let previousMonth = "";
+    let label = "";
 
-  weeks.forEach(week => {
+    for (const date of week) {
 
-    const month = new Date(week[0]).toLocaleString(
-        "default",
-        { month: "short" }
-    );
+        const currentDate = new Date(date);
 
-    if (month !== previousMonth) {
-        monthLabels.push(month);
-        previousMonth = month;
-    } else {
-        monthLabels.push("");
+        // Is this the first day of a month?
+        if (currentDate.getDate() === 1) {
+
+            label = currentDate.toLocaleString("default", {
+                month: "short",
+            });
+
+            break;
+        }
     }
 
-});
+    monthLabels.push(label);
+
+}); 
+  // debug
+   console.log(monthLabels);
 
   return (
 
 <div>
 
     <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-2">
-        🔥 GitHub Activity
+        🔥 Activity History
     </h2>
 
     {/* Parent Grid */}
@@ -122,17 +113,17 @@ for (let i = 0; i < allDays.length; i += 7) {
     "
 >
 
-    {/* Cell 1 */}
+    {/* Cell 1: empty*/}
     <div></div>
 
-    {/* Cell 2 */}
-    <div className="flex gap-1">
+    {/* Cell 2: Month */}
+    <div className="flex gap-1 mb-2">
 
     {monthLabels.map((month, index) => (
 
         <div
             key={index}
-            className="w-3 text-[10px] text-gray-400"
+            className="w-3 text-[10px] text-gray-400 overflow-visible"
         >
             {month}
         </div>
@@ -202,6 +193,24 @@ for (let i = 0; i < allDays.length; i += 7) {
     ))}
 
     </div>
+
+    <div className="flex items-center justify-end gap-2 mt-4 text-xs text-gray-400">
+
+    <span>Less</span>
+
+    <div className="w-3 h-3 rounded-sm bg-gray-800"></div>
+
+    <div className="w-3 h-3 rounded-sm bg-green-900"></div>
+
+    <div className="w-3 h-3 rounded-sm bg-green-700"></div>
+
+    <div className="w-3 h-3 rounded-sm bg-green-500"></div>
+
+    <div className="w-3 h-3 rounded-sm bg-green-300"></div>
+
+    <span>More</span>
+
+</div>
 
 </div>
 
