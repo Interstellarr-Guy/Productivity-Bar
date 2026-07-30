@@ -11,11 +11,11 @@ export default function HeatmapCard({ children }) {
             shadow-lg
         ">
 
-            <h2 className="text-3xl font-bold text-white mb-6">
+            {/* <h2 className="text-3xl font-bold text-white mb-6">
 
                 🔥 GitHub Activity
 
-            </h2>
+            </h2> */}
 
             {children}
 

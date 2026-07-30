@@ -36,6 +36,17 @@ while (current <= today) {
 
 }
 
+   // Convert 365 days into weeks (7 days per column)
+
+const weeks = [];
+
+for (let i = 0; i < allDays.length; i += 7) {
+    weeks.push(allDays.slice(i, i + 7));
+} 
+   
+   //debug
+   console.log(weeks);
+
     //prod map
     const productivityMap = {};
 
@@ -45,21 +56,21 @@ while (current <= today) {
 
 });  
 
-   const months = [
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul"
-];
+//    const months = [
+//     "Jul",
+//     "Aug",
+//     "Sep",
+//     "Oct",
+//     "Nov",
+//     "Dec",
+//     "Jan",
+//     "Feb",
+//     "Mar",
+//     "Apr",
+//     "May",
+//     "Jun",
+//     "Jul"
+// ];
 
    const weekDays = [
     "Mon",
@@ -69,62 +80,59 @@ while (current <= today) {
     "Fri",
     "Sat",
     "Sun"
-];
+];   
 
-    //refernce code
-//     {heatmapData.map((day) => (
+  const monthLabels = [];
 
-//                 <div
-//                     key={day.date}
-//                     className={`w-5 h-5 rounded ${
-//             day.minutes === 0
-//         ? "bg-gray-800"
-//         : day.minutes < 60
-//         ? "bg-green-900"
-//         : day.minutes < 120
-//         ? "bg-green-700"
-//         : day.minutes < 240
-//         ? "bg-green-500"
-//         : "bg-green-300"
-// }`}
-//                     title={`${date} - ${minutes} min`}
-//                 />
+  let previousMonth = "";
 
-//             ))}
+  weeks.forEach(week => {
 
-    return ( 
-        
-<div className="flex">
-        {/* day labels */}
+    const month = new Date(week[0]).toLocaleString(
+        "default",
+        { month: "short" }
+    );
+
+    if (month !== previousMonth) {
+        monthLabels.push(month);
+        previousMonth = month;
+    } else {
+        monthLabels.push("");
+    }
+
+});
+
+  return (
+
+<div>
+
+    <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-2">
+        🔥 GitHub Activity
+    </h2>
+
+    {/* Parent Grid */}
+
     <div
     className="
-        grid grid-rows-7 gap-1 mr-2 text-xs text-gray-400
+        grid
+        grid-cols-[auto_1fr]
+        grid-rows-[auto_auto]
+        gap-x-3
+        gap-y-2
     "
 >
 
-    {weekDays.map(day => (
+    {/* Cell 1 */}
+    <div></div>
 
-        <div key={day}
-        className="h-3 flex items-center"
-        >
-            {day}
-        </div>
+    {/* Cell 2 */}
+    <div className="flex gap-1">
 
-    ))}
-
-</div>
-
-        {/* Month Labels + Grid */}
-<div>
-   
-
-   <div className="flex text-xs text-gray-400 ">
-
-    {months.map(month => (
+    {monthLabels.map((month, index) => (
 
         <div
-            key={month}
-            className="w-16"
+            key={index}
+            className="w-3 text-[10px] text-gray-400"
         >
             {month}
         </div>
@@ -132,40 +140,72 @@ while (current <= today) {
     ))}
 
     </div>
-  
-  
-  <div className="grid grid-flow-col grid-rows-7 gap-1 w-max ">
-    
-            {allDays.map( date => {
-            
-            const minutes = productivityMap[date] || 0;
 
-            return (
-                <div
-                    key={date}
-                    className={`w-3 h-3 rounded-sm ${
-            minutes === 0
-        ? "bg-gray-800"
-        : minutes < 60
-        ? "bg-green-900"
-        : minutes < 120
-        ? "bg-green-700"
-        : minutes < 240
-        ? "bg-green-500"
-        : "bg-green-300"
-}`}
-                    title={`${date} - ${minutes} min`}
-                />
+    {/* Cell 3 */}
+    <div className="flex flex-col gap-1">
+
+    {weekDays.map(day => (
+
+        <div
+            key={day}
+            className="w-6 h-3 text-[10px] text-gray-400"
+            style={{
+                lineHeight: "12px"
+            }}
+        >
+            {day}
+        </div>
+
+    ))}
+
+    </div>
+
+    {/* Cell 4 */}
+    <div className="flex gap-1">
+
+    {weeks.map((week, weekIndex) => (
+
+        <div
+            key={weekIndex}
+            className="flex flex-col gap-1"
+        >
+
+            {week.map(date => {
+
+                const minutes =
+                    productivityMap[date] || 0;
+
+                return (
+
+                    <div
+                        key={date}
+                        className={`w-3 h-3 rounded-sm ${
+                            minutes === 0
+                                ? "bg-gray-800"
+                                : minutes < 60
+                                ? "bg-green-900"
+                                : minutes < 120
+                                ? "bg-green-700"
+                                : minutes < 240
+                                ? "bg-green-500"
+                                : "bg-green-300"
+                        }`}
+                        title={`${date} - ${minutes} min`}
+                    />
+
+                );
+
+            })}
+
+        </div>
+
+    ))}
+
+    </div>
+
+</div>
+
+</div>
+
 );
-
-})}
-
-        </div>
-        </div>
-
-
-        </div>
-
-    );
-
 }
