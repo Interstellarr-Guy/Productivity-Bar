@@ -14,9 +14,20 @@ export default function Sidebar({ tasks, setTasks, loadTasks,
                             flex
                             flex-col
                           bg-[#614d4d]
+
                             p-2
-                            lg:p-2.5">
-    
+                            lg:p-2.5
+                            xl:p-3"
+                            
+                            >
+        <div className="flex justify-end p-2">
+    <button
+        onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+        className="p-2 rounded hover:bg-white/10"
+    >
+        ☰
+    </button>
+</div>
         <UserCard />
         <NewTaskButton loadTasks={loadTasks}/>
     

@@ -23,8 +23,7 @@ export default function CalendarGrid({ year, month, productivityData, onDayClick
     
 
   return (
-    <div className="cg grid grid-cols-7 grid-row-6 h-full 
-                    bg-[#403a3a]   
+    <div className="cg grid grid-cols-7 h-full   
                     text-[#e7dee5] 
     ">
 
@@ -37,7 +36,7 @@ export default function CalendarGrid({ year, month, productivityData, onDayClick
       return cell === null ? (
     <div
       key={index}
-      className=" "
+      className=""
     />
   ) : (
     <DayCell

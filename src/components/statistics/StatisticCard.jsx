@@ -21,29 +21,45 @@ export default function StatisticCard({
         ${color}
         shadow-md
         hover:-translate-y-1
+
         transition-all
         duration-300
+        hover:shadow-lg
+
         flex
         flex-col
         justify-center
         items-center
+        px-2 py-1 
+        lg:px-3 lg:py-2
             `}
         >
             <div className="flex items-center justify-center gap-2 h-8">
-               <span className="text-xl">
+               <span className="text-sm
+                                sm:text-lg
+                                lg:text-lg
+                                xl:text-xl">
                     {icon}
                </span>
 
-                <span className="text-lg uppercase font-medium">
+                <span className="
+                                uppercase font-medium
+                                tracking-wide
+                                leading-none"
+                style={{
+  fontSize: "clamp(0.7rem, 1vw, 0.8rem)"
+}}>
                    {title}
                 </span>
             </div>
             
-            <h4
-                className="text-xl font-bold text-white leading-none"
+            <span
+                className="text-sm
+                           sm:text-base lg:text-lg xl:text-xl            
+                           font-bold text-white leading-tight"
             >
                 {value}
-            </h4>
+            </span>
 
         </div>
 

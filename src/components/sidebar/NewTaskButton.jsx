@@ -58,7 +58,7 @@ export default function NewTaskButton({ loadTasks }) {
     return (
 
         <>
-             <div className="flex justify-center">
+             <div className="flex justify-center mb-1">
 
              
             <button
@@ -66,13 +66,16 @@ export default function NewTaskButton({ loadTasks }) {
                 className="
                  w-full
                  mt-1
+
                  py-1
+                 lg:py-2
                  rounded
                bg-[#16a34a]
                hover:bg-[#15803d]
                  transition-colors
                  font-medium
                  text-sm
+                 lg:text-base
                 "
             >
                 + New Task

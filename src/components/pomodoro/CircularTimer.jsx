@@ -25,8 +25,8 @@ export default function CircularTimer({
     return (
 
         <svg
-     width="110"
-     height="110"
+     width="100"
+     height="100"
      viewBox="0 0 160 160"
      className="-rotate-90"
 >

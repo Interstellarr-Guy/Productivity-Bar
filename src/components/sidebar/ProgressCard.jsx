@@ -28,7 +28,8 @@ export default function ProgressCard({ tasks }) {
         <div className="bg-white/7 
                           backdrop-blur-xl 
                           rounded 
-                          p-2 mb-1">
+                          pl-2 pr-2 mb-1
+                          lg:p-3">
 
             <p className="font-semibold text-sm lg:text-base">
                 Today's Progress

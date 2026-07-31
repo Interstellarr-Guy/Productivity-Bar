@@ -11,7 +11,8 @@ export default function StatisticsCard({ statistics }) {
 
     return (
 
-        <div className="bg-[#95a4ba] rounded-lg p-4 border border-gray-700">
+        <div className="bg-[#95a4ba] rounded-lg p-4 
+                        border border-gray-700">
 
             <h2 className="text-lg font-bold mb-4">
                 📊 Productivity Statistics

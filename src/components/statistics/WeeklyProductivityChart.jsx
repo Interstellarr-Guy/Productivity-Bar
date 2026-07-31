@@ -9,7 +9,7 @@ export default function WeeklyProductivityChart({ weeklyData}) {
 
     return (
 
-        <div className="bg-[#1f2937] rounded-xl p-5 shadow-lg border
+        <div className="bg-[#1f2937] rounded-xl p-4 mt-2 shadow-lg border
         border-gray-700">
 
             <h2 className="text-white text-lg font-semibold mb-4">

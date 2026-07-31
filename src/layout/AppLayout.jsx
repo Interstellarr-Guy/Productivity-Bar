@@ -2,6 +2,7 @@ export default function AppLayout({
   sidebar,
   navbar,
   children,
+  sidebarCollapsed,
 }) {
   return (
     <div className="flex 
@@ -11,12 +12,17 @@ export default function AppLayout({
                     overflow-hidden">
 
       {/* Sidebar */}
-      <aside className="w-64
-                        xl:w-64
-                        lg:w-60
-                        border-r
-                      border-[#2a2a2a]
-                        flex-shrink-0">
+      <aside className={`
+    border-r
+    border-[#2a2a2a]
+    flex-shrink-0
+
+    transition-all
+    duration-300
+    ease-in-out
+
+    ${sidebarCollapsed ? "w-20" : "w-72"}
+  `}>
         {sidebar}
       </aside>
 
@@ -24,7 +30,8 @@ export default function AppLayout({
       <main className="flex-1 flex flex-col overflow-hidden">
 
         {/* Top Navbar */}
-        <header className="h-16 
+        <header className="h-14
+                           lg:h-16 
                            border-b 
                            border-[#2a2a2a]
                            flex-shrink-0">

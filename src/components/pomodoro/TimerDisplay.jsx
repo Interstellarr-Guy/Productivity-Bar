@@ -55,9 +55,9 @@ export default function TimerDisplay({ mode, seconds }) {
         }
         ringColor={ringColor}
     />
-    <div className="absolute text-center">
+    <div className="absolute text-center mt-2">
 
-    <p className="text-xl font-bold">
+    <p className="text-xl font-bold ">
         {minutes}:{secs}
     </p>
 

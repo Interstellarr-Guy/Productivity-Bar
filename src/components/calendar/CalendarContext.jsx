@@ -2,13 +2,13 @@ import { useState } from "react";
 import Days from "../Days";
 import CalendarGrid from "../CalendarGrid";
 
-export default function CalendarContent({ productivityData }) {
+export default function CalendarContent({ 
+    productivityData,
+    year,
+    month,
+ }) {
 
-    const today = new Date();
-
-    const [year] = useState(today.getFullYear());
-
-    const [month] = useState(today.getMonth());
+   
 
     return (
 

@@ -8,7 +8,8 @@ export default function NavigationMenu({
 
     return (
 
-        <div className="w-full p-3 mt-0 bg-[#a54c35]/20 backdrop-blur-xl rounded">
+        <div className="w-full p-3 mt-0 bg-[#a54c35]/20 backdrop-blur-xl 
+        rounded space-y-1.5 lg:space-y-2">
 
             <button
                 className="block w-full  mb-2 

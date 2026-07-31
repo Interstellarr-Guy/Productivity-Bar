@@ -5,16 +5,24 @@ import statisticsService from "../services/statisticsService";
 import StatisticsContainer from "../components/statistics/StatisticsContainer";
 import StatisticCard from "../components/statistics/StatisticCard";
 import Analytics from "./Analytics";
+import MonthSelector from "../components/MonthSelector";
 import AppLayout from "../layout/AppLayout";
 import Sidebar from "../components/sidebar/Sidebar";
 import Navbar from "../components/Navbar";
 import CalendarContent from "../components/calendar/CalendarContext";
 
-
 export default function Dashboard() {
      
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
     const [page, setPage] = useState("calendar");
     const [tasks, setTasks] = useState([]);
+    // For month 
+    const today = new Date();
+    const [year] = useState(today.getFullYear());
+    const [month, setMonth] =
+    useState(today.getMonth());
+    
 
     //New prod data
     const productivityData = {};
@@ -128,9 +136,12 @@ console.log("Is Array?", Array.isArray(tasks));
     return (
 
     <AppLayout
-
+        sidebarCollapsed={sidebarCollapsed}
         sidebar={
             <Sidebar
+                sidebarCollapsed={sidebarCollapsed}
+                setSidebarCollapsed={setSidebarCollapsed}
+
                 tasks={tasks}
                 setTasks={setTasks}
                 loadTasks={loadTasks}
@@ -141,13 +152,15 @@ console.log("Is Array?", Array.isArray(tasks));
         }
 
         navbar={
-            <Navbar />
+            <Navbar 
+            month={month}
+            setMonth={setMonth} />
         }
 
     >
 
         <div className="flex flex-col h-full">
-
+          <div className="flex-shrink-0">
             <StatisticsContainer>
 
                 <StatisticCard
@@ -186,13 +199,17 @@ console.log("Is Array?", Array.isArray(tasks));
                 />
 
             </StatisticsContainer>
+          </div>
 
             <div className="flex-1 overflow-hidden">
 
                 {page === "calendar" && (
 
                     <CalendarContent
+                        year={year}
+                        month={month}
                         productivityData={productivityData}
+
                     />
 
                 )}

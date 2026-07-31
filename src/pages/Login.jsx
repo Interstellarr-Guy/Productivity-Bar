@@ -54,7 +54,7 @@ export default function Login() {
 
     return (
 
-        <div className="container mt-5">
+        <div className="container mt-5 bg-[#412a4c]">
 
             <div className="row justify-content-center">
 

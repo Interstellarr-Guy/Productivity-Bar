@@ -27,6 +27,9 @@ export default function Navbar() {
                 py-0
                 border-b
                 border-gray-700
+
+                text-xs 
+                sm:text-sm lg:text-base
             "
         >
             {day}
