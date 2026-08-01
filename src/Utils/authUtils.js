@@ -1,10 +1,23 @@
-export function isTokenExpired() {
+export const isAuthenticated = () => {
 
-    const expiresAt =
-        localStorage.getItem("expiresAt");
+    const token = localStorage.getItem("token");
+    const expiresAt = localStorage.getItem("expiresAt");
 
-    if (!expiresAt) return true;
+    if (!token || !expiresAt) {
+        return false;
+    }
 
-    return Date.now() > Number(expiresAt);
+    if (Date.now() > Number(expiresAt)) {
 
-}
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("userName");
+        localStorage.removeItem("email");
+        localStorage.removeItem("workspaceId");
+        localStorage.removeItem("expiresAt");
+
+        return false;
+    }
+
+    return true;
+};

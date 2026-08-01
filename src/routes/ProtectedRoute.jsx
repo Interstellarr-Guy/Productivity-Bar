@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom";
-import { isTokenExpired } from "../utils/authUtils";
+
+import { isAuthenticated } from "../Utils/authUtils";
 
 export default function ProtectedRoute({ children }) {
 
@@ -10,7 +11,7 @@ export default function ProtectedRoute({ children }) {
     }
 
     // JWT expired?
-    if (isTokenExpired()) {
+    if (!isAuthenticated()) {
 
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
