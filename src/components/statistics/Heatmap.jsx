@@ -1,4 +1,4 @@
-
+import {useEffect, useRef} from "react";
 
 
 export default function Heatmap({ heatmapData }) {
@@ -91,7 +91,17 @@ weeks.forEach((week) => {
 
 }); 
   // debug
-   console.log(monthLabels);
+  // console.log(monthLabels);
+
+  // Auto scroll to rightmost column
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+        scrollRef.current.scrollLeft =
+            scrollRef.current.scrollWidth;
+    }
+}, []);
 
   return (
 
@@ -108,17 +118,20 @@ weeks.forEach((week) => {
     </h2>
 
     {/* Parent Grid */}
-
-    <div
-    className="
+<div  ref={scrollRef} 
+className="overflow-x-auto pb-2"
+>
+  <div className="
         grid
         grid-cols-[auto_1fr]
         grid-rows-[auto_auto]
         gap-x-3
         gap-y-2
+        min-w-max
     "
 >
-
+ 
+  
     {/* Cell 1: empty*/}
     <div></div>
 
@@ -158,7 +171,8 @@ weeks.forEach((week) => {
     </div>
 
     {/* Cell 4 */}
-    <div className="flex gap-1">
+    
+    <div className="flex gap-1 min-w-max">
 
     {weeks.map((week, weekIndex) => (
 
@@ -176,7 +190,8 @@ weeks.forEach((week) => {
 
                     <div
                         key={date}
-                        className={`w-3 h-3 rounded-sm ${
+                        className={`w-3 h-3 
+                            rounded-sm ${
                             minutes === 0
                                 ? "bg-gray-800"
                                 : minutes < 60
@@ -200,6 +215,10 @@ weeks.forEach((week) => {
 
     </div>
 
+ 
+     
+
+      {/* Square Notations */}
     <div className="flex items-center justify-end gap-2 mt-4 text-xs text-gray-400">
 
     <span>Less</span>
@@ -218,8 +237,8 @@ weeks.forEach((week) => {
 
 </div>
 
+  </div>
 </div>
-
 </div>
 
 );

@@ -9,6 +9,11 @@ const authService = {
     localStorage.setItem("userId", response.data.id);
     localStorage.setItem("userName", response.data.name);
     localStorage.setItem("email", response.data.email);
+    
+    //To remove expire JWT + Data
+    const JWT_EXPIRATION_MS = 24 * 60 * 60 * 1000;
+    const expiresAt = Date.now() + JWT_EXPIRATION_MS;
+    localStorage.setItem("expiresAt", expiresAt);
 
     return response.data;
   },
@@ -24,6 +29,8 @@ const authService = {
     localStorage.removeItem("userName");
     localStorage.removeItem("email");
     localStorage.removeItem("productivityData");
+    // to remove while logout
+    localStorage.removeItem("expiresAt");
   },
 
 };

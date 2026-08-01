@@ -7,7 +7,8 @@ import PomodoroCard from "./Pomodoro";
 import NavigationMenu from "./NavigationMenu";
 
 export default function Sidebar({ tasks, setTasks, loadTasks, 
-                                productivityData, page, setPage}) {
+                                productivityData, page, setPage,
+                                sidebarCollapsed, setSidebarCollapsed}) {
   return (
     <div className="sidebar h-full
                             w-full
@@ -28,9 +29,10 @@ export default function Sidebar({ tasks, setTasks, loadTasks,
         ☰
     </button>
 </div>
+    {!sidebarCollapsed && (
+      <>
         <UserCard />
         <NewTaskButton loadTasks={loadTasks}/>
-    
     
     <div className=" flex-1 overflow-y-auto overflow-x-hidden  scrollbar-none">
         <TodayTasks tasks={tasks} setTasks={setTasks} loadTasks={loadTasks}  productivityData={productivityData}/>
@@ -48,7 +50,10 @@ export default function Sidebar({ tasks, setTasks, loadTasks,
           page={page}
           setPage={setPage}
        />
-    
+      </>
+    )}  
+
+
     </div>
   );
 }

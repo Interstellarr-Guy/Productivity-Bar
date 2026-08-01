@@ -133,6 +133,27 @@ console.log("Is Array?", Array.isArray(tasks));
     //test
     console.log(statistics);
 
+    //Auto collapse Handle
+    useEffect(() => {
+
+    const handleResize = () => {
+
+        if (window.innerWidth < 800) {
+            setSidebarCollapsed(true);
+        } else {
+            setSidebarCollapsed(false);
+        }
+
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+
+}, []);
+
     return (
 
     <AppLayout

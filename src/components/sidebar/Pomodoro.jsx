@@ -8,8 +8,9 @@ import taskService from "../../services/taskService";
 export default function PomodoroCard({tasks, loadTasks}) {
 
 
-
-const saved = JSON.parse(localStorage.getItem("pomodoro"));
+// pomodoro storing in local using userid
+const userId = localStorage.getItem("userId");
+const saved = JSON.parse(localStorage.getItem(`pomodoro_${userId}`));
 
 const [seconds, setSeconds] = useState(
     saved?.seconds ?? 25 * 60
@@ -45,8 +46,10 @@ const [endTime, setEndTime] = useState(
 
     useEffect(() => {
 
+         if (!userId) return;
+        
     localStorage.setItem(
-        "pomodoro",
+        `pomodoro_${userId}`,
 
         JSON.stringify({
 
@@ -61,7 +64,7 @@ const [endTime, setEndTime] = useState(
     );
 
 }, [
-
+    userId,
     seconds,
     running,
     mode,

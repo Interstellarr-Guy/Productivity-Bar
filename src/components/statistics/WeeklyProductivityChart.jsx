@@ -1,3 +1,4 @@
+import {useState,useEffect } from "react";
 import {
     BarChart,Bar,
     XAxis,YAxis,
@@ -5,25 +6,50 @@ import {
 
 export default function WeeklyProductivityChart({ weeklyData}) {
     
-    console.log(weeklyData);
+   // console.log(weeklyData);
+
+   //Resize bar size 
+   const [barSize, setBarSize] = useState(60);
+
+useEffect(() => {
+  const handleResize = () => {
+  const w = window.innerWidth;
+
+  if (w < 800) {
+    setBarSize(28);
+  } else if (w < 1200) {
+    setBarSize(42);
+  } else {
+    setBarSize(65);
+  }
+};
+
+  handleResize();
+  window.addEventListener("resize", handleResize);
+
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
 
     return (
 
         <div className="bg-[#1f2937] rounded-xl p-4 mt-2 shadow-lg border
         border-gray-700">
 
-            <h2 className="text-white text-lg font-semibold mb-4">
+            <h4 className="text-base
+                           sm:text-sm 
+                           lg:text-xl 
+                           font-semibold mb-4">
                 📊 Weekly Productivity
-            </h2>
+            </h4>
 
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={320}>
 
                 <BarChart data={weeklyData}
                 margin={{
-                top: 20,
-                right: 200,
-                left: 100,
-                bottom: 10,
+                top: 10,
+                right: 15,
+                left: 5,
+                bottom: 5,
     }}
     >
                     <CartesianGrid
@@ -52,7 +78,7 @@ export default function WeeklyProductivityChart({ weeklyData}) {
                         dataKey="minutes"
                         fill="#22c55e"
                         radius={[6, 6, 0, 0]}
-                        barSize={65}
+                        barSize={barSize}
                     />
 
                     

@@ -20,6 +20,7 @@ export default function AppLayout({
     transition-all
     duration-300
     ease-in-out
+    overflow-hidden
 
     ${sidebarCollapsed ? "w-20" : "w-72"}
   `}>

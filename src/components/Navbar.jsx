@@ -31,15 +31,19 @@ export default function Navbar({
 />
     </div>
                      {/* Title */}
-    <div className="flex-1 h-full flex items-center justify-center 
+    <div className="h-full flex 
+                    ml-3 mr-auto
+                    items-center justify-center 
                     px-2 sm:px-3 lg:px-4">
-         <span className="text-[clamp(1rem,1vw,0.8rem)]
+          <h3 className="text-[clamp(1rem,2vw,2rem)]
                         sm:text-2xl
                         lg:text-3xl
                         xl:text-4xl
                         font-bold
+                        whitespace-nowrap
                         truncate
-                        drop-shadow-[0_2px_2px_rgba(0,0,0,.5)]">Productivity Tracker</span>
+                        drop-shadow-[0_2px_2px_rgba(0,0,0,.5)]">Productivity Tracker
+          </h3>
     </div> 
                      {/* Month */}
     <div className="h-full flex items-center justify-center flex-shrink-0">

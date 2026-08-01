@@ -7,6 +7,7 @@ export default function UserCard() {
                 bg-white/5
                 backdrop-blur-xl
                 rounded-lg
+                
                 p-2
                 lg:p-2.5
                 border
