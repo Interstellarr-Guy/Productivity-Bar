@@ -14,20 +14,28 @@ export default function Sidebar({ tasks, setTasks, loadTasks,
                             w-full
                             flex
                             flex-col
-                          bg-[#614d4d]
+                          bg-transparent
+                         md:bg-[#111827]/90
+
+                          backdrop-blur-none
+                          md:backdrop-blur-2xl
 
                             p-2
                             lg:p-2.5
                             xl:p-3"
                             
                             >
-        <div className="flex justify-end p-2">
-    <button
-        onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-        className="p-2 rounded hover:bg-white/10"
+    <div className="flex justify-end p-2">
+        <div className="hidden md:flex">
+    {/* Collapse button */}
+               <button
+               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+               className="p-2 rounded hover:bg-white/10"
     >
-        ☰
-    </button>
+                   ☰
+               </button>
+        </div>
+    
 </div>
     {!sidebarCollapsed && (
       <>

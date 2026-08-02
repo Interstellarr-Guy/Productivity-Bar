@@ -309,12 +309,23 @@ console.log("Is Array?", Array.isArray(tasks));
         </div>
 
     </AppLayout>
-   <MobileDrawer
+    <MobileDrawer
     open={mobileMenuOpen}
     onClose={() => setMobileMenuOpen(false)}
 >
+    <Sidebar
+        sidebarCollapsed={false}
+        setSidebarCollapsed={() => {}}
 
-</MobileDrawer>
+        tasks={tasks}
+        setTasks={setTasks}
+        loadTasks={loadTasks}
+        productivityData={productivityData}
+
+        page={page}
+        setPage={setPage}
+    />
+    </MobileDrawer>
 </>
 );
 

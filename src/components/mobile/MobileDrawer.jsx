@@ -11,8 +11,9 @@ export default function MobileDrawer({
             <div
                 className={`
                     fixed inset-0
-                    bg-black/40
-                    backdrop-blur-sm
+                    bg-[#0b1120]/95
+                    backdrop-blur-3xl
+
                     transition-opacity
                     duration-300
                     z-40

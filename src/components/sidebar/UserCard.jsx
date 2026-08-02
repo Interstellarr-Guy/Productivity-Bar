@@ -1,5 +1,8 @@
 export default function UserCard() {
 
+    const userName =
+        localStorage.getItem("userName") || "User";
+
     return (
 
         <div
@@ -23,7 +26,7 @@ export default function UserCard() {
                     lg:text-lg
                 "
             >
-                Productivity Bar
+                Habit Tracker
             </h5>
 
             <p
@@ -32,9 +35,10 @@ export default function UserCard() {
                     text-center
                     text-sm
                     lg:text-base
+                    text-gray-200
                 "
             >
-                🙂 Welcome Ramesh
+                🙂 Welcome {userName}
             </p>
 
         </div>

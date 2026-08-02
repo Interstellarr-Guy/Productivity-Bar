@@ -56,6 +56,7 @@ export default function Navbar({
     sm:w-24
     lg:w-28
     ml-2
+    text-black
 
     text-xs
     sm:text-sm
