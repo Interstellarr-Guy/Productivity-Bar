@@ -1,8 +1,15 @@
+import BottomNavigation from "../components/mobile/BottomNavigationMenu";
+import MobileDrawer from "../components/mobile/MobileDrawer";
+
 export default function AppLayout({
   sidebar,
   navbar,
   children,
   sidebarCollapsed,
+  page,
+  setPage,
+  setSidebarCollapsed,
+  setMobileMenuOpen
 }) {
   return (
     <div className="flex 
@@ -12,7 +19,9 @@ export default function AppLayout({
                     overflow-hidden">
 
       {/* Sidebar */}
-      <aside className={`
+      <aside   className={`
+    hidden md:block
+
     border-r
     border-[#2a2a2a]
     flex-shrink-0
@@ -23,7 +32,7 @@ export default function AppLayout({
     overflow-hidden
 
     ${sidebarCollapsed ? "w-20" : "w-72"}
-  `}>
+`} >
         {sidebar}
       </aside>
 
@@ -42,12 +51,20 @@ export default function AppLayout({
         {/* Page Content */}
         <section className="flex-1
                             overflow-y-auto
-                            overflow-x-hidden">
+                            overflow-x-hidden
+                            pb-20
+                            md:pb-0">
           {children}
         </section>
 
       </main>
-
+     <BottomNavigation
+    page={page}
+    setPage={setPage}
+    setSidebarCollapsed={setSidebarCollapsed}
+    setMobileMenuOpen={setMobileMenuOpen}
+/>
+ 
     </div>
   );
 }

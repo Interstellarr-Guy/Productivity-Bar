@@ -11,10 +11,12 @@ import Sidebar from "../components/sidebar/Sidebar";
 import Navbar from "../components/Navbar";
 import CalendarContent from "../components/calendar/CalendarContext";
 import taskCompletionService from "../services/taskCompletionService";
+import MobileDrawer from "../components/mobile/MobileDrawer";
 
 export default function Dashboard() {
      
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const [page, setPage] = useState("calendar");
     const [tasks, setTasks] = useState([]);
@@ -206,28 +208,36 @@ console.log("Is Array?", Array.isArray(tasks));
 }, []);
 
     return (
-
+  <>
     <AppLayout
         sidebarCollapsed={sidebarCollapsed}
-        sidebar={
-            <Sidebar
-                sidebarCollapsed={sidebarCollapsed}
-                setSidebarCollapsed={setSidebarCollapsed}
+    page={page}
+    setPage={setPage}
+    setSidebarCollapsed={setSidebarCollapsed}
+    mobileMenuOpen={mobileMenuOpen}
+    setMobileMenuOpen={setMobileMenuOpen}
 
-                tasks={tasks}
-                setTasks={setTasks}
-                loadTasks={loadTasks}
-                productivityData={productivityData}
-                page={page}
-                setPage={setPage}
-            />
-        }
+    sidebar={
+        <Sidebar
+            sidebarCollapsed={sidebarCollapsed}
+            setSidebarCollapsed={setSidebarCollapsed}
 
-        navbar={
-            <Navbar 
+            tasks={tasks}
+            setTasks={setTasks}
+            loadTasks={loadTasks}
+            productivityData={productivityData}
+
+            page={page}
+            setPage={setPage}
+        />
+    }
+
+    navbar={
+        <Navbar
             month={month}
-            setMonth={setMonth} />
-        }
+            setMonth={setMonth}
+        />
+    }
 
     >
 
@@ -299,7 +309,13 @@ console.log("Is Array?", Array.isArray(tasks));
         </div>
 
     </AppLayout>
+   <MobileDrawer
+    open={mobileMenuOpen}
+    onClose={() => setMobileMenuOpen(false)}
+>
 
+</MobileDrawer>
+</>
 );
 
 }

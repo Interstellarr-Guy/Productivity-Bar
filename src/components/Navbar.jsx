@@ -35,15 +35,15 @@ export default function Navbar({
                     ml-3 mr-auto
                     items-center justify-center 
                     px-2 sm:px-3 lg:px-4">
-          <h3 className="text-[clamp(1rem,2vw,2rem)]
+          <h4 className="text-[clamp(1rem,2vw,2rem)]
                         sm:text-2xl
                         lg:text-3xl
                         xl:text-4xl
                         font-bold
                         whitespace-nowrap
                         truncate
-                        drop-shadow-[0_2px_2px_rgba(0,0,0,.5)]">Productivity Tracker
-          </h3>
+                        drop-shadow-[0_2px_2px_rgba(0,0,0,.5)]">Habit Tracker
+          </h4>
     </div> 
                      {/* Month */}
     <div className="h-full flex items-center justify-center flex-shrink-0">
@@ -52,15 +52,20 @@ export default function Navbar({
     onChange={(e) => setMonth(Number(e.target.value))}
     className="
     months
-        bg-white/5 backdrop-blur-xl
-        text-black
-        rounded
+        w-20
+    sm:w-24
+    lg:w-28
+    ml-2
 
-        px-2
-        py-1
-        
-        text-[clamp(0.65rem,0.9vw,0.95rem)]
-        w-[clamp(82px,8vw,120px)]  
+    text-xs
+    sm:text-sm
+
+    px-1
+    sm:px-2
+
+    rounded
+    bg-white/10
+    border border-white/10  
     "
 >
       {months.map((m, index) => (

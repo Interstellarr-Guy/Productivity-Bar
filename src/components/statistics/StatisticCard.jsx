@@ -1,68 +1,63 @@
 export default function StatisticCard({
-
-    title,
-    value,
-    icon,
-    color,
-
+  title,
+  value,
+  icon,
+  color,
 }) {
+  return (
+    <div
+      className={`
+        stats-box
 
-    return (
+    bg-transparent
+    shadow-none
+    rounded-none
+    border-none
 
-        <div
-            className={`
-                  stats-box
-                 bg-white/5
-                 backdrop-blur-xl
-                 
-        rounded-lg
-        border-t-0
-        mt-1 mb-1
-        ${color}
-        shadow-md
-        hover:-translate-y-1
+    lg:bg-white/5
+    lg:backdrop-blur-xl
+    lg:rounded-lg
+    lg:shadow-md
+    ${color}
 
-        transition-all
-        duration-300
-        hover:shadow-lg
+    hover:-translate-y-1
+    transition-all duration-300
+    hover:shadow-lg
 
-        flex
-        flex-col
-        justify-center
-        items-center
-        px-2 py-1 
-        lg:px-3 lg:py-2
-            `}
+    flex flex-col
+    justify-center items-center
+
+    px-2 py-2
+    lg:px-3 lg:py-2
+      `}
+    >
+      {/* Mobile */}
+      <div className="flex flex-col items-center lg:hidden">
+        <span
+          className="uppercase text-[10px] font-medium text-gray-300 leading-none"
         >
-            <div className="flex items-center justify-center gap-2 h-8">
-               <span className="text-sm
-                                sm:text-lg
-                                lg:text-lg
-                                xl:text-xl">
-                    {icon}
-               </span>
+          {title}
+        </span>
 
-                <span className="
-                                uppercase font-medium
-                                tracking-wide
-                                leading-none"
-                style={{
-  fontSize: "clamp(0.7rem, 1vw, 0.8rem)"
-}}>
-                   {title}
-                </span>
-            </div>
-            
-            <span
-                className="text-sm
-                           sm:text-base lg:text-lg xl:text-xl            
-                           font-bold text-white leading-tight"
-            >
-                {value}
-            </span>
+        <span className="text-sm font-bold text-white mt-1">
+          {value}
+        </span>
+      </div>
 
+      {/* Desktop */}
+      <div className="hidden lg:flex flex-col items-center">
+        <div className="flex items-center gap-2">
+          <span className="text-lg">{icon}</span>
+
+          <span className="uppercase tracking-wide text-xs font-medium">
+            {title}
+          </span>
         </div>
 
-    );
-
+        <span className="text-lg font-bold text-white mt-1">
+          {value}
+        </span>
+      </div>
+    </div>
+  );
 }
