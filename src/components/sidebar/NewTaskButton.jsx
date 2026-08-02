@@ -10,6 +10,8 @@ export default function NewTaskButton({ loadTasks }) {
     const [priority, setPriority] = useState("Medium");
 
     const [dueDate, setDueDate] = useState("");
+
+    const [repeatType, setRepeatType] = useState("NONE");
     
     // Fn for backend call to create  a new task
     const handleAdd = async () => {
@@ -30,8 +32,12 @@ export default function NewTaskButton({ loadTasks }) {
             priority: priority.toUpperCase(),
 
             dueDate,
+            
+            repeatType: repeatType,
 
-            status: "TODO",
+            status: "TODO"
+
+           
 
         });
 
@@ -42,6 +48,8 @@ export default function NewTaskButton({ loadTasks }) {
         setPriority("Medium");
 
         setDueDate("");
+
+        setRepeatType("NONE");
 
         setShow(false);
 
@@ -151,6 +159,60 @@ export default function NewTaskButton({ loadTasks }) {
                             setDueDate(e.target.value)
                         }
                     />
+
+                   <p className="text-sm font-medium text-center text-[#bc3817] mt-2 mb-1">
+    Task Type..
+</p>
+
+<div className="flex gap-2">
+
+    <label
+        className={`flex-1 cursor-pointer rounded-md border text-center py-2
+        transition-all duration-300
+        ${
+            repeatType === "NONE"
+                ? "bg-cyan-500/20 border-cyan-400 text-cyan-300"
+                : "bg-white/5 border-white/10 hover:bg-white/10"
+        }`}
+    >
+
+        <input
+            type="radio"
+            name="repeatType"
+            value="NONE"
+            checked={repeatType === "NONE"}
+            onChange={(e) => setRepeatType(e.target.value)}
+            className="hidden"
+        />
+
+        📄 One Time
+
+    </label>
+
+    <label
+        className={`flex-1 cursor-pointer rounded-md border text-center py-2
+        transition-all duration-300
+        ${
+            repeatType === "DAILY"
+                ? "bg-green-500/20 border-green-400 text-green-300"
+                : "bg-white/5 border-white/10 hover:bg-white/10"
+        }`}
+    >
+
+        <input
+            type="radio"
+            name="repeatType"
+            value="DAILY"
+            checked={repeatType === "DAILY"}
+            onChange={(e) => setRepeatType(e.target.value)}
+            className="hidden"
+        />
+
+        🔁 Daily
+
+    </label>
+
+</div>
 
                     <button
                         onClick={handleAdd}

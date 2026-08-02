@@ -42,7 +42,18 @@ const taskService = {
     async deleteTask(taskId) {
 
         await api.delete(`/tasks/${taskId}`);
-    }
+    },
+
+    // Completed Task
+    async completeTask(taskId, completion) {
+
+    const response = await api.post(
+        `/tasks/${taskId}/complete`,
+        completion
+    );
+
+    return response.data;
+},
 
     
 

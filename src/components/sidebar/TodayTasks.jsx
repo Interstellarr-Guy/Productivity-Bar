@@ -21,12 +21,12 @@ export default function TodayTasks({
 
     const minutes = hours * 60;
 
-    await taskService.updateTask(selectedTask.id, {
-      title: selectedTask.title,
-      description: selectedTask.description,
-      status: "DONE",
-      priority: selectedTask.priority,
-      dueDate: selectedTask.dueDate,
+    await taskService.completeTask(selectedTask.id, {
+    //   title: selectedTask.title,
+    //   description: selectedTask.description,
+    //   status: "DONE",
+    //   priority: selectedTask.priority,
+    //   dueDate: selectedTask.dueDate,
 
       workedMinutes: minutes,
 
@@ -44,22 +44,15 @@ export default function TodayTasks({
     const toggleTask = async (task) => {
 
     try {
-            const newStatus =
-            task.status === "DONE"
-                ? "TODO"
-                : "DONE";
-        await taskService.updateTaskStatus(
-            task.id,
-            newStatus
-        );
+           if (task.status === "DONE") {
+    await taskService.updateTaskStatus(task.id, "TODO");
+    await loadTasks();
+    return;
+}
 
-        if (newStatus === "DONE") {
-          setSelectedTask(task);
-          setHoursInput("");
-          setShowHoursModal(true);
-}       
-
-       await loadTasks();   
+setSelectedTask(task);
+setHoursInput("");
+setShowHoursModal(true);    
 
     } catch (error) {
 

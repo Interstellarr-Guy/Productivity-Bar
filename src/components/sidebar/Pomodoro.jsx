@@ -13,7 +13,7 @@ const userId = localStorage.getItem("userId");
 const saved = JSON.parse(localStorage.getItem(`pomodoro_${userId}`));
 
 const [seconds, setSeconds] = useState(
-    saved?.seconds ?? 25 * 60
+    saved?.seconds ?? 1 * 60
 );
 
 const [running, setRunning] = useState(
@@ -126,7 +126,7 @@ const [endTime, setEndTime] = useState(
 
                 const nextSeconds =
                     nextMode === "focus"
-                        ? 25 * 60
+                        ? 1 * 60
                         : 5 * 60;
 
                 setMode(nextMode);
@@ -175,19 +175,25 @@ const [endTime, setEndTime] = useState(
 
     const today = new Date().toISOString().split("T")[0];
 
-    await taskService.updateTask(task.id, {
+    // await taskService.updateTask(task.id, {
 
-        title: task.title,
-        description: task.description,
-        status: "DONE",
-        priority: task.priority,
-        dueDate: task.dueDate,
+    //     title: task.title,
+    //     description: task.description,
+    //     status: "DONE",
+    //     priority: task.priority,
+    //     dueDate: task.dueDate,
 
-        workedMinutes: task.workedMinutes + 25,
+    //     workedMinutes: task.workedMinutes + 25,
 
-        completedDate: today,
+    //     completedDate: today,
 
-    });
+    // });
+
+    // Task Service
+    await taskService.completeTask(task.id, {
+    workedMinutes: 25,
+    completedDate: today,
+});
 
     await loadTasks();
 
@@ -215,6 +221,9 @@ const [endTime, setEndTime] = useState(
   setRunning(true);
 
 };
+
+ 
+  
 
     return (
     <div className="  bg-white/5 backdrop-blur-xl 

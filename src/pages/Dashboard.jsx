@@ -10,6 +10,7 @@ import AppLayout from "../layout/AppLayout";
 import Sidebar from "../components/sidebar/Sidebar";
 import Navbar from "../components/Navbar";
 import CalendarContent from "../components/calendar/CalendarContext";
+import taskCompletionService from "../services/taskCompletionService";
 
 export default function Dashboard() {
      
@@ -25,12 +26,61 @@ export default function Dashboard() {
     
 
     //New prod data
-    const productivityData = {};
+//    const productivityData = {};
 
-    tasks.forEach(task => {
+//     tasks.forEach(task => {
+
+//     if (
+//         task.status === "DONE" &&
+//         task.completedDate &&
+//         task.workedMinutes > 0
+//     ) {
+
+//         productivityData[task.completedDate] =
+//             (productivityData[task.completedDate] || 0)
+//             + task.workedMinutes / 60;
+//     }
+
+// });
+
+const [productivityData, setProductivityData] = useState({});
+
+   //Loader
+   const loadProductivityData = async () => {
+
+    try {
+
+        const completions =
+            await taskCompletionService.getAllCompletions();
+
+        const data = {};
+
+        completions.forEach(c => {
+
+            data[c.completedDate] =
+                (data[c.completedDate] || 0)
+                + c.workedMinutes / 60;
+
+        });
+
+        setProductivityData(data);
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+   tasks.forEach(task => {
+
+    console.log(task.title,
+                task.status,
+                task.completedDate,
+                task.workedMinutes);
 
     if (
-        task.status === "DONE" &&
         task.completedDate &&
         task.workedMinutes > 0
     ) {
@@ -55,6 +105,7 @@ export default function Dashboard() {
                 await taskService.getTasks(workspaceId);
 
             setTasks(data);
+            await loadProductivityData();
 
         } catch (error) {
 

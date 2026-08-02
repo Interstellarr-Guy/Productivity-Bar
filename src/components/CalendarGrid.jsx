@@ -42,8 +42,21 @@ export default function CalendarGrid({ year, month, productivityData, onDayClick
     <DayCell
       key={index}
       day={cell}
-      hours={productivityData[dateKey] || 0 }
-  
+      // hours={productivityData[dateKey] || 0 }
+     hours={
+(() => {
+    // console.log(
+    //     "DATE:",
+    //     dateKey,
+    //     "VALUE:",
+    //     productivityData[dateKey]
+    // );
+    console.log("PRODUCTIVITY DATA");
+console.log(productivityData);
+
+    return productivityData[dateKey] || 0;
+})()
+}
       
                
     />

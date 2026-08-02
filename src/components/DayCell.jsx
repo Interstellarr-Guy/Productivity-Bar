@@ -2,7 +2,11 @@
 
 export default function DayCell({ day, hours=0, onClick}) {
 
-const fillPercentage = (hours /12) * 100;
+//const fillPercentage = (hours /12) * 100;
+const displayHours = Math.min(hours, 12);
+
+const fillPercentage = (displayHours / 12) * 100;
+
     return(
       <div onClick={onClick} className="day relative bg-white/2 
                                         backdrop-blur-sm 
