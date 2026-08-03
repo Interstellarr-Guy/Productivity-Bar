@@ -90,18 +90,34 @@ export default function Login() {
 };
 
     return (
-    <div className="bg-[#777] min-h-screen">
-        <div className="md:pt-100 lg:pt-100">
+    <div className="min-h-screen bg-[#0d1117] flex items-center justify-center p-5">
+        <div className="w-full
+            max-w-md
+
+            rounded-2xl
+
+            bg-white/5
+            backdrop-blur-2xl
+
+            border
+            border-white/10
+
+            shadow-2xl
+            color-white
+
+            p-8">
 
             <div className=" row justify-content-center">
 
                 <div className=" col-md-5">
 
-                    <div className=" card">
+                    <div className="">
 
                         <div className="card-header text-center">
 
-                          <h3>{isRegister ? "Register" : "Login"}</h3>
+                          <h3 className="text-white">{
+                            isRegister ? "Register" : "Login"
+                          }</h3>
 
                         </div>
 
@@ -112,41 +128,111 @@ export default function Login() {
                
             <form onSubmit={handleRegister}>
 
-    <div className="mb-3">
-        <label>Name</label>
+    <div className="mb-3 text-white">
+        <label >Name</label>
 
         <input
             type="text"
-            className="form-control"
+            className="
+w-full
+
+rounded-xl
+
+bg-white/5
+
+border-1
+border-[#555]
+
+px-1
+py-2
+
+text-white
+
+placeholder:text-gray-500
+
+focus:outline-none
+focus:border-green-500
+"
             value={name}
             onChange={(e) => setName(e.target.value)}
         />
     </div>
 
-    <div className="mb-3">
+    <div className="mb-3 text-white">
         <label>Email</label>
 
         <input
             type="email"
-            className="form-control"
+            className="
+w-full
+
+rounded-xl
+
+bg-white/5
+
+border-1
+border-[#555]
+
+px-1
+py-2
+
+text-white
+
+placeholder:text-gray-500
+
+focus:outline-none
+focus:border-green-500
+"
             value={registerEmail}
             onChange={(e) => setRegisterEmail(e.target.value)}
         />
     </div>
 
-    <div className="mb-3">
+    <div className="mb-3 text-white">
         <label>Password</label>
 
         <input
             type="password"
-            className="form-control"
+            className="
+w-full
+
+rounded-xl
+
+bg-white/5
+
+border-1
+border-[#555]
+
+px-1
+py-2
+
+text-white
+
+placeholder:text-gray-500
+
+focus:outline-none
+focus:border-green-500
+"
             value={registerPassword}
             onChange={(e) => setRegisterPassword(e.target.value)}
         />
     </div>
 
     <button
-        className="btn btn-success w-100"
+        className="
+w-full
+
+rounded
+
+bg-green-600
+hover:bg-green-500
+
+py-1
+
+font-semibold
+
+transition
+"
         type="submit"
     >
         Register
@@ -157,13 +243,32 @@ export default function Login() {
 
             <form onSubmit={handleLogin}>
 
-                                <div className="mb-3">
+                                <div className="mb-3 text-white">
 
                                     <label>Email</label>
 
                                     <input
                                         type="email"
-                                        className="form-control"
+                                        className="
+w-full
+
+rounded-xl
+
+bg-white/5
+
+border-1
+border-[#555]
+
+px-6
+py-2
+
+text-white
+
+placeholder:text-gray-500
+
+focus:outline-none
+focus:border-green-500
+"
                                         value={email}
                                         onChange={(e) =>
                                             setEmail(e.target.value)
@@ -172,13 +277,32 @@ export default function Login() {
 
                                 </div>
 
-                                <div className="mb-3">
+                                <div className="mb-3 text-white">
 
                                     <label>Password</label>
 
                                     <input
                                         type="password"
-                                        className="form-control"
+                                        className="
+w-full
+
+rounded-xl
+
+bg-white/5
+
+border-1
+border-[#555]
+
+px-6
+py-2
+
+text-white
+
+placeholder:text-gray-500
+
+focus:outline-none
+focus:border-green-500
+"
                                         value={password}
                                         onChange={(e) =>
                                             setPassword(e.target.value)
@@ -188,7 +312,21 @@ export default function Login() {
                                 </div>
 
                                 <button
-                                    className="btn btn-primary w-100"
+                                    className="
+w-full
+
+rounded
+
+bg-green-600
+hover:bg-green-500
+
+
+py-1
+
+font-semibold
+
+transition
+"
                                     type="submit"
                                 >
                                     Login
@@ -202,7 +340,7 @@ export default function Login() {
 
     {isRegister ? (
 
-        <p>
+        <p className="text-white">
             Already have an account?{" "}
             <button
                 type="button"
@@ -220,7 +358,7 @@ export default function Login() {
 
     ) : (
 
-        <p>
+        <p className="text-white">
             Don't have an account?{" "}
             <button
                 type="button"
