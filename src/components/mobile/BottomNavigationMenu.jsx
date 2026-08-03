@@ -56,6 +56,7 @@ export default function BottomNavigation({
             </button>
 
             <button
+                onClick={() => setPage("focus")}
                 className="flex flex-col items-center text-xs text-white/70"
             >
                 <span className="text-xl">🍅</span>
@@ -63,7 +64,7 @@ export default function BottomNavigation({
             </button>
 
             <button
-                onClick={() => setMobileMenuOpen(true)}
+                onClick={() => setPage("menu")}
                 className="flex flex-col items-center text-xs text-white/70"
             >
                 <span className="text-xl">☰</span>

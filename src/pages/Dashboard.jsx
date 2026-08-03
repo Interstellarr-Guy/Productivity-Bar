@@ -12,6 +12,8 @@ import Navbar from "../components/Navbar";
 import CalendarContent from "../components/calendar/CalendarContext";
 import taskCompletionService from "../services/taskCompletionService";
 import MobileDrawer from "../components/mobile/MobileDrawer";
+import MobileMenu from "./MobileMenu";
+import PomodoroCard from "../components/sidebar/Pomodoro";
 
 export default function Dashboard() {
      
@@ -304,11 +306,31 @@ console.log("Is Array?", Array.isArray(tasks));
 
                 )}
 
+                {page === "menu" && (
+
+                <MobileMenu
+                    tasks={tasks}
+                    setTasks={setTasks}
+                    loadTasks={loadTasks}
+                    productivityData={productivityData}
+    />
+
+)}                
+              {page === "focus" && (
+    
+                <PomodoroCard
+                    tasks={tasks}
+                    loadTasks={loadTasks}
+                />
+              )}
+
             </div>
 
         </div>
 
     </AppLayout>
+
+    
     <MobileDrawer
     open={mobileMenuOpen}
     onClose={() => setMobileMenuOpen(false)}
