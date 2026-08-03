@@ -90,14 +90,14 @@ export default function Login() {
 };
 
     return (
+    <div className="bg-[#777] min-h-screen">
+        <div className="md:pt-100 lg:pt-100">
 
-        <div className="container mt-5 bg-[#412a4c]">
+            <div className=" row justify-content-center">
 
-            <div className="row justify-content-center">
+                <div className=" col-md-5">
 
-                <div className="col-md-5">
-
-                    <div className="card">
+                    <div className=" card">
 
                         <div className="card-header text-center">
 
@@ -248,7 +248,7 @@ export default function Login() {
             </div>
 
         </div>
-
+    </div>
     );
 
 }
