@@ -14,6 +14,7 @@ import taskCompletionService from "../services/taskCompletionService";
 import MobileDrawer from "../components/mobile/MobileDrawer";
 import MobileMenu from "./MobileMenu";
 import PomodoroCard from "../components/sidebar/Pomodoro";
+import { isLoggedIn } from "../utils/auth";
 
 export default function Dashboard() {
      
@@ -49,6 +50,8 @@ export default function Dashboard() {
 
 const [productivityData, setProductivityData] = useState({});
 
+// login check
+const guestMode = !isLoggedIn();
    //Loader
    const loadProductivityData = async () => {
 
@@ -119,11 +122,16 @@ const [productivityData, setProductivityData] = useState({});
 
     };
 
-    useEffect(() => {
+    // guest Mode added
+  useEffect(() => {
+
+    if (!guestMode) {
 
         loadTasks();
 
-    }, []);
+    }
+
+}, [guestMode]);
 
     //debug 
     console.log("Dashboard tasks:", tasks);
@@ -146,9 +154,13 @@ console.log("Is Array?", Array.isArray(tasks));
 
     useEffect(() => {
 
-    loadStatistics();
+    if (!guestMode) {
 
-}, []);
+        loadStatistics();
+
+    }
+
+}, [guestMode]);
     
     const loadStatistics = async () => {
 
@@ -346,6 +358,8 @@ console.log("Is Array?", Array.isArray(tasks));
 
         page={page}
         setPage={setPage}
+
+        guestMode={guestMode}
     />
     </MobileDrawer>
 </>

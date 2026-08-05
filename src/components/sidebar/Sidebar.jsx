@@ -8,7 +8,8 @@ import NavigationMenu from "./NavigationMenu";
 
 export default function Sidebar({ tasks, setTasks, loadTasks, 
                                 productivityData, page, setPage,
-                                sidebarCollapsed, setSidebarCollapsed}) {
+                                sidebarCollapsed, setSidebarCollapsed,
+                                guestMode,}) {
   return (
     <div className="sidebar h-full
                             w-full
