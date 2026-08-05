@@ -12,19 +12,15 @@ function App() {
 
         <Routes>
 
-            <Route
-                path="/login"
-                element={<Login />}
+           <Route
+                path="/"
+                element={<MainLayout />}
             />
 
             <Route
-                path="/"
-                element={
-                    <ProtectedRoute>
-                        <MainLayout />
-                    </ProtectedRoute>
-                }
-            />
+                path="/login"
+                element={<Login />}
+            /> 
 
         </Routes>
 
