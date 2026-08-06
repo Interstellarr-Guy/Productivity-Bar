@@ -14,7 +14,7 @@ import taskCompletionService from "../services/taskCompletionService";
 import MobileDrawer from "../components/mobile/MobileDrawer";
 import MobileMenu from "./MobileMenu";
 import PomodoroCard from "../components/sidebar/Pomodoro";
-import { isLoggedIn } from "../utils/auth";
+import { isLoggedIn } from "../Utils/auth";
 
 export default function Dashboard() {
      
