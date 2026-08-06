@@ -14,7 +14,8 @@ import taskCompletionService from "../services/taskCompletionService";
 import MobileDrawer from "../components/mobile/MobileDrawer";
 import MobileMenu from "./MobileMenu";
 import PomodoroCard from "../components/sidebar/Pomodoro";
-import { isLoggedIn } from "../Utils/auth";
+
+import { isLoggedIn, isGuest } from "../Utils/storageMode";
 
 export default function Dashboard() {
      
@@ -220,6 +221,10 @@ console.log("Is Array?", Array.isArray(tasks));
     return () => window.removeEventListener("resize", handleResize);
 
 }, []);
+
+   //To find Guest or user
+   const loggedIn = isLoggedIn();
+   const guest = isGuest();
 
     return (
   <>

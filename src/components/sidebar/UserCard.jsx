@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
+import { isLoggedIn } from "../../Utils/storageMode";
 
 export default function UserCard() {
 
-    // const userName =
+    //     const userName =
     //     localStorage.getItem("userName") || "User";
 
-    const token = localStorage.getItem("token");
+    const loggedIn = isLoggedIn();
     const userName = localStorage.getItem("userName");
 
-    const isLoggedIn = !!token;    
+   // const isLoggedIn = !!token;    
 
     return (
 
@@ -23,7 +24,7 @@ export default function UserCard() {
         "
     >
 
-        {isLoggedIn ? (
+        {loggedIn ? (
 
             <>
                 <h5 className="text-center font-semibold text-lg">
