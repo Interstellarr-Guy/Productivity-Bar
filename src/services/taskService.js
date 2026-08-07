@@ -1,25 +1,45 @@
 import api from "../api/axios";
+import guestTaskService from "./guestTaskService";
+import { isGuest } from "../Utils/storageMode";
 
 const taskService = {
 
-    async getTasks(workspaceId) {
+    async getTasks() {
 
-        const response =
-            await api.get(`/workspaces/${workspaceId}/tasks`);
+    if (isGuest()) {
 
-        return response.data;
-    },
+        return guestTaskService.getTasks();
 
-    async createTask(workspaceId, task) {
+    }
 
-        const response =
-            await api.post(
-                `/workspaces/${workspaceId}/tasks`,
-                task
-            );
+    const workspaceId =
+        localStorage.getItem("workspaceId");
 
-        return response.data;
-    },
+    const response =
+        await api.get(`/workspaces/${workspaceId}/tasks`);
+
+    return response.data;
+},
+
+    async createTask(task) {
+
+    if (isGuest()) {
+
+        return guestTaskService.addTask(task);
+
+    }
+
+    const workspaceId =
+        localStorage.getItem("workspaceId");
+
+    const response =
+        await api.post(
+            `/workspaces/${workspaceId}/tasks`,
+            task
+        );
+
+    return response.data;
+},
 
     async updateTaskStatus(taskId, status) {
 

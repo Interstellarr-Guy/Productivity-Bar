@@ -20,10 +20,10 @@ export default function NewTaskButton({ loadTasks }) {
 
     try {
 
-        const workspaceId =
-            localStorage.getItem("workspaceId");
+        // const workspaceId =
+        // localStorage.getItem("workspaceId");
 
-        await taskService.createTask(workspaceId, {
+        await taskService.createTask({
 
             title,
 

@@ -14,8 +14,8 @@ import taskCompletionService from "../services/taskCompletionService";
 import MobileDrawer from "../components/mobile/MobileDrawer";
 import MobileMenu from "./MobileMenu";
 import PomodoroCard from "../components/sidebar/Pomodoro";
-
 import { isLoggedIn, isGuest } from "../Utils/storageMode";
+import guestTaskService from "../services/guestTaskService";
 
 export default function Dashboard() {
      
@@ -103,6 +103,16 @@ const guestMode = !isLoggedIn();
     const loadTasks = async () => {
 
         try {
+            
+        // check if guest mode
+        if (guestMode) {
+
+            const data = await guestTaskService.getTasks();
+
+            setTasks(data);
+
+            return;
+        }
 
             const workspaceId =
                 localStorage.getItem("workspaceId");
@@ -110,7 +120,7 @@ const guestMode = !isLoggedIn();
             if (!workspaceId) return;
 
             const data =
-                await taskService.getTasks(workspaceId);
+                await taskService.getTasks();
 
             setTasks(data);
             await loadProductivityData();
@@ -126,11 +136,7 @@ const guestMode = !isLoggedIn();
     // guest Mode added
   useEffect(() => {
 
-    if (!guestMode) {
-
         loadTasks();
-
-    }
 
 }, [guestMode]);
 
