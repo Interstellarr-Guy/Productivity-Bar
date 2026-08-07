@@ -32,6 +32,55 @@ const addTask = async (task) => {
     return newTask;
 };
 
+   const completeTask = async (taskId, completion) => {
+
+    const tasks = getStoredTasks();
+
+    const updated = tasks.map(task =>
+
+        task.id === taskId
+            ? {
+                ...task,
+                status: "DONE",
+                workedMinutes: completion.workedMinutes,
+                completedDate: completion.completedDate
+            }
+            : task
+    );
+
+    saveStoredTasks(updated);
+
+    return updated.find(task => task.id === taskId);
+
+};
+
+  //updated Task status
+  const updateTaskStatus = async (taskId, status) => {
+
+    const tasks = getStoredTasks();
+
+    const updated = tasks.map(task =>
+
+        task.id === taskId
+            ? {
+                ...task,
+                status,
+
+                // If changing back to TODO,
+                // clear completion information
+                ...(status === "TODO" && {
+                    workedMinutes: undefined,
+                    completedDate: undefined
+                })
+            }
+            : task
+    );
+
+    saveStoredTasks(updated);
+
+    return updated.find(task => task.id === taskId);
+};
+
 const updateTask = async (updatedTask) => {
 
     const tasks = getStoredTasks();
@@ -60,6 +109,8 @@ const deleteTask = async (taskId) => {
 export default {
     getTasks,
     addTask,
+    completeTask,
+    updateTaskStatus,
     updateTask,
     deleteTask,
 };

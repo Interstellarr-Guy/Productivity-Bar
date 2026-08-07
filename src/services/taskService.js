@@ -43,6 +43,12 @@ const taskService = {
 
     async updateTaskStatus(taskId, status) {
 
+    if (isGuest()) {
+
+        return guestTaskService.updateTaskStatus(taskId, status);
+
+    }
+
     const response = await api.put(
         `/tasks/${taskId}/status`,
         { status }
@@ -53,19 +59,37 @@ const taskService = {
 
     async updateTask(taskId, task) {
 
-        const response =
-            await api.put(`/tasks/${taskId}`, task);
+    if (isGuest()) {
+        return guestTaskService.updateTask({
+            ...task,
+            id: taskId,
+        });
+    }
 
-        return response.data;
-    },
+    const response =
+        await api.put(`/tasks/${taskId}`, task);
 
-    async deleteTask(taskId) {
+    return response.data;
+},
 
-        await api.delete(`/tasks/${taskId}`);
-    },
+async deleteTask(taskId) {
 
+    if (isGuest()) {
+
+        return guestTaskService.deleteTask(taskId);
+
+    }
+
+    await api.delete(`/tasks/${taskId}`);
+},
     // Completed Task
     async completeTask(taskId, completion) {
+
+    if (isGuest()) {
+
+        return guestTaskService.completeTask(taskId, completion);
+
+    }
 
     const response = await api.post(
         `/tasks/${taskId}/complete`,
