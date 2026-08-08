@@ -44,7 +44,9 @@ export default function Sidebar({ tasks, setTasks, loadTasks,
         <NewTaskButton loadTasks={loadTasks}/>
     
     <div className=" flex-1 overflow-y-auto overflow-x-hidden  scrollbar-none">
-        <TodayTasks tasks={tasks} setTasks={setTasks} loadTasks={loadTasks}  productivityData={productivityData}/>
+        <TodayTasks tasks={tasks} setTasks={setTasks} 
+        loadTasks={loadTasks}  productivityData={productivityData}
+        guestMode={guestMode}/>
     </div>
     
     <div className="mt-2 space-y-2">

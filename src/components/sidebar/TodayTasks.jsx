@@ -1,37 +1,58 @@
 import taskService from "../../services/taskService";
-import {useState}  from "react";
+import guestTaskService from "../../services/guestTaskService";
+import { isGuest } from "../../Utils/storageMode";
+import { useState } from "react";
 import HoursWorkedModal from "./HoursWorkedModal";
+
 
 
 export default function TodayTasks({
     tasks,
     setTasks,
     loadTasks,
-    productivityData, 
+    productivityData,
+    guestMode, 
 }) {
      
     const [showHoursModal, setShowHoursModal] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null);
     const [hoursInput, setHoursInput] = useState("");
+      
+    //Check if guest mode
+    const activeTaskService = guestMode
+    ? guestTaskService
+    : taskService;
 
      //handleSaveHours
-     const handleSaveHours = async () => {
+    const handleSaveHours = async () => {
 
     const hours = Number(hoursInput);
 
     const minutes = hours * 60;
 
-    await taskService.completeTask(selectedTask.id, {
-    //   title: selectedTask.title,
-    //   description: selectedTask.description,
-    //   status: "DONE",
-    //   priority: selectedTask.priority,
-    //   dueDate: selectedTask.dueDate,
+    const completedDate =
+        new Date().toISOString().split("T")[0];
 
-      workedMinutes: minutes,
 
-      completedDate: new Date().toISOString().split("T")[0],
+    if (isGuest()) {
+
+        await guestTaskService.completeTask(
+            selectedTask.id,
+            {
+                workedMinutes: minutes,
+                completedDate: completedDate
+            }
+        );
+
+    } else {
+
+       await activeTaskService.completeTask(selectedTask.id, {
+    workedMinutes: minutes,
+    completedDate: new Date().toISOString().split("T")[0],
 });
+
+    }
+
 
     await loadTasks();
 
@@ -41,25 +62,55 @@ export default function TodayTasks({
 };
     
     // Fn to toggle task status b/w TODO and DONE
-    const toggleTask = async (task) => {
+   const toggleTask = async (task) => {
 
     try {
-           if (task.status === "DONE") {
-    await taskService.updateTaskStatus(task.id, "TODO");
-    await loadTasks();
-    return;
-}
 
-setSelectedTask(task);
-setHoursInput("");
-setShowHoursModal(true);    
+        // -----------------------------
+        // UNCHECK COMPLETED TASK
+        // -----------------------------
+
+        if (task.status === "DONE") {
+
+            if (isGuest()) {
+
+                await guestTaskService.undoCompletion(
+                    task.id,
+                    task.completedDate
+                );
+
+            } else {
+
+                await taskService.updateTaskStatus(
+                    task.id,
+                    "TODO"
+                );
+
+            }
+
+            await loadTasks();
+
+            return;
+        }
+
+
+        // -----------------------------
+        // CHECK TODO TASK
+        // -----------------------------
+
+        setSelectedTask(task);
+        setHoursInput("");
+        setShowHoursModal(true);
+
 
     } catch (error) {
 
-        console.error("Failed to update task", error);
+        console.error(
+            "Failed to update task",
+            error
+        );
 
     }
-
 };
 
     const sortedTasks = [...tasks].sort((a, b) => {

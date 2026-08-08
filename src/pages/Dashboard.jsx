@@ -57,7 +57,19 @@ const guestMode = !isLoggedIn();
    const loadProductivityData = async () => {
 
     try {
+            // Guest
+        if (guestMode) {
 
+            const data =
+                await guestTaskService.getProductivityData();
+        // debug
+        console.log("GUEST PRODUCTIVITY DATA:", data);
+            setProductivityData(data);
+
+            return;
+        }
+
+           // Signed-in User
         const completions =
             await taskCompletionService.getAllCompletions();
 
@@ -80,25 +92,25 @@ const guestMode = !isLoggedIn();
     }
 
 };
+               //0808
+//    tasks.forEach(task => {
 
-   tasks.forEach(task => {
+//     console.log(task.title,
+//                 task.status,
+//                 task.completedDate,
+//                 task.workedMinutes);
 
-    console.log(task.title,
-                task.status,
-                task.completedDate,
-                task.workedMinutes);
+//     if (
+//         task.completedDate &&
+//         task.workedMinutes > 0
+//     ) {
 
-    if (
-        task.completedDate &&
-        task.workedMinutes > 0
-    ) {
+//         productivityData[task.completedDate] =
+//             (productivityData[task.completedDate] || 0)
+//             + task.workedMinutes / 60;
+//     }
 
-        productivityData[task.completedDate] =
-            (productivityData[task.completedDate] || 0)
-            + task.workedMinutes / 60;
-    }
-
-});
+// });
     
     const loadTasks = async () => {
 
@@ -107,13 +119,19 @@ const guestMode = !isLoggedIn();
         // check if guest mode
         if (guestMode) {
 
-            const data = await guestTaskService.getTasks();
+    const data =
+        await guestTaskService.getTasks();
 
-            setTasks(data);
+    const productivity =
+        await guestTaskService.getProductivityData();
 
-            return;
-        }
+    setTasks(data);
 
+    setProductivityData(productivity);
+
+    return;
+}
+        // Signed-in User
             const workspaceId =
                 localStorage.getItem("workspaceId");
 
