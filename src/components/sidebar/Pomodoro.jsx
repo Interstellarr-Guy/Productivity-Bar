@@ -13,7 +13,7 @@ const userId = localStorage.getItem("userId");
 const saved = JSON.parse(localStorage.getItem(`pomodoro_${userId}`));
 
 const [seconds, setSeconds] = useState(
-    saved?.seconds ?? 25 * 60
+    saved?.seconds ?? 1 * 60
 );
 
 const [running, setRunning] = useState(
@@ -126,7 +126,7 @@ const [endTime, setEndTime] = useState(
 
                 const nextSeconds =
                     nextMode === "focus"
-                        ? 25 * 60
+                        ? 1 * 60
                         : 5 * 60;
 
                 setMode(nextMode);
@@ -193,7 +193,7 @@ const [endTime, setEndTime] = useState(
     await taskService.completeTask(task.id, {
     workedMinutes: 25,
     completedDate: today,
-});
+});  
 
     await loadTasks();
 

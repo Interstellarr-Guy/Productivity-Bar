@@ -31,27 +31,42 @@ const addTask = async (task) => {
 
     return newTask;
 };
-
+    // complete Task
    const completeTask = async (taskId, completion) => {
 
     const tasks = getStoredTasks();
 
-    const updated = tasks.map(task =>
+    const updated = tasks.map(task => {
 
-        task.id === taskId
-            ? {
-                ...task,
-                status: "DONE",
-                workedMinutes: completion.workedMinutes,
-                completedDate: completion.completedDate
-            }
-            : task
-    );
+        if (task.id !== taskId) {
+            return task;
+        }
+
+        const updatedTask = {
+            ...task,
+
+            // Add today's worked minutes to lifetime minutes
+            workedMinutes:
+                (task.workedMinutes || 0) +
+                completion.workedMinutes,
+        };
+
+        // Only one-time tasks become DONE
+        if (task.repeatType === "NONE") {
+
+            updatedTask.status = "DONE";
+            updatedTask.completedDate =
+                completion.completedDate;
+
+        }
+
+        // DAILY tasks stay available
+        return updatedTask;
+    });
 
     saveStoredTasks(updated);
 
     return updated.find(task => task.id === taskId);
-
 };
 
   //updated Task status
