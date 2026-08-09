@@ -31,23 +31,6 @@ export default function Dashboard() {
     useState(today.getMonth());
     
 
-    //New prod data
-//    const productivityData = {};
-
-//     tasks.forEach(task => {
-
-//     if (
-//         task.status === "DONE" &&
-//         task.completedDate &&
-//         task.workedMinutes > 0
-//     ) {
-
-//         productivityData[task.completedDate] =
-//             (productivityData[task.completedDate] || 0)
-//             + task.workedMinutes / 60;
-//     }
-
-// });
 
 const [productivityData, setProductivityData] = useState({});
 
