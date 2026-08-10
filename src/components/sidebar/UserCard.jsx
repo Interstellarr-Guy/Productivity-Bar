@@ -18,9 +18,8 @@ export default function UserCard() {
             bg-white/5
             backdrop-blur-xl
             rounded-lg
-            p-3
-            border
-            border-white/10
+            pl-2 pr-2
+          
         "
     >
 
@@ -38,16 +37,18 @@ export default function UserCard() {
 
         ) : (
 
-            <>
+            <>  
+            <div className="pb-0.5
+            rounded">
                 <h5 className="text-center font-semibold text-lg">
                     Productivity Tracker
                 </h5>
 
-                <p className="mt-2 text-center text-sm text-gray-300">
-                    Sign in to sync your productivity across devices.
+                <p className=" text-center text-sm text-gray-300">
+                    Sign in to sync
                 </p>
 
-                <div className="mt-4 flex gap-2">
+                <div className=" flex gap-2">
 
                     <Link
                         to="/login"
@@ -59,9 +60,9 @@ export default function UserCard() {
                             hover:bg-white/10
                             text-white
                             text-center
-                            py-2
                             rounded-md
                             font-medium
+                            
                         "
                     >
                         Login
@@ -77,7 +78,7 @@ export default function UserCard() {
                             hover:bg-red-700
                             text-center
                             text-black
-                            py-2
+                            
                             rounded-md
                             font-medium
                         "
@@ -85,6 +86,7 @@ export default function UserCard() {
                         Register
                     </Link>
 
+                </div>
                 </div>
             </>
 

@@ -7,12 +7,7 @@ export default function SessionInfo({
 
     return (
 
-        <div className="mt-3 space-y-2 text-xs">
-
-            
-
-            
-
+        <div className="mt-1 space-y-2 text-xs">
             <div className="flex justify-between">
 
                 <span>📈 Sessions Today</span>

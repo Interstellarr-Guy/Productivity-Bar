@@ -26,11 +26,11 @@ const handleLogout = () => {
 
     return (
 
-        <div className="w-full p-3 mt-0 bg-[#a54c35]/20 backdrop-blur-xl 
-        rounded space-y-1.5 lg:space-y-2">
+        <div className="w-full mt-0 bg-[#a54c35]/20 backdrop-blur-xl 
+        rounded space-y-1 lg:space-y-1">
 
             <button
-                className="block w-full  mb-2 
+                className="block w-full  mb-1 
                 rounded
                bg-white/20
                hover:bg-[#287e48]
@@ -43,7 +43,7 @@ const handleLogout = () => {
             </button>
 
             <button
-                className="block w-full mb-2
+                className="block w-full mb-1
                            rounded
                            bg-white/20
                            hover:bg-[#287e48]
@@ -69,7 +69,7 @@ const handleLogout = () => {
 
              {showSettings && (
 
-    <div className="mt-2 rounded bg-black/20 p-3 text-center">
+    <div className=" rounded bg-black/20 p-3 text-center">
 
         <p className="text-xs text-gray-300">
             Logged in as

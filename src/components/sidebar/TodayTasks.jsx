@@ -179,7 +179,7 @@ const upcomingTasks =
                 <span
                     className={
                         task.priority === "HIGH"
-                            ? "text-red-400 "
+                            ? "text-red-400  "
                             : task.priority === "MEDIUM"
                             ? "text-yellow-400"
                             : "text-green-400"
@@ -203,7 +203,7 @@ const upcomingTasks =
 );
 
     return (
-        <div className="p-2 flex flex-col  bg-white/5 backdrop-blur-xl rounded">
+        <div className="pl-2 pr-2 flex flex-col  bg-white/5 backdrop-blur-xl rounded">
 
         <div>
 
@@ -217,21 +217,21 @@ const upcomingTasks =
 
     <hr className="my-1 border-gray-700" />
 
-    <h5 className="font-semibold mb-1 text-red-400 justify-center flex">
+    <h6 className="font-semibold mb-1 text-red-400 justify-center flex">
 
         ⚠ Overdue
 
-    </h5>
+    </h6>
 
     {overdueTasks.map(renderTask)}
 
     <hr className="my-1 border-gray-700" />
 
-    <h5 className="font-semibold mb-1 justify-center flex">
+    <h6 className="font-semibold mb-1 justify-center flex">
 
         Upcoming
 
-    </h5>
+    </h6>
 
     {upcomingTasks.map(renderTask)}
 

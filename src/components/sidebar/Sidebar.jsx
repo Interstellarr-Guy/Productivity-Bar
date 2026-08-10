@@ -31,7 +31,7 @@ export default function Sidebar({ tasks, setTasks, loadTasks,
     {/* Collapse button */}
                <button
                onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-               className="p-2 rounded hover:bg-white/10"
+               className="p-0 rounded hover:bg-white/10"
     >
                    ☰
                </button>
@@ -49,7 +49,7 @@ export default function Sidebar({ tasks, setTasks, loadTasks,
         guestMode={guestMode}/>
     </div>
     
-    <div className="mt-2 space-y-2">
+    <div className="mt-1.2 space-y-2">
        <ProgressCard tasks={tasks} />
        <PomodoroCard
     tasks={tasks}

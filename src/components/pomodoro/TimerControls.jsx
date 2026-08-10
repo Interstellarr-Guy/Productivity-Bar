@@ -11,7 +11,7 @@ export default function TimerControls({
 
     return (
         <>
-        <div className="flex gap-2">
+        <div className="flex  gap-2">
             <button
                 onClick={() => {
 
@@ -21,7 +21,7 @@ export default function TimerControls({
                     setEndTime(null);
 
                 }}
-                className="w-full mt-1 py-1 rounded bg-[#564] hover:bg-gray-600"
+                className="w-full   rounded bg-[#564] hover:bg-gray-600"
             >
                 Reset
             </button>
@@ -47,7 +47,7 @@ export default function TimerControls({
             }
 
     }}
-                className="mt-1 w-full bg-[#16a34a] hover:bg-green-700 py-1.2 text-sm rounded"
+                className=" w-full bg-[#16a34a] hover:bg-green-700 py-1.2 text-sm rounded"
             >
                 {running ? "Pause" : "Start"}
             </button>
@@ -66,7 +66,7 @@ export default function TimerControls({
         setRunning(false);
 
        }}
-    className="w-full mt-1 py-1.2 rounded bg-yellow-600 hover:bg-yellow-700"
+    className="w-full  py-1.2 rounded bg-yellow-600 hover:bg-yellow-700"
 >
        Skip 
     </button>

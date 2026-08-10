@@ -39,7 +39,7 @@ export default function TimerDisplay({ mode, seconds }) {
 
     return (
         <>
-            <div className="flex justify-center items-center ">
+            <div className="flex justify-center items-center">
 
     <div className="relative flex justify-center items-center">
          <CircularTimer
