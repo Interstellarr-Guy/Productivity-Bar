@@ -18,17 +18,6 @@ export default function TimerDisplay({ mode, seconds }) {
     ? 5 * 60
     : 15 * 60;
     
-    
-
-    // const progress = seconds / totalSeconds;
-
-    // const radius = 45;
-
-    // const circumference =
-    // 2 * Math.PI * radius;
-
-    // const strokeDashoffset =
-    // circumference * (1 - progress);
 
     const ringColor =
       mode === "focus"
