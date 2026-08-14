@@ -269,6 +269,13 @@ console.log("Is Array?", Array.isArray(tasks));
 
         <div className="flex flex-col h-full">
           <div className="flex-shrink-0">
+          {guestMode ? (
+
+    <div className="text-center">
+        🔒 Sign in to track your productivity
+    </div>
+
+) : (
             <StatisticsContainer>
 
                 <StatisticCard
@@ -307,6 +314,7 @@ console.log("Is Array?", Array.isArray(tasks));
                 />
 
             </StatisticsContainer>
+            )}
           </div>
 
             <div className="flex-1 overflow-hidden">
