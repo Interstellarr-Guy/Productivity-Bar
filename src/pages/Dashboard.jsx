@@ -331,11 +331,15 @@ console.log("Is Array?", Array.isArray(tasks));
                 )}
 
                 {page === "analytics" && (
-
+                   
+                   
+                  
                     <Analytics
                         statistics={statistics}
                     />
 
+
+//
                 )}
 
                 {page === "menu" && (

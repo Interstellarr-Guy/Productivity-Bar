@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import statisticsService from "../services/statisticsService";
 import Heatmap from "../components/statistics/Heatmap";
 import HeatmapCard from "../components/statistics/HeatmapCard";
+import { isLoggedIn, isGuest } from "../Utils/storageMode";
+import guestTaskService from "../services/guestTaskService";
 
 export default function Analytics() {
    
@@ -54,13 +56,28 @@ const loadWeeklyData = async () => {
 
 };
 
+ //16-08
+ // login check
+ const guestMode = !isLoggedIn();
+
     return (
 
         <div className="flex flex-col gap-4">
-
-        <WeeklyProductivityChart
+            <WeeklyProductivityChart
            weeklyData={weeklyData}
          />
+{guestMode ? (
+
+    <div className="text-center">
+        🔒 Sign in to track your productivity
+    </div>
+
+) : (
+        <div className="flex-1">
+
+        </div>
+ 
+)}
          <HeatmapCard>
 
         <Heatmap
