@@ -105,13 +105,13 @@ export default function Login() {
             shadow-2xl
             color-white
 
-            p-8">
+            px-1 py-5">
 
             <div className=" row justify-content-center">
 
-                <div className=" col-md-5">
+                <div className=" col-md-10">
 
-                    <div className="">
+                    <div className="p-0">
 
                         <div className="card-header text-center">
 
