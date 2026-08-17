@@ -228,6 +228,7 @@ bg-green-600
 hover:bg-green-500
 
 py-1
+px-1
 
 font-semibold
 
