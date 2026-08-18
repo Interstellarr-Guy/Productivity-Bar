@@ -34,7 +34,7 @@ const fillPercentage = (displayHours / 12) * 100;
       {day}
       </span>
 
-      <div className="absolute inset-0 left-0  flex items-end justify-center pb-1 "> 
+      <div className="absolute inset-0 left-0  flex items-end justify-center pb-0.5 "> 
         <div
           className="w-[55%] 
                       sm:w-[60%] lg:w-[70%]
@@ -45,6 +45,11 @@ const fillPercentage = (displayHours / 12) * 100;
             height: `${fillPercentage}%`
           }}
         />
+        {hours > 0 && (
+          <span className="absolute bottom-1  text-xs font-bold text-black">
+            {hours.toFixed(1)}h
+          </span>
+        )}
       </div>
     </div>
     );

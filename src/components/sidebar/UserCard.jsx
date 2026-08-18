@@ -3,13 +3,9 @@ import { isLoggedIn } from "../../Utils/storageMode";
 
 export default function UserCard() {
 
-    //     const userName =
-    //     localStorage.getItem("userName") || "User";
-
     const loggedIn = isLoggedIn();
     const userName = localStorage.getItem("userName");
-
-   // const isLoggedIn = !!token;    
+ 
 
     return (
 
@@ -31,7 +27,7 @@ export default function UserCard() {
                 </h5>
 
                 <p className="mt-2 text-center text-sm">
-                    🙂 Welcome {userName}
+                     Welcome {userName}
                 </p>
             </>
 
