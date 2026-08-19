@@ -12,7 +12,7 @@ export default function CalendarContent({
 
     return (
 
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full ">
           <Days />
 
         <div className="flex-1 overflow-hidden">

@@ -15,7 +15,7 @@ export default function Navbar() {
     ];
 
   return (
-    <div className="days grid grid-cols-7 ">
+    <div className="days grid grid-cols-7 text-[#a93225]">
 
     {weekDays.map(day => (
 
