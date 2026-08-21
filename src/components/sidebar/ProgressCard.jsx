@@ -16,9 +16,9 @@ export default function TodayProgress({ productivityData }) {
 
             <div className="flex justify-between items-center mb-1">
 
-                <h5 className="font-semibold">
+                <h6 className="font-semibold">
                     Today's Progress
-                </h5>
+                </h6>
 
                 <span className="text-sm text-gray-400">
                     {todayHours.toFixed(1)}h / 12h
