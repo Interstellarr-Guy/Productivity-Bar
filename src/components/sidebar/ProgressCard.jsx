@@ -29,7 +29,7 @@ export default function TodayProgress({ productivityData }) {
             <div className="w-full bg-gray-700 rounded-full h-3">
 
                 <div
-                    className="bg-green-500 h-3 rounded-full transition-all duration-500"
+                    className="bg-green-500 h-3 rounded transition-all duration-500"
                     style={{
                         width: `${progressPercent}%`
                     }}
@@ -38,7 +38,7 @@ export default function TodayProgress({ productivityData }) {
             </div>
 
             <p className="text-xs text-gray-500 mt-1 text-center">
-                {progressPercent.toFixed(0)}% completed
+              <span className="text-[#87d20f]">{progressPercent.toFixed(0)}%</span>   completed
             </p>
 
         </div>
