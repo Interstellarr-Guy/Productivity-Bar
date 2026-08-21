@@ -1,69 +1,46 @@
-export default function ProgressCard({ tasks }) {
+export default function TodayProgress({ productivityData }) {
 
     const today =
         new Date().toISOString().split("T")[0];
 
-    const todayTasks =
-        tasks.filter(
-            task => task.dueDate === today
-        );
+    // Productivity data is stored in hours
+    const todayHours =
+        productivityData[today] || 0;
 
-    const completedTasks =
-        todayTasks.filter(
-            task => task.status === "DONE"
-        ).length;
-
-    const totalTasks =
-        todayTasks.length;
-
-    const percentage =
-        totalTasks === 0
-            ? 0
-            : Math.round(
-                  (completedTasks / totalTasks) * 100
-              );
+    // Maximum daily target = 12 hours
+    const progressPercent =
+        Math.min((todayHours / 12) * 100, 100);
 
     return (
+        <div className="bg-white/5 backdrop-blur-xl rounded p-3 mb-2">
 
-        <div className="bg-white/7 
-                          backdrop-blur-xl 
-                          rounded 
-                          mt-0.5
-                          pl-2 pr-2 mb-0.5
-                          lg:p-3">
+            <div className="flex justify-between items-center mb-1">
 
-            <p className="font-semibold text-sm lg:text-base">
-                Today's Progress
-            </p>
+                <h5 className="font-semibold">
+                    Today's Progress
+                </h5>
 
-            <div className="mt-0 w-full h-2 bg-gray-700 rounded">
+                <span className="text-sm text-gray-400">
+                    {todayHours.toFixed(1)}h / 12h
+                </span>
+
+            </div>
+
+            <div className="w-full bg-gray-700 rounded-full h-3">
 
                 <div
-                    className="h-full bg-green-500 rounded"
+                    className="bg-green-500 h-3 rounded-full transition-all duration-500"
                     style={{
-                        width: `${percentage}%`,
+                        width: `${progressPercent}%`
                     }}
                 />
 
             </div>
-             
-             <div className="flex justify-between
-                               items-center
-                               mt-0
-                               text-xs
-                               lg:text-sm
-                               text-gray-300">
-               <p className="">
-                {completedTasks} / {totalTasks} Tasks
-            </p>
 
-            <p className="">
-                {percentage}%
+            <p className="text-xs text-gray-500 mt-1 text-center">
+                {progressPercent.toFixed(0)}% completed
             </p>
-             </div>
-            
 
         </div>
-
     );
 }

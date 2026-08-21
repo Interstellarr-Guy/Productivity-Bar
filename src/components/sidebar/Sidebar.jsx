@@ -50,7 +50,8 @@ export default function Sidebar({ tasks, setTasks, loadTasks,
     </div>
     
     <div className="mt-1.2 space-y-2">
-       <ProgressCard tasks={tasks} />
+       <ProgressCard tasks={tasks}
+       productivityData={productivityData} />
        <PomodoroCard
     tasks={tasks}
     loadTasks={loadTasks}
