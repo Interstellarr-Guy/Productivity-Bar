@@ -36,7 +36,7 @@ export default function UserCard() {
             <>  
             <div className="pb-0.5
             rounded">
-                <h5 className="text-center font-semibold text-lg">
+                <h5 className="text-center text-[#793616] font-semibold text-lg">
                     Productivity Tracker
                 </h5>
 

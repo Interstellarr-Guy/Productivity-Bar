@@ -80,6 +80,7 @@ export default function NewTaskButton({ loadTasks }) {
                hover:bg-[#15803d]
                  transition-colors
                  font-medium
+                 text-[#000]
                  text-sm
                  lg:text-base
                 "

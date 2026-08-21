@@ -175,19 +175,6 @@ const [endTime, setEndTime] = useState(
 
     const today = new Date().toISOString().split("T")[0];
 
-    // await taskService.updateTask(task.id, {
-
-    //     title: task.title,
-    //     description: task.description,
-    //     status: "DONE",
-    //     priority: task.priority,
-    //     dueDate: task.dueDate,
-
-    //     workedMinutes: task.workedMinutes + 25,
-
-    //     completedDate: today,
-
-    // });
 
     // Task Service
     await taskService.completeTask(task.id, {
@@ -221,9 +208,6 @@ const [endTime, setEndTime] = useState(
   setRunning(true);
 
 };
-
- 
-  
 
     return (
     <div className="  bg-white/5 backdrop-blur-xl 
