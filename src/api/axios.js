@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  // baseURL: "https://productivity-tracker-api-production.up.railway.app/api",
-     baseURL: "https://productivity-tracker-api-eel0.onrender.com/api",
+   baseURL: "https://productivity-tracker-api-production.up.railway.app/api",
+  //   baseURL: "https://productivity-tracker-api-eel0.onrender.com/api",
   // baseURL: "http://localhost:8080/api",
   headers: {
     "Content-Type": "application/json",

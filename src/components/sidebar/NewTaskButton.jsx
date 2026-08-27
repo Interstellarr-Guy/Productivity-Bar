@@ -72,7 +72,6 @@ export default function NewTaskButton({ loadTasks }) {
                 className="
                  w-full
                  mt-1
-
                  py-1
                  lg:py-2
                  rounded
