@@ -24,7 +24,7 @@ export default function MobileMenu({
             space-y-3
         "
     >
-            <ProgressCard tasks={tasks} />
+            <ProgressCard tasks={tasks} productivityData={productivityData} />
 
             <NewTaskButton loadTasks={loadTasks} />
 
@@ -35,7 +35,7 @@ export default function MobileMenu({
                 productivityData={productivityData}
             />
 
-            <ProgressCard tasks={tasks} />
+            <ProgressCard tasks={tasks} productivityData={productivityData}/>
 
             <PomodoroCard
                 tasks={tasks}
