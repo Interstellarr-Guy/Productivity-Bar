@@ -11,6 +11,14 @@ export default function MobileMenu({
     productivityData,
 }) {
 
+    const handleLogout = () => {
+
+    authService.logout();
+
+    navigate("/login");
+
+};
+
     return (
 
        
@@ -24,6 +32,7 @@ export default function MobileMenu({
             space-y-3
         "
     >
+            <UserCard/>
             <ProgressCard tasks={tasks} productivityData={productivityData} />
 
             <NewTaskButton loadTasks={loadTasks} />
@@ -41,6 +50,23 @@ export default function MobileMenu({
                 tasks={tasks}
                 loadTasks={loadTasks}
             />
+
+            
+
+        <button
+            onClick={handleLogout}
+            className="
+                w-full
+                rounded
+                bg-red-600
+                hover:bg-red-700
+                transition-colors
+                text-sm
+                py-1
+            "
+        >
+            🚪 Logout
+        </button>   
 
     </div>
 
