@@ -4,6 +4,7 @@ import TodayTasks from "../components/sidebar/TodayTasks";
 import ProgressCard from "../components/sidebar/ProgressCard";
 import PomodoroCard from "../components/sidebar/Pomodoro";
 import authService from "../../services/authService";
+import { useNavigate } from "react-router-dom";
 
 export default function MobileMenu({
     tasks,
@@ -12,7 +13,7 @@ export default function MobileMenu({
     productivityData,
 }) {
     const userName = localStorage.getItem("userName");
-
+    const navigate = useNavigate();
     const handleLogout = () => {
 
     authService.logout();
