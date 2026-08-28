@@ -3,9 +3,8 @@ import NewTaskButton from "../components/sidebar/NewTaskButton";
 import TodayTasks from "../components/sidebar/TodayTasks";
 import ProgressCard from "../components/sidebar/ProgressCard";
 import PomodoroCard from "../components/sidebar/Pomodoro";
-
+import { isLoggedIn } from "../Utils/storageMode";
 import authService from "../services/authService";
-
 import { useNavigate } from "react-router-dom";
 
 export default function MobileMenu({
@@ -15,6 +14,7 @@ export default function MobileMenu({
     productivityData,
 }) {
 
+    const loggedIn = isLoggedIn();
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -61,7 +61,7 @@ export default function MobileMenu({
             />
 
             {/* Logout Button */}
-
+          {loggedIn && (
             <button
                 onClick={handleLogout}
                 className="
@@ -76,6 +76,7 @@ export default function MobileMenu({
             >
                 🚪 Logout
             </button>
+          )}
 
         </div>
 
