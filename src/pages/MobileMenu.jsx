@@ -3,7 +3,9 @@ import NewTaskButton from "../components/sidebar/NewTaskButton";
 import TodayTasks from "../components/sidebar/TodayTasks";
 import ProgressCard from "../components/sidebar/ProgressCard";
 import PomodoroCard from "../components/sidebar/Pomodoro";
-import authService from "../../services/authService";
+
+import authService from "../services/authService";
+
 import { useNavigate } from "react-router-dom";
 
 export default function MobileMenu({
@@ -12,33 +14,39 @@ export default function MobileMenu({
     loadTasks,
     productivityData,
 }) {
-    const userName = localStorage.getItem("userName");
+
     const navigate = useNavigate();
+
     const handleLogout = () => {
 
-    authService.logout();
+        authService.logout();
 
-    navigate("/login");
+        navigate("/login");
 
-};
+    };
 
     return (
 
-       
+        <div
+            className="
+                h-full
+                overflow-y-auto
+                scrollbar-none
+                p-3
+                space-y-3
+            "
+        >
 
-    <div
-        className="
-            h-full
-            overflow-y-auto
-            scrollbar-none
-            p-3
-            space-y-3
-        "
-    >
-            <UserCard/ >
-            <ProgressCard tasks={tasks} productivityData={productivityData} />
+            <UserCard />
 
-            <NewTaskButton loadTasks={loadTasks} />
+            <ProgressCard
+                tasks={tasks}
+                productivityData={productivityData}
+            />
+
+            <NewTaskButton
+                loadTasks={loadTasks}
+            />
 
             <TodayTasks
                 tasks={tasks}
@@ -47,33 +55,29 @@ export default function MobileMenu({
                 productivityData={productivityData}
             />
 
-            <ProgressCard tasks={tasks} productivityData={productivityData}/>
-
             <PomodoroCard
                 tasks={tasks}
                 loadTasks={loadTasks}
             />
 
-            
+            {/* Logout Button */}
 
-        <button
-            onClick={handleLogout}
-            className="
-                w-full
-                rounded
-                bg-red-600
-                hover:bg-red-700
-                transition-colors
-                text-sm
-                py-1
-            "
-        >
-            🚪 Logout
-        </button>   
+            <button
+                onClick={handleLogout}
+                className="
+                    w-full
+                    rounded
+                    bg-red-600
+                    hover:bg-red-700
+                    transition-colors
+                    text-sm
+                    py-2
+                "
+            >
+                🚪 Logout
+            </button>
 
-    </div>
-
-
+        </div>
 
     );
 
