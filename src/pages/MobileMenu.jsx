@@ -3,6 +3,7 @@ import NewTaskButton from "../components/sidebar/NewTaskButton";
 import TodayTasks from "../components/sidebar/TodayTasks";
 import ProgressCard from "../components/sidebar/ProgressCard";
 import PomodoroCard from "../components/sidebar/Pomodoro";
+import authService from "../../services/authService";
 
 export default function MobileMenu({
     tasks,
@@ -10,6 +11,7 @@ export default function MobileMenu({
     loadTasks,
     productivityData,
 }) {
+    const userName = localStorage.getItem("userName");
 
     const handleLogout = () => {
 
@@ -32,7 +34,7 @@ export default function MobileMenu({
             space-y-3
         "
     >
-            <UserCard/>
+            <UserCard/ >
             <ProgressCard tasks={tasks} productivityData={productivityData} />
 
             <NewTaskButton loadTasks={loadTasks} />
