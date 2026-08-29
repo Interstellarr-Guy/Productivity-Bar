@@ -75,25 +75,7 @@ const guestMode = !isLoggedIn();
     }
 
 };
-               //0808
-//    tasks.forEach(task => {
-
-//     console.log(task.title,
-//                 task.status,
-//                 task.completedDate,
-//                 task.workedMinutes);
-
-//     if (
-//         task.completedDate &&
-//         task.workedMinutes > 0
-//     ) {
-
-//         productivityData[task.completedDate] =
-//             (productivityData[task.completedDate] || 0)
-//             + task.workedMinutes / 60;
-//     }
-
-// });
+        
     
     const loadTasks = async () => {
 
@@ -317,7 +299,11 @@ console.log("Is Array?", Array.isArray(tasks));
             )}
           </div>
 
-            <div className="flex-1 overflow-hidden">
+            <div className={`flex-1 ${
+            page === "calendar"
+            ? "overflow-hidden"
+            : "overflow-y-auto scrollbar-none"
+    }`}>
 
                 {page === "calendar" && (
 
