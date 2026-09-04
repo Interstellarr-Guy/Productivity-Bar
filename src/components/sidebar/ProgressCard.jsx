@@ -12,7 +12,7 @@ export default function TodayProgress({ productivityData }) {
         Math.min((todayHours / 12) * 100, 100);
 
     return (
-        <div className="bg-white/5 backdrop-blur-xl rounded p-3 mb-2">
+        <div className="bg-white/5 backdrop-blur-xl rounded p-3 mb-2 text-black">
 
             <div className="flex justify-between items-center mb-1">
 

@@ -15,6 +15,7 @@ export default function UserCard() {
             backdrop-blur-xl
             rounded-lg
             pl-2 pr-2
+            text-[#999]
           
         "
     >

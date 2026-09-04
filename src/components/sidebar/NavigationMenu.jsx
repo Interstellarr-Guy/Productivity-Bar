@@ -27,7 +27,7 @@ const handleLogout = () => {
     return (
 
         <div className="w-full mt-0 bg-[#a54c35]/20 backdrop-blur-xl 
-        rounded space-y-1 lg:space-y-1">
+        rounded space-y-1 lg:space-y-1 text-black">
 
             <button
                 className="block w-full  mb-1 

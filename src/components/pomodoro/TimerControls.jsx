@@ -11,7 +11,7 @@ export default function TimerControls({
 
     return (
         <>
-        <div className="flex  gap-2">
+        <div className="flex  gap-2 text-black">
             <button
                 onClick={() => {
 
