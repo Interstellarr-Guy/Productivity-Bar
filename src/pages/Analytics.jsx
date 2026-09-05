@@ -56,7 +56,7 @@ const loadWeeklyData = async () => {
 
 };
 
- //16-08
+ 
  // login check
  const guestMode = !isLoggedIn();
 

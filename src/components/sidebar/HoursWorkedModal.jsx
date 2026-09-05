@@ -10,7 +10,7 @@ export default function HoursWorkedModal({
 
 }) {
 
-    //console.log("Modal onSave:", onSave);
+  
 
     return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 bg-white/5 backdrop-blur-xl">

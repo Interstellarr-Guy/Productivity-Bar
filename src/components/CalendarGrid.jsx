@@ -47,7 +47,7 @@ export default function CalendarGrid({ year, month, productivityData, onDayClick
 (() => {
   
 
-console.log("PRODUCTIVITY DATA 08", productivityData);
+//console.log("PRODUCTIVITY DATA 08", productivityData);
 
     return productivityData[dateKey] || 0;
 })()

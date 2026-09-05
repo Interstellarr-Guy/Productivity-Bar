@@ -66,9 +66,9 @@ export default function TodayTasks({
 
     try {
 
-        // -----------------------------
+
         // UNCHECK COMPLETED TASK
-        // -----------------------------
+
 
         if (task.status === "DONE") {
 
@@ -93,10 +93,8 @@ export default function TodayTasks({
             return;
         }
 
-
-        // -----------------------------
-        // CHECK TODO TASK
-        // -----------------------------
+    // CHECK TODO TASK
+        
 
         setSelectedTask(task);
         setHoursInput("");
