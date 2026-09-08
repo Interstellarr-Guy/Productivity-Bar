@@ -16,7 +16,7 @@ export default function Sidebar({ tasks, setTasks, loadTasks,
                             flex
                             flex-col
                           bg-transparent
-                         md:bg-[#111827]/90
+                         md:bg-[#111827]/90    
 
                           backdrop-blur-none
                           md:backdrop-blur-2xl
