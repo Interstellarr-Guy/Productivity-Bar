@@ -144,6 +144,15 @@ const upcomingTasks =
         task.dueDate > today
     );
 
+      //Delete function
+    const handleDeleteTask = async (taskId) => {
+    try {
+        await taskService.deleteTask(taskId);
+        await loadTasks();
+    } catch (error) {
+        console.error("Failed to delete task:", error);
+    }
+};
 
 
     //Helper component 
@@ -186,6 +195,13 @@ const upcomingTasks =
                      - {task.priority}
                 </span>
 
+                <button
+              onClick={() => handleDeleteTask(task.id)}
+              className="text-[#43454f] hover:text-red-700"
+            >
+                <span>---</span>🗑️
+            </button>
+
             </div>
 
             <p className="text-xs text-gray-500">
@@ -194,10 +210,11 @@ const upcomingTasks =
 
             </p>
 
+            
+
         </div>
 
     </label>
-
 );
 
     return (
