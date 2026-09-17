@@ -234,7 +234,7 @@ const upcomingTasks =
 
     <h6 className="font-semibold mb-1 text-red-400 justify-center flex">
 
-        ⚠ Overdue
+        Overdue
 
     </h6>
 

@@ -46,7 +46,7 @@ export default function Navbar({
           </h4>
     </div> 
                      {/* Month */}
-    <div className="h-full flex items-center justify-center flex-shrink-0">
+    <div className="h-full flex items-center justify-center shrink-0">
         <select
     value={month}
     onChange={(e) => setMonth(Number(e.target.value))}
