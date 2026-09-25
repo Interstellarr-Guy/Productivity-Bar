@@ -33,14 +33,14 @@ export default function HoursWorkedModal({
                 value={hoursInput}
                 onChange={(e)=>setHoursInput(e.target.value)}
                 className="
-                    mt-4
+                    mt-3
                     w-full
                     rounded
                     bg-[#444]
-                    p-3
+                    p-2
                     text-white
                     border
-                    border-gray-600
+                    border-gray-700
                     focus:border-green-500
                     outline-none
                 "
