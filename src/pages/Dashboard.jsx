@@ -97,16 +97,41 @@ const guestMode = !isLoggedIn();
     return;
 }
         // Signed-in User
-            const workspaceId =
-                localStorage.getItem("workspaceId");
+            // const workspaceId =
+            //     localStorage.getItem("workspaceId");
 
-            if (!workspaceId) return;
+            // if (!workspaceId) return;
 
-            const data =
-                await taskService.getTasks();
+            // const data =
+            //     await taskService.getTasks();
 
-            setTasks(data);
-            await loadProductivityData();
+            // setTasks(data);
+            // await loadProductivityData();
+
+            // Signed-in User
+        const workspaceId =
+           localStorage.getItem("workspaceId");
+
+        if (!workspaceId) return;
+
+        // Start both operations at the same time.
+        // Handle errors separately so one failure
+        // doesn't prevent the other result from loading.
+
+        const tasksPromise = taskService.getTasks()
+         .then(data => {
+          setTasks(data);
+         })
+         .catch(error => {
+          console.error("Failed to load tasks", error);
+         });
+
+         const productivityPromise = loadProductivityData();
+
+        await Promise.all([
+           tasksPromise,
+           productivityPromise
+        ]);
 
         } catch (error) {
 
