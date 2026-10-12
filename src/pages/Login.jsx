@@ -48,45 +48,66 @@ export default function Login() {
 };
 
 
-    const handleLogin = async (e) => {
+//     const handleLogin = async (e) => {
 
+//     e.preventDefault();
+//     console.log("Button clicked");
+
+//     try {
+//             const response = await authService.login({
+//             email,
+//             password,
+//         });
+
+//         console.log("Login Success", response);
+
+//         // Fetch the logged-in user's productivity workspace
+//         //Login issue check 
+//         // const workspace =await workspace.getWorkspace();
+//          const workspace =
+//              await productivityWorkspaceService.getWorkspace();
+        
+//          console.log("Workspace:", workspace);
+//          localStorage.setItem("workspaceId", workspace.id);
+           
+//         //alert("Login Successful!");
+//         navigate("/");
+        
+//     } catch (error) {
+
+//     console.error("FULL ERROR:", error);
+
+//     console.log("name:", error.name);
+//     console.log("message:", error.message);
+//     console.log("stack:", error.stack);
+
+//     console.log("status:", error.response?.status);
+//     console.log("data:", error.response?.data);
+
+//     alert("Login Failed");
+// }
+
+// };
+
+const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Button clicked");
 
     try {
-            const response = await authService.login({
+        await authService.login({
             email,
             password,
         });
 
-        console.log("Login Success", response);
+        // Clear any workspace ID left by a previous login.
+        localStorage.removeItem("workspaceId");
 
-        // Fetch the logged-in user's productivity workspace
-        //Login issue check 
-        // const workspace =await workspace.getWorkspace();
-         const workspace =
-             await productivityWorkspaceService.getWorkspace();
-        
-         console.log("Workspace:", workspace);
-         localStorage.setItem("workspaceId", workspace.id);
-           
-        //alert("Login Successful!");
+        // Navigate immediately after successful authentication.
         navigate("/");
-        
+
     } catch (error) {
-
-    console.error("FULL ERROR:", error);
-
-    console.log("name:", error.name);
-    console.log("message:", error.message);
-    console.log("stack:", error.stack);
-
-    console.log("status:", error.response?.status);
-    console.log("data:", error.response?.data);
-
-    alert("Login Failed");
-}
-
+        console.error("Login failed:", error.response?.status);
+        alert("Login Failed");
+    }
 };
 
     return (

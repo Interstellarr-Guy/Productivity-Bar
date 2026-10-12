@@ -16,6 +16,8 @@ import MobileMenu from "./MobileMenu";
 import PomodoroCard from "../components/sidebar/Pomodoro";
 import { isLoggedIn, isGuest } from "../Utils/storageMode";
 import guestTaskService from "../services/guestTaskService";
+import productivityWorkspaceService from
+    "../services/ProductivityWorkspaceService";
 
 export default function Dashboard() {
      
@@ -77,82 +79,159 @@ const guestMode = !isLoggedIn();
 };
         
     
-    const loadTasks = async () => {
+//     const loadTasks = async () => {
 
-        try {
+//         try {
             
-        // check if guest mode
+//         // check if guest mode
+//         if (guestMode) {
+
+//     const data =
+//         await guestTaskService.getTasks();
+
+//     const productivity =
+//         await guestTaskService.getProductivityData();
+
+//     setTasks(data);
+
+//     setProductivityData(productivity);
+
+//     return;
+// }
+        
+
+//             // Signed-in User
+//         const workspaceId =
+//            localStorage.getItem("workspaceId");
+
+//         if (!workspaceId) return;
+
+   
+
+//         const tasksPromise = taskService.getTasks()
+//          .then(data => {
+//           setTasks(data);
+//          })
+//          .catch(error => {
+//           console.error("Failed to load tasks", error);
+//          });
+
+//          const productivityPromise = loadProductivityData();
+
+//         await Promise.all([
+//            tasksPromise,
+//            productivityPromise
+//         ]);
+
+//         } catch (error) {
+
+//             console.error("Failed to load tasks", error);
+
+//         }
+
+//     };
+
+const loadTasks = async () => {
+    try {
         if (guestMode) {
+            const [data, productivity] =
+                await Promise.all([
+                    guestTaskService.getTasks(),
+                    guestTaskService.getProductivityData()
+                ]);
 
-    const data =
-        await guestTaskService.getTasks();
-
-    const productivity =
-        await guestTaskService.getProductivityData();
-
-    setTasks(data);
-
-    setProductivityData(productivity);
-
-    return;
-}
-        // Signed-in User
-            // const workspaceId =
-            //     localStorage.getItem("workspaceId");
-
-            // if (!workspaceId) return;
-
-            // const data =
-            //     await taskService.getTasks();
-
-            // setTasks(data);
-            // await loadProductivityData();
-
-            // Signed-in User
-        const workspaceId =
-           localStorage.getItem("workspaceId");
-
-        if (!workspaceId) return;
-
-        // Start both operations at the same time.
-        // Handle errors separately so one failure
-        // doesn't prevent the other result from loading.
-
-        const tasksPromise = taskService.getTasks()
-         .then(data => {
-          setTasks(data);
-         })
-         .catch(error => {
-          console.error("Failed to load tasks", error);
-         });
-
-         const productivityPromise = loadProductivityData();
-
-        await Promise.all([
-           tasksPromise,
-           productivityPromise
-        ]);
-
-        } catch (error) {
-
-            console.error("Failed to load tasks", error);
-
+            setTasks(data);
+            setProductivityData(productivity);
+            return;
         }
 
+        const workspaceId =
+            localStorage.getItem("workspaceId");
+
+        if (!workspaceId) {
+            return;
+        }
+
+        const data = await taskService.getTasks();
+        setTasks(data);
+
+    } catch (error) {
+        console.error("Failed to load tasks:", error);
+    }
+};
+
+useEffect(() => {
+
+    if (guestMode) {
+        loadTasks();
+        return;
+    }
+
+    let cancelled = false;
+
+    const initializeDashboard = async () => {
+        try {
+            // Start independent API requests immediately.
+            const statisticsPromise = loadStatistics();
+            const completionsPromise = loadProductivityData();
+
+            // Workspace is needed before tasks can be loaded.
+            const workspace =
+                await productivityWorkspaceService.getWorkspace();
+
+            if (cancelled) return;
+
+            localStorage.setItem("workspaceId", workspace.id);
+
+            // Start tasks after workspace ID is available.
+            const tasksPromise = loadTasks();
+
+            await Promise.all([
+                statisticsPromise,
+                completionsPromise,
+                tasksPromise
+            ]);
+
+        } catch (error) {
+            console.error(
+                "Dashboard initialization failed:",
+                error
+            );
+        }
     };
 
-    // guest Mode added
-  useEffect(() => {
+    initializeDashboard();
 
-        loadTasks();
+    return () => {
+        cancelled = true;
+    };
 
 }, [guestMode]);
+
+    // guest Mode added
+//   useEffect(() => {
+
+//         loadTasks();
+
+// }, [guestMode]);
 
     //debug 
     console.log("Dashboard tasks:", tasks);
 console.log("Is Array?", Array.isArray(tasks));
     
-    //Statistics 
+   
+
+//     useEffect(() => {
+
+//     if (!guestMode) {
+
+//         loadStatistics();
+
+//     }
+
+// }, [guestMode]);
+
+ //Statistics 
     const [statistics, setStatistics] = useState({
 
       todayMinutes: 0,
@@ -166,16 +245,6 @@ console.log("Is Array?", Array.isArray(tasks));
       currentStreak: 0,
 
 });
-
-    useEffect(() => {
-
-    if (!guestMode) {
-
-        loadStatistics();
-
-    }
-
-}, [guestMode]);
     
     const loadStatistics = async () => {
 
