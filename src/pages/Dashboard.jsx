@@ -77,59 +77,6 @@ const guestMode = !isLoggedIn();
     }
 
 };
-        
-    
-//     const loadTasks = async () => {
-
-//         try {
-            
-//         // check if guest mode
-//         if (guestMode) {
-
-//     const data =
-//         await guestTaskService.getTasks();
-
-//     const productivity =
-//         await guestTaskService.getProductivityData();
-
-//     setTasks(data);
-
-//     setProductivityData(productivity);
-
-//     return;
-// }
-        
-
-//             // Signed-in User
-//         const workspaceId =
-//            localStorage.getItem("workspaceId");
-
-//         if (!workspaceId) return;
-
-   
-
-//         const tasksPromise = taskService.getTasks()
-//          .then(data => {
-//           setTasks(data);
-//          })
-//          .catch(error => {
-//           console.error("Failed to load tasks", error);
-//          });
-
-//          const productivityPromise = loadProductivityData();
-
-//         await Promise.all([
-//            tasksPromise,
-//            productivityPromise
-//         ]);
-
-//         } catch (error) {
-
-//             console.error("Failed to load tasks", error);
-
-//         }
-
-//     };
 
 const loadTasks = async () => {
     try {
@@ -208,29 +155,12 @@ useEffect(() => {
 
 }, [guestMode]);
 
-    // guest Mode added
-//   useEffect(() => {
-
-//         loadTasks();
-
-// }, [guestMode]);
 
     //debug 
     console.log("Dashboard tasks:", tasks);
 console.log("Is Array?", Array.isArray(tasks));
     
    
-
-//     useEffect(() => {
-
-//     if (!guestMode) {
-
-//         loadStatistics();
-
-//     }
-
-// }, [guestMode]);
-
  //Statistics 
     const [statistics, setStatistics] = useState({
 
